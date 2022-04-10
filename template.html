@@ -3,6 +3,7 @@
 <head>
   <title>Dashboard</title>
   <link rel="stylesheet" type="text/css" href="template.css">
+  <link rel="stylesheet" type="text/css" href="content.css">
 	<script type="text/javascript" src="template.js"></script>
 </head>
 
@@ -72,25 +73,60 @@
     <div style="height: 100%;"></div>
     <div id="copyright" style="display:flex; padding: 5px 0; flex-shrink: 0; min-width: 240px;">
       <div style="padding: 0 15px;">Copyright 2022</div>
-      <a href="https://support.microsoft.com/en-us/office/insert-icons-in-microsoft-office-e2459f17-3996-4795-996e-b9a13486fa79" style="text-decoration: none; color: white;">
-        Attributions
-      </a>
+      <a href="https://support.microsoft.com/en-us/office/insert-icons-in-microsoft-office-e2459f17-3996-4795-996e-b9a13486fa79" style="text-decoration: none; color: white;">Attributions</a>
     </div>
   </div>
 
 
   <div id="content-area">
-
     <div class="content-box">
+        <!-- /////////// BOX NAVIGATION FORMAT ///////////
+          <div class="box-navigation">
+            <img class="box-navigation-back" src="pictures/backarrow.svg">
+            <div class="box-navigation-text">
+              <div class="box-navigation-path">%CATEGORY / %<span class="bold">%SECTION%</span></div>
+              <div class="box-navigation-description">%Description%</div>
+            </div>   
+          </div>
+        -->
       <div class="box-navigation">
         <img class="box-navigation-back" src="pictures/backarrow.svg">
         <div class="box-navigation-text">
           <div class="box-navigation-path">Administration Tools / <span class="bold">TA Info and History</span></div>
           <div class="box-navigation-description">View TA Information</div>
-        </div>
-          
+        </div>   
       </div>
+      
+      <!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
       <div class="box-content">
+        <form action="mini4.php" method="post">
+          <div class="star-selection">
+            <input type="radio" name="rating" value="1">
+            <input type="radio" name="rating" value="2">
+            <input type="radio" name="rating" value="3">
+            <input type="radio" name="rating" value="4">
+            <input type="radio" name="rating" value="5">
+          </div>
+          <select name="book" id="book-select">
+              <option value="King Lear">King Lear</option>
+              <option value="The Count of Monte Cristo">The Count of Monte Cristo</option>
+              <option value="The Giver">The Giver</option>
+              <option value="Anil's Ghost">Anil's Ghost</option>
+              <option value="Nineteen Eighty-Four">Nineteen Eighty-Four</option>
+              <option value="Do Android Dream of Electric Sheep?">Do Android Dream of Electric Sheep?</option>
+              <option value="Heart of Darkness">Heart of Darkness</option>
+          </select>
+  
+          <h2>Operating System</h2>
+          Which operating system do you use? <br>
+          <input type="radio" name="os" value="Windows"> Windows
+          <input type="radio" name="os" value="Mac"> Mac OS X
+          <input type="radio" name="os" value="Linux"> Linux
+          <input type="radio" name="os" value="Other"> Other
+  
+          <br><br>
+  
+          <input type="submit" value="Register">
 
       </div>
     </div>

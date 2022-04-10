@@ -12,3 +12,9 @@ function toggleNav() {
     }
 
 }
+
+function toggleStars(id) {
+    for (let i = 0; i < id; i++) {
+        
+    }
+}

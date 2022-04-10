@@ -1,0 +1,64 @@
+/* Styles applying to content boxes only */
+
+/* Styles relating to the box itself */
+.content-box {
+    width: 750px;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #F2F2F2;
+}
+
+/* Navigation and info top */
+.box-navigation { /*Should only appear on one box*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    height: 50px;
+}
+.box-navigation-back {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.box-navigation-back:hover {
+    background-color: #D0CECE;
+}
+.box-navigation-path {
+    font-size: 1.5rem;
+}
+
+/* Actual navigation box content */
+.box-content {
+    padding: 15px 30px;
+
+}
+
+select {
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px 0;
+
+    border: 2px solid black;
+    font-size: 1.2rem;
+    background-color: #D0CECE;
+}
+
+input {
+    padding: 10px 0;
+}
+
+.spanning-textbox {
+    width: 100%;
+    height: 300px;
+    border-radius: 5px;
+    padding: 10px 0;
+    
+}
+
+#submit-button {
+    float: right;
+    height: 30px;
+    border-radius: 10%;
+    background-color: #4472C4;
+}
