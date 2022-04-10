@@ -1,4 +1,7 @@
-/* ====================== HEADER ====================== */
+/* ====================== HEADER ====================== 
+The header consists of a horizontal flexbox justified left, with a dummy
+element in the middle to push the course selection dropdown right.
+*/
 
 /* Container to cast shadows, enforce size and contain any overflow. */
 header {
@@ -22,14 +25,15 @@ header {
 
 /* Generic header element */
 .header-box {
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 /* Flexbox containing the hamburger container -- used to center */
 #hamburger-box {
-    display: none;
+    display: flex;
     align-items: center;
-    width: 42px;
+    overflow: hidden;
+    width: 0px;
     margin: 0 10px;
     border-radius: 10%;
 }
@@ -89,7 +93,9 @@ header {
 /* ----------------Phone screen hamburger mode ---------------- */
 @media screen and (max-width: 1090px) {
     /* Actually show the hamburger */
-    #hamburger-box {display: flex;}
+    #hamburger-box {
+        width: 42px;
+    }
 }
 @media screen and (max-width: 609px) {
     /* Reduce bird image size */

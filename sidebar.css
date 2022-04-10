@@ -1,17 +1,39 @@
-/* ====================== SIDEBAR ====================== */
+/* ====================== SIDEBAR ====================== 
+Note: The sidebar is made up of two parts:
+1. id=sidebar: A 250px wide div actually containing the sidebar content.
+Its position is absolute and the only thing that changes is the width.
+This is so that it can display on top of the content in smaller screen
+sizes. 
+2. id=sidebar-hitbox: A 250px wide div underneath id=sidebar. It is responsible
+for pushing away the content in larger screen sizes, and disappears on smaller
+screen sizes.
+Separating the two also allows smooth transitions. Setting the position of
+id=sidebar to absolute only on smaller screen sizes would replicate most of
+the functionality, but introduces significant choppiness and unwanted
+transitions while resizing.
+*/
+
+#sidebar-hitbox {
+    width: 250px;
+    min-width: 250px;
+    transition: 0.3s;
+}
 
 /* Container for the entire flexbox */
 #sidebar {
     display: flex;
     flex-shrink: 0; /* Otherwise pushed off page */
     flex-direction: column;
+    position: absolute;
     width: 250px;
-    height: 100%; /*100% of page-container*/
+    transition: 0.3s;
+
+    height: calc(100% - 60px); /*100% of page-container*/
 
     overflow: hidden;
     background-color: #5D6770;
     box-shadow: 5px 0 5px -2px gray;
-    transition: 0.3s;
+
 }
 #sidebar>* {
     color: white;
@@ -87,10 +109,14 @@
 @media screen and (max-width: 1090px) {
     /* In tablet- mode, sidebar goes over content
     rather than displacing */
-    .sidebar {
+    #sidebar {
         overflow: hidden !important;
         position: absolute !important;
         height: calc(100% - 60px) !important; /* 100 - header hight */
+    }
+    #sidebar-hitbox {
+        min-width: 0;
+        width: 0;
     }
     /* Sidebar can only be closed in tablet- mode */
     .sidebar-closed {
