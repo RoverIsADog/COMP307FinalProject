@@ -2,19 +2,17 @@ var navOpen = true;
 
 function toggleNav() {
     var x = document.getElementById("sidebar");
-    if (navOpen) {
-        navOpen = false;
-        x.style.width = "10px";
+    if (x.className === "sidebar") {
+        x.className = "sidebar sidebar-closed";
     }
     else {
-        navOpen = true;
-        x.style.width = "250px";
+        x.className = "sidebar";
     }
 
 }
 
 function toggleStars(id) {
     for (let i = 0; i < id; i++) {
-        
+
     }
 }

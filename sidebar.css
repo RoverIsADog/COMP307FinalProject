@@ -1,0 +1,99 @@
+/* ====================== SIDEBAR ====================== */
+
+/* Container for the entire flexbox */
+#sidebar {
+    display: flex;
+    flex-shrink: 0; /* Otherwise pushed off page */
+    flex-direction: column;
+    width: 250px;
+    height: 100%; /*100% of page-container*/
+
+    overflow: hidden;
+    background-color: #5D6770;
+    box-shadow: 5px 0 5px -2px gray;
+    transition: 0.3s;
+}
+#sidebar>* {
+    color: white;
+}
+
+/* User Profile */
+#sidebar-user { /* Container for the choice */
+    flex-direction: row;
+    height: 70px;
+}
+#sidebar-user-img {
+    margin: 0 10px 0 5px;
+    height: 70%; /* (of sidebar-user) MUST BE SQUARE */
+    border-radius: 50%;
+}
+#sidebar-user-text {
+    margin: 0 10px;
+}
+#userrole {
+    font-size: 0.8rem;
+}
+
+/* Styles for elements forming ONE OPTION in the sidebar */
+.sidebar-item { /* Container for an option */
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    align-items: center;
+    height: 50px;
+    width: 230px;
+    margin: 0 10px;
+    border-radius: 5px;
+
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+.sidebar-item-tick { /* Inside sidebar-item */
+    flex-shrink: 0;
+    height: 100%;
+    width: 7px;
+    border-radius: 5px;
+
+    background-color: #5D6770;
+}
+.sidebar-item-svg { /* Inside sidebar-item */
+    flex-shrink: 0;
+    height: auto;
+    width: 35px;
+    padding-left: 10px;
+}
+.sidebar-item-text { /* Inside sidebar-item */
+    display: flex;
+    flex-shrink: 0;
+    height: 100%;
+    align-items: center;
+    padding: 0 10px;
+}
+
+/* Sidebar option interaction management */
+.sidebar-current {
+    background-color: #43484d;
+}
+.sidebar-current .sidebar-item-tick {
+    background-color: #2f3133;
+}
+.sidebar-item:hover {
+    background-color: #323436;
+}
+.sidebar-item:hover .sidebar-item-tick {
+    background-color: #202122;
+}
+
+@media screen and (max-width: 1090px) {
+    /* In tablet- mode, sidebar goes over content
+    rather than displacing */
+    .sidebar {
+        overflow: hidden !important;
+        position: absolute !important;
+        height: calc(100% - 60px) !important; /* 100 - header hight */
+    }
+    /* Sidebar can only be closed in tablet- mode */
+    .sidebar-closed {
+        width: 0 !important;
+    }
+}

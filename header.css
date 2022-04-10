@@ -1,0 +1,99 @@
+/* ====================== HEADER ====================== */
+
+/* Container to cast shadows, enforce size and contain any overflow. */
+header {
+    height: 60px;
+    box-shadow: 0px 5px 5px gray;
+    color: white;
+    overflow: hidden;
+}
+
+/* Flexbox that distributes header elements (boxes) */
+#header-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #ED1B2F; /* Mcgill red */
+}
+
+/* Generic header element */
+.header-box {
+    transition: 0.5s;
+}
+
+/* Flexbox containing the hamburger container -- used to center */
+#hamburger-box {
+    display: none;
+    align-items: center;
+    width: 42px;
+    margin: 0 10px;
+    border-radius: 10%;
+}
+
+/* Box to structure the divs making up the hb */
+#hamburger-container {
+    border-radius: 10%;
+    width: 30px;
+    padding: 5px;
+    transition: 0.3s;
+}
+#hamburger-container:hover {
+    background-color: #9E0918; /* Slightly darker red */
+}
+
+/* The hamburger horizontal bars themselves */
+#hamburger-container > div { 
+    width: 80%;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+    margin-left: 2px;
+}
+
+/* Flexbox for the mcgill bird */
+#birdbox {
+    display: flex;
+    align-items: center;
+}
+
+/* The bird image itself. Unfortunately no svg available. */
+#bird {
+    height: 100%;
+    width: auto;
+}
+
+/* Box for the white bar */
+#whitebarbox {
+    width: 2px;
+    height: calc(100% - 16px);
+    margin: 8px 5px;
+    background-color: white;
+}
+
+/* Box for the site name */
+#sitenamebox {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+
+    white-space: nowrap;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: white;
+}
+
+/* ----------------Phone screen hamburger mode ---------------- */
+@media screen and (max-width: 1090px) {
+    /* Actually show the hamburger */
+    #hamburger-box {display: flex;}
+}
+@media screen and (max-width: 609px) {
+    /* Reduce bird image size */
+    #bird {height: 70%;}
+    /* Reduce site name font */
+    #sitenamebox {font-size: 1rem;}
+}

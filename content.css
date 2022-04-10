@@ -1,32 +1,55 @@
 /* Styles applying to content boxes only */
 
-/* Styles relating to the box itself */
-.content-box {
-    width: 750px;
+.content-box { /* Styles relating to the box itself */
+    width: 100%;
+    max-width: 750px;
+    min-width: 480px;
     border-radius: 10px;
     padding: 15px;
+    margin:15px;
     background-color: #F2F2F2;
 }
 
-/* Navigation and info top */
+/* //////////// Navigation and info top //////////// */
 .box-navigation { /*Should only appear on one box*/
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
     height: 50px;
+    transition: 0.3s;
 }
 .box-navigation-back {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    transition: 0.3s;
 }
 .box-navigation-back:hover {
     background-color: #D0CECE;
 }
 .box-navigation-path {
     font-size: 1.5rem;
+    white-space: nowrap;
+    transition: 0.3s;
 }
+
+@media screen and (max-width: 609px) {
+    .box-navigation {
+        height: 35px;
+    }
+    .box-navigation-back {
+        width: 35px;
+        height: 35px;
+    }
+    .box-navigation-path {
+        font-size: 1.2rem;
+    }
+    .box-navigation {
+        font-size: 0.8rem;
+    }
+}
+
 
 /* Actual navigation box content */
 .box-content {
