@@ -1,0 +1,216 @@
+/* Widths when in tablet & phone mode */
+@media screen and (max-width: 589px) {
+    .col-s-1  {width: 08.33%;}
+    .col-s-2  {width: 16.66%;}
+    .col-s-3  {width: 25.00%;}
+    .col-s-4  {width: 33.33%;}
+    .col-s-5  {width: 41.66%;}
+    .col-s-6  {width: 50.00%;}
+    .col-s-7  {width: 58.33%;}
+    .col-s-8  {width: 66.66%;}
+    .col-s-9  {width: 75.00%;}
+    .col-s-10 {width: 83.33%;}
+    .col-s-11 {width: 91.66%;}
+    .col-s-12 {width: 100.0%;}
+}
+
+/* Widths when in desktop mode */
+@media screen and (min-width: 590px) {
+    .col-1  {width: 08.33%;}
+    .col-2  {width: 16.66%;}
+    .col-3  {width: 25.00%;}
+    .col-4  {width: 33.33%;}
+    .col-5  {width: 41.66%;}
+    .col-6  {width: 50.00%;}
+    .col-7  {width: 58.33%;}
+    .col-8  {width: 66.66%;}
+    .col-9  {width: 75.00%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100.0%;}
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    /*Technically already default but just in case*/
+    font-size: 16px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* ====================== HEADER ====================== */
+
+header {
+    height: 60px;
+    box-shadow: -10px 5px 5px gray;
+    color: white;
+    overflow: hidden;
+}
+
+#header-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #ED1B2F;
+}
+
+.header-box {
+    height: inherit;
+    display: flexbox;
+}
+
+#bird {
+    height: 100%;
+    width: auto;
+    padding-left: 35px;
+}
+
+#whitebar {
+    width: 2px;
+    height: calc(100% - 16px);
+    margin: 8px 5px;
+    background-color: white;
+}
+
+#sitenamebox {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: white;
+}
+
+#page-container {
+    display: flex;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+}
+
+/* ====================== Sidebar ====================== */
+
+/* Container for the entire flexbox */
+#sidebar {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    width: 250px;
+    height: 100%; /*100% of page-container*/
+
+    overflow: hidden;
+    background-color: #2D5597;
+    box-shadow: 5px 0 5px -2px gray;
+    transition: 0.3s;
+}
+#sidebar>* {
+    color: white;
+}
+
+/* Each selectable choice in the sidebar */
+.sidebar-item {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    align-items: center;
+    height: 50px;
+    width: 230px;
+    margin: 0 10px;
+    border-radius: 5px;
+
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+.sidebar-item-tick {
+    flex-shrink: 0;
+    height: 100%;
+    width: 7px;
+    border-radius: 5px;
+
+    background-color: #2D5597;
+}
+.sidebar-item-svg {
+    flex-shrink: 0;
+    height: auto;
+    width: 35px;
+    padding-left: 10px;
+}
+.sidebar-item-text {
+    display: flex;
+    flex-shrink: 0;
+    height: 100%;
+    align-items: center;
+    padding: 0 10px;
+}
+
+/* Interactiveness Management */
+.sidebar-current {
+    background-color: #4472C4;
+}
+.sidebar-current .sidebar-item-tick {
+    background-color: #5B9BD5;
+}
+.sidebar-item:hover {
+    background-color: #226ae7;
+}
+.sidebar-item:hover .sidebar-item-tick {
+    background-color: #037ff3;
+}
+/* User Profile Choice */
+#sidebar-user {
+    flex-direction: row;
+    height: 70px;
+}
+#sidebar-user-img {
+    margin: 0 10px 0 5px;
+    height: 70%; /* MUST BE SQUARE */
+    border-radius: 50%;
+}
+#sidebar-user-text {
+    margin: 0 10px;
+}
+#userrole {
+    font-size: 0.8rem;
+}
+
+/* ====================== Content ====================== */
+#content-area { /* Container for the content */
+    overflow-y: auto; /*scrollbar*/
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Styles relating to one box */
+.content-box {
+    width: 750px;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #F2F2F2;
+}
+.box-navigation { /*Should only appear on one box*/
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: left;
+    height: 50px;
+}
+.box-navigation-back {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.box-navigation-back:hover {
+    background-color: #D0CECE;
+}
+.box-navigation-path {
+    font-size: 1.5rem;
+}
