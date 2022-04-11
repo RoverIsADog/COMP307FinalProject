@@ -1,14 +1,16 @@
 var navOpen = true;
 
+/**
+ * Toggles the display of the siebar
+ */
 function toggleNav() {
     var x = document.getElementById("sidebar");
-    if (x.className === "sidebar") {
-        x.className = "sidebar sidebar-closed";
+    if (x.className === "") {
+        x.className = "sidebar-closed";
     }
     else {
-        x.className = "sidebar";
+        x.className = "";
     }
-
 }
 
 function toggleStars(id) {

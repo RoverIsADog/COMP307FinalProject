@@ -25,6 +25,7 @@ header {
 
 /* Generic header element */
 .header-box {
+    flex-shrink: 0;
     transition: 0.3s;
 }
 
@@ -62,12 +63,15 @@ header {
 #birdbox {
     display: flex;
     align-items: center;
+    flex-basis: 0;
 }
 
 /* The bird image itself. Unfortunately no svg available. */
 #bird {
+    align-items: flex-start;
     height: 100%;
     width: auto;
+    transition: 0.3s;
 }
 
 /* Box for the white bar */
@@ -97,9 +101,14 @@ header {
         width: 42px;
     }
 }
-@media screen and (max-width: 609px) {
+@media screen and (max-width: 649px) {
     /* Reduce bird image size */
     #bird {height: 70%;}
+    /* Reduce white bar sise */
+    #whitebarbox {
+        height: calc(100% - 30px);
+        margin: 15px 3px;
+    }
     /* Reduce site name font */
     #sitenamebox {font-size: 1rem;}
 }

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 
 <head>
-  <title>Dashboard</title>
+  <title>Content-Box</title>
   <link rel="stylesheet" type="text/css" href="template.css">
-  <link rel="stylesheet" type="text/css" href="rate.css">
+  <link rel="stylesheet" type="text/css" href="header.css">
+  <link rel="stylesheet" type="text/css" href="sidebar.css">
+  <link rel="stylesheet" type="text/css" href="content.css">
 	<script type="text/javascript" src="template.js"></script>
 </head>
 
@@ -23,8 +25,8 @@
     <div class="box-navigation">
       <img class="box-navigation-back" src="pictures/backarrow.svg">
       <div class="box-navigation-text">
-        <div class="box-navigation-path">Administration Tools / <span class="bold">TA Info and History</span></div>
-        <div class="box-navigation-description">View TA Information</div>
+        <div class="box-navigation-path">Administration Tools / <span class="bold">Rate a TA</span></div>
+        <div class="box-navigation-description">Select a TA to rate</div>
       </div>   
     </div>
     
@@ -39,17 +41,20 @@
 					<option value="TassyMcTasface4">TassyMcTasface4</option>
 				</select>
 
-				<input type="radio" name="numberstars" value="1" id="star1">1
-				<input type="radio" name="numberstars" value="2" id="star2">2
-				<input type="radio" name="numberstars" value="3" id="star3">3
-				<input type="radio" name="numberstars" value="4" id="star4">4
-				<input type="radio" name="numberstars" value="5" id="star5">5
+				<div class="star-select">
+					<input type="radio" name="numberstars" value="1" id="star1">1
+					<input type="radio" name="numberstars" value="2" id="star2">2
+					<input type="radio" name="numberstars" value="3" id="star3">3
+					<input type="radio" name="numberstars" value="4" id="star4">4
+					<input type="radio" name="numberstars" value="5" id="star5">5
+				</div>
+
 
 				<div style="width: 100%; padding: 10px 0;">Comments (optional)</div>
 
-				<input type="text" name="ratecomments" class="spanning-textbox">
+				<textarea type="text" name="ratecomments" wrap="physical" class="spanning-textbox"></textarea>
 
-        <input id="submit-button" type="submit" value="Register">
+        <button class="button positive-button" id="negative-button" type="submit" value="Register">Submit</button>
 				
 			</form>
 
