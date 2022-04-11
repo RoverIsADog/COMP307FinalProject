@@ -4,6 +4,8 @@
 
 /* Styles relating to the box itself */
 .content-box {
+    display: flex;
+    flex-direction: column;
     width: 90%;
     max-width: 750px;
     min-width: 440px;
@@ -115,6 +117,9 @@ button:hover {
 .star-select {
     padding: 10px 0;
 }
+.star-select>input {
+    width: auto;
+}
 
 /* ////////// Multiline Textbox ////////// */
 .spanning-textbox {
@@ -160,4 +165,9 @@ td,th {
 }
 tr:nth-child(odd) {
     background-color: lightgray;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
