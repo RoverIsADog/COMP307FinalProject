@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Import TA Cohort</title>
+  <link rel="stylesheet" type="text/css" href="template.css">
+  <link rel="stylesheet" type="text/css" href="header.css">
+  <link rel="stylesheet" type="text/css" href="sidebar.css">
+  <link rel="stylesheet" type="text/css" href="content.css">
+	<script type="text/javascript" src="template.js"></script>
+</head>
+
+<body style="font-family: Arial, Helvetica, sans-serif; margin: 0;">
+
+<div id="content-area">
+  <div class="content-box">
+    <!-- /////////// BOX NAVIGATION FORMAT ///////////
+      <div class="box-navigation">
+        <img class="box-navigation-back" src="pictures/backarrow.svg">
+        <div class="box-navigation-text">
+          <div class="box-navigation-path">%CATEGORY / %<span class="bold">%SECTION%</span></div>
+          <div class="box-navigation-description">%Description%</div>
+        </div>   
+      </div>
+    -->
+    <div class="box-navigation">
+      <img class="box-navigation-back" src="pictures/backarrow.svg">
+      <div class="box-navigation-text">
+        <div class="box-navigation-path">Administration Tools / <span class="bold">Import TA Cohort</span></div>
+        <div class="box-navigation-description">Import TAs from CourseQuota.csv and TACohort.csv</div>
+      </div>   
+    </div>
+    
+    <div class="box-content">
+      <!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
+      <form action="mini4.php" method="post">
+        <div>Are you sure you want to import the file?</div>
+        
+        <button class="button positive-button" id="negative-button" type="submit" value="Register">Import</button>
+
+			</form>
+
+      <!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
+    </div>
+  </div>
+  </div>
+
+</body>

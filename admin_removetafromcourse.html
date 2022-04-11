@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Remove TA to Course</title>
+  <link rel="stylesheet" type="text/css" href="template.css">
+  <link rel="stylesheet" type="text/css" href="header.css">
+  <link rel="stylesheet" type="text/css" href="sidebar.css">
+  <link rel="stylesheet" type="text/css" href="content.css">
+	<script type="text/javascript" src="template.js"></script>
+</head>
+
+<body style="font-family: Arial, Helvetica, sans-serif; margin: 0;">
+
+<div id="content-area">
+  <div class="content-box">
+    <!-- /////////// BOX NAVIGATION FORMAT ///////////
+      <div class="box-navigation">
+        <img class="box-navigation-back" src="pictures/backarrow.svg">
+        <div class="box-navigation-text">
+          <div class="box-navigation-path">%CATEGORY / %<span class="bold">%SECTION%</span></div>
+          <div class="box-navigation-description">%Description%</div>
+        </div>   
+      </div>
+    -->
+    <div class="box-navigation">
+      <img class="box-navigation-back" src="pictures/backarrow.svg">
+      <div class="box-navigation-text">
+        <div class="box-navigation-path">Administration Tools / <span class="bold">Remove TA from Course</span></div>
+        <div class="box-navigation-description">Select TA to Remove From a Course</div>
+      </div>   
+    </div>
+    
+    <div class="box-content">
+      <!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
+
+      <form action="rateta.php" method="post">
+
+        <div class="heading1">Select TA to remove</div>
+				<select name="ta-select" id="ta-select">
+					<option value="TassyMcTasface">TassyMcTasface</option>
+					<option value="TassyMcTasface1">TassyMcTasface1</option>
+					<option value="TassyMcTasface2">TassyMcTasface2</option>
+					<option value="TassyMcTasface3">TassyMcTasface3</option>
+					<option value="TassyMcTasface4">TassyMcTasface4</option>
+				</select>
+        <div class="heading1">Select course to remove TA from</div>
+        <select name="course-select" id="course-select">
+					<option value="COMP307">TassyMcTasface</option>
+					<option value="COMP308">TassyMcTasface1</option>
+					<option value="COMP309">TassyMcTasface2</option>
+					<option value="COMP310">TassyMcTasface3</option>
+					<option value="COMP311">TassyMcTasface4</option>
+				</select>
+        <button class="button negative-button" id="submitremoveta" type="submit" value="Confirm">Remove</button>
+				
+			</form>
+
+      <!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
+    </div>
+  </div>
+  </div>
+
+</body>

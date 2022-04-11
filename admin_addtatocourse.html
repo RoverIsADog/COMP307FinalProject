@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Add TA to Course</title>
+  <link rel="stylesheet" type="text/css" href="template.css">
+  <link rel="stylesheet" type="text/css" href="header.css">
+  <link rel="stylesheet" type="text/css" href="sidebar.css">
+  <link rel="stylesheet" type="text/css" href="content.css">
+	<script type="text/javascript" src="template.js"></script>
+</head>
+
+<body style="font-family: Arial, Helvetica, sans-serif; margin: 0;">
+
+<div id="content-area">
+  <div class="content-box">
+    <!-- /////////// BOX NAVIGATION FORMAT ///////////
+      <div class="box-navigation">
+        <img class="box-navigation-back" src="pictures/backarrow.svg">
+        <div class="box-navigation-text">
+          <div class="box-navigation-path">%CATEGORY / %<span class="bold">%SECTION%</span></div>
+          <div class="box-navigation-description">%Description%</div>
+        </div>   
+      </div>
+    -->
+    <div class="box-navigation">
+      <img class="box-navigation-back" src="pictures/backarrow.svg">
+      <div class="box-navigation-text">
+        <div class="box-navigation-path">Administration Tools / <span class="bold">Add TA to Course</span></div>
+        <div class="box-navigation-description">Enter Information for the TA to add</div>
+      </div>   
+    </div>
+    
+    <div class="box-content">
+      <!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
+
+      <form action="rateta.php" method="post">
+
+        <div class="textfield-container">
+          <div>Name</div>
+          <input type="text" name="name">
+        </div>
+        <div class="textfield-container">
+          <div>Student ID</div>
+          <input type="text" name="studentid">
+        </div>
+        <div class="textfield-container">
+          <div>Course Number</div>
+          <input type="text" name="coursenum">
+        </div>
+        <div class="textfield-container">
+          <div>Term/Month/Year</div>
+          <input type="text" name="termmonthyear">
+        </div>
+        <div class="textfield-container">
+          <div>Assigned Hours</div>
+          <input type="text" name="Hours">
+        </div>
+
+        <button class="button positive-button" id="submitrating" type="submit" value="Register">Submit</button>
+				
+			</form>
+
+      <!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
+    </div>
+  </div>
+  </div>
+
+</body>

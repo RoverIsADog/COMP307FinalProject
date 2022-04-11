@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Office Hours & Responsibilities</title>
+  <link rel="stylesheet" type="text/css" href="template.css">
+  <link rel="stylesheet" type="text/css" href="header.css">
+  <link rel="stylesheet" type="text/css" href="sidebar.css">
+  <link rel="stylesheet" type="text/css" href="content.css">
+	<script type="text/javascript" src="template.js"></script>
+</head>
+
+<body style="font-family: Arial, Helvetica, sans-serif; margin: 0;">
+
+<div id="content-area">
+  <div class="content-box">
+    <!-- /////////// BOX NAVIGATION FORMAT ///////////
+      <div class="box-navigation">
+        <img class="box-navigation-back" src="pictures/backarrow.svg">
+        <div class="box-navigation-text">
+          <div class="box-navigation-path">%CATEGORY / %<span class="bold">%SECTION%</span></div>
+          <div class="box-navigation-description">%Description%</div>
+        </div>   
+      </div>
+    -->
+    <div class="box-navigation">
+      <img class="box-navigation-back" src="pictures/backarrow.svg">
+      <div class="box-navigation-text">
+        <div class="box-navigation-path">Management Tools / <span class="bold">Office Hours & Responsibilities</span></div>
+        <div class="box-navigation-description">Select an Instructor to Modify their Information</div>
+      </div>   
+    </div>
+    
+    <div class="box-content">
+      <!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
+
+      <form action="rateta.php" method="post">
+
+				<select name="ta-select" id="ta-select">
+					<option value="TassyMcTasface">TassyMcTasface</option>
+					<option value="TassyMcTasface1">TassyMcTasface1</option>
+					<option value="TassyMcTasface2">TassyMcTasface2</option>
+					<option value="TassyMcTasface3">TassyMcTasface3</option>
+					<option value="TassyMcTasface4">TassyMcTasface4</option>
+				</select>
+
+        <div class="textfield-container">
+          <div>Name</div>
+          <input type="text" name="name">
+        </div>
+        <div class="textfield-container">
+          <div>Email</div>
+          <input type="text" name="studentid">
+        </div>
+        <div class="textfield-container">
+          <div>Position</div>
+          <input type="text" name="coursenum">
+        </div>
+        <div class="textfield-container">
+          <div>Job</div>
+          <input type="text" name="termmonthyear">
+        </div>
+        <div class="textfield-container" id="officehour-box">
+          <div>Office Hours</div>
+          <input type="time" name="monday">
+          <input type="time" name="tuesday">
+          <input type="time" name="wednesday">
+          <input type="time" name="thursday">
+          <input type="time" name="friday">
+        </div>
+
+        <div class="heading1">Additional Comment</div>
+
+				<textarea type="text" name="ratecomments" wrap="physical" class="spanning-textbox"></textarea>
+
+
+
+        <button class="button negative-button" id="submitremoveta" type="submit" value="Confirm">Remove</button>
+				
+			</form>
+
+      <!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
+    </div>
+  </div>
+  </div>
+
+</body>
