@@ -1,0 +1,7 @@
+<select id="rate-courses-dropdown" name="rate-courses-dropdown" >
+	<option value="COMP307 Winter 2022">COMP307 Winter 2022</option>
+	<option value="COMP307 Fall 2021">COMP307 Fall 2021</option>
+	<option value="COMP307 August Summer 2021">COMP307 August Summer 2021</option>
+	<option value="COMP308 Winter 2022">COMP308 Winter 2022</option>
+	<option value="COMP308 Fall 2021">COMP308 Fall 2021</option>
+</select>
