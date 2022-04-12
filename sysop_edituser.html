@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-  <title>Manually Add TA and Course</title>
+  <title>Remove or Edit Users</title>
   <link rel="stylesheet" type="text/css" href="template.css">
   <link rel="stylesheet" type="text/css" href="header.css">
   <link rel="stylesheet" type="text/css" href="sidebar.css">
@@ -25,38 +25,41 @@
     <div class="box-navigation">
       <img class="box-navigation-back" src="pictures/backarrow.svg">
       <div class="box-navigation-text">
-        <div class="box-navigation-path">Sysop Tasks / <span class="bold">Manually Add a Prof and Course</span></div>
-        <div class="box-navigation-description">Enter Course Information</div>
+        <div class="box-navigation-path">Sysop Tasks / <span class="bold">Remove or Edit Users</span></div>
+        <div class="box-navigation-description">Select User to Edit</div>
       </div>   
     </div>
     
     <div class="box-content">
       <!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
-
       <form action="rateta.php" method="post">
+				<select name="ta-select" id="ta-select">
+					<option value="TassyMcTasface">TassyMcTasface</option>
+					<option value="TassyMcTasface1">TassyMcTasface1</option>
+					<option value="TassyMcTasface2">TassyMcTasface2</option>
+					<option value="TassyMcTasface3">TassyMcTasface3</option>
+					<option value="TassyMcTasface4">TassyMcTasface4</option>
+				</select>
 
         <div class="textfield-container">
-          <div>Course Code</div>
+          <div>Name</div>
           <input type="text" name="name">
         </div>
         <div class="textfield-container">
-          <div>Assigned Prof</div>
+          <div>Email</div>
           <input type="text" name="studentid">
         </div>
         <div class="textfield-container">
-          <div>Credits</div>
+          <div>Position</div>
           <input type="text" name="coursenum">
         </div>
         <div class="textfield-container">
-          <div>#Students</div>
+          <div>Job</div>
           <input type="text" name="termmonthyear">
         </div>
-        <div class="textfield-container">
-          <div>Term/Month/Year</div>
-          <input type="text" name="Hours">
-        </div>
 
-        <button class="button positive-button" id="submitrating" type="submit" value="Register">Submit</button>
+        <button class="button positive-button" id="modify" type="submit" value="Register">Submit Changes</button>
+        <button class="button negative-button" id="delete" type="submit" value="Register">Delete User</button>
 				
 			</form>
 

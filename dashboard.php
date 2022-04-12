@@ -6,26 +6,30 @@ require("rootpath.php");
 
 /*
 INPUTS:
-	$current_section
+	$currentSection
 		String name of the current section: {"profile", "rate", "admin", "management, "sysop"}
 */
+/* Trying to access dashboard.php directly: redirect to profile */
+//if (!isset($currentSection)) {
+//	header("Location: profile.php");
+//}
 
-$loggedIn = true;
-include(__ROOT_DIR__ . "security/authenticate.php"); // <-- MICHEAL'S CODE
+$isAuth = true;
+include(__ROOT_DIR__ . "register_login/authenticate.php"); // <-- MICHEAL'S CODE
 
 // Login check. Anything beyond here won't run if this fails since we exit.
-if (!$loggedIn) {
-	echo "You must be logged in to view this page!";
+if (!$isAuth) {
+	echo "You do not have authorization to view this page!";
 	exit();
 }
 
 // Permissions setting
-$is_student = false;
+$is_student = true;
 $is_ta = false;
 $is_prof = false;
 $is_admin = false;
-$is_sysop = true;
-include(__ROOT_DIR__ . "security/permissions.php");
+$is_sysop = false;
+include(__ROOT_DIR__ . "register_login/get_user_roles.php");
 ?>
 
 <head>
@@ -46,13 +50,11 @@ include(__ROOT_DIR__ . "security/permissions.php");
 				<div></div><div></div><div></div>
 			</div>
 		</div>
-		<div class="header-box" id="birdbox"><img id="bird" src="pictures/bird.png"></div>
+		<a class="header-box" id="birdbox" href="https://www.cs.mcgill.ca/"><img id="bird" src="pictures/bird.png"></a>
 		<div class="header-box" id="whitebarbox"></div>
-		<a class="header-box" id="sitenamebox" href="#">TA Management Dashboard</a>
+		<a class="header-box" id="sitenamebox" href="dashboard.php">TA Management Dashboard</a>
 		<div class="header-box" id="header-filler-box" style="flex-grow: 1"></div>
-		<div class="header-box" id="header-course-box">
-			PLACEHOLDER <br> COMP 307
-		</div>
+		<div class="header-box" id="header-course-box"></div>
 	</div>
 </header>
 
@@ -76,55 +78,9 @@ include(__ROOT_DIR__ . "security/permissions.php");
 
 	<div id="content-area">
 		<div class="content-box">
-				<!-- /////////// BOX NAVIGATION FORMAT ///////////
-					<div class="box-navigation">
-						<img class="box-navigation-back" src="pictures/backarrow.svg">
-						<div class="box-navigation-text">
-							<div class="box-navigation-path">%CATEGORY / %<span class="bold">%SECTION%</span></div>
-							<div class="box-navigation-description">%Description%</div>
-						</div>   
-					</div>
-				-->
-			<div class="box-navigation">
-				<img class="box-navigation-back" src="pictures/backarrow.svg">
-				<div class="box-navigation-text">
-					<div class="box-navigation-path">Sysop Tasks / <span class="bold">Manually Add a Prof and Course</span></div>
-					<div class="box-navigation-description">View TA Information</div>
-				</div>   
-			</div>
-			
-			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
-			<div class="box-content">
-				<form action="mini4.php" method="post">
-					<div class="star-selection">
-						<input type="radio" name="rating" value="1">
-						<input type="radio" name="rating" value="2">
-						<input type="radio" name="rating" value="3">
-						<input type="radio" name="rating" value="4">
-						<input type="radio" name="rating" value="5">
-					</div>
-					<select name="book" id="book-select">
-							<option value="King Lear">King Lear</option>
-							<option value="The Count of Monte Cristo">The Count of Monte Cristo</option>
-							<option value="The Giver">The Giver</option>
-							<option value="Anil's Ghost">Anil's Ghost</option>
-							<option value="Nineteen Eighty-Four">Nineteen Eighty-Four</option>
-							<option value="Do Android Dream of Electric Sheep?">Do Android Dream of Electric Sheep?</option>
-							<option value="Heart of Darkness">Heart of Darkness</option>
-					</select>
-	
-					<h2>Operating System</h2>
-					Which operating system do you use? <br>
-					<input type="radio" name="os" value="Windows"> Windows
-					<input type="radio" name="os" value="Mac"> Mac OS X
-					<input type="radio" name="os" value="Linux"> Linux
-					<input type="radio" name="os" value="Other"> Other
-	
-					<br><br>
-	
-					<button class="button positive-button" type="submit">Register</button>
-
-			</div>
+			<?php
+			include(__ROOT_DIR__ . "content_loader.php");
+			?>
 		</div>
 	</div>
 

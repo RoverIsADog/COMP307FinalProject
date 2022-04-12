@@ -1,5 +1,5 @@
 /**
- * Triggered upon selecting a value in the TA dropdown. Creates an async
+ * Triggered upon selecting a value in the course-term dropdown. Creates an async
  * call to the backend for the requested information with the following
  * structure: GET {"username", "ticket", "chosenta"}
  * @see rate_getcourses.php
@@ -9,13 +9,15 @@ function selectedTA(selectedTA) {
     // Gather information requried for the query.
     var username=sessionStorage.getItem("username");
     var ticket=sessionStorage.getItem("ticket");
-    fileString = "rate/rate_getcourses.php?" +
-        "chosenta=" + selectedTA + "&username="
-        + username + "&ticket=" + ticket;
+    // Prepare PHP call
+    fileString = "rate/get_courses.php?" +
+        "chosenta=" + selectedTA + 
+        "&username=" + username +
+        "&ticket=" + ticket;
     try {
         // Create the async request
         asyncRequest = new XMLHttpRequest();
-        asyncRequest.onreadystatechange = populateCoursesDropdown;
+        asyncRequest.onreadystatechange = populateCoursesDropdown; // callback
         asyncRequest.open("GET", fileString, true);
         asyncRequest.send(null);
     }

@@ -7,8 +7,10 @@ I don't care what happens in here, but after this block $loggedIn should
 be set to the proper value! (T/F)
 
 INPUTS:
-	$loggedIn is from the parent php and is available here. It's value is
-	is currently placeholder true.
+	$isAuth; // Value is currently placeholder true.
+	$currentSection; // {"profile", "rate", "admin", "management, "sysop"}
+	$currentPage; // See gooogle doc for accepted strings
+	
 
 EFFECTS/OUTPUTS:
 	This function should set $loggerIn to the correct value. No output.
