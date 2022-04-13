@@ -9,9 +9,9 @@ if (sizeof($_GET) != 4) {
     die();
 }
 
-// printf("Course#, TermMonthYear = %s<br>", $_GET["courseTerm"]);
-// printf("Username = %s<br>", $_GET["username"]);
-// printf("Ticket = %s<br>", $_GET["ticket"]);
+printf("Course#, TermMonthYear = %s<br>", $_GET["courseTerm"]);
+printf("Username = %s<br>", $_GET["username"]);
+printf("Ticket = %s<br>", $_GET["ticket"]);
 
 $output=null;
 $retval=null;

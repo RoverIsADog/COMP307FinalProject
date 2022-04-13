@@ -1,43 +1,57 @@
-<div class="box-navigation">
-	<img class="box-navigation-back" src="pictures/backarrow.svg">
-	<div class="box-navigation-text">
-		<div class="box-navigation-path">Sysop Tasks / <span class="bold">Manually Add a Prof and Course</span></div>
-		<div class="box-navigation-description">View TA Information</div>
-	</div>   
-</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script async type="text/javascript" src="rate-ta/rateta.js"></script>
 
-<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
-<div class="box-content">
-	<form action="mini4.php" method="post">
-		<div class="star-selection">
-			<input type="radio" name="rating" value="1">
-			<input type="radio" name="rating" value="2">
-			<input type="radio" name="rating" value="3">
-			<input type="radio" name="rating" value="4">
-			<input type="radio" name="rating" value="5">
-		</div>
-		<select name="book" id="book-select">
-				<option value="King Lear">King Lear</option>
-				<option value="The Count of Monte Cristo">The Count of Monte Cristo</option>
-				<option value="The Giver">The Giver</option>
-				<option value="Anil's Ghost">Anil's Ghost</option>
-				<option value="Nineteen Eighty-Four">Nineteen Eighty-Four</option>
-				<option value="Do Android Dream of Electric Sheep?">Do Android Dream of Electric Sheep?</option>
-				<option value="Heart of Darkness">Heart of Darkness</option>
-		</select>
+<div class="content-box">
+    <div class="box-navigation">
+      <img class="box-navigation-back" src="pictures/backarrow.svg">
+      <div class="box-navigation-text">
+        <div class="box-navigation-path">Administration Tools / <span class="bold">Rate a TA</span></div>
+        <div class="box-navigation-description">Select a TA to rate</div>
+      </div>   
+    </div>
+    
+    <div class="content-box">
+      <!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
+      <form action="" method="post">
+        <!-- TA Select -->
+        <div id="rate-ta-dropdown-container">
+          <select id="rate-ta-dropdown" name="ta-select-dropdown" onchange="selectedTA(this.value)" >
+            <option selected disabled>Please Select a course and term</option>
+            <option value="COMP307,winter2022">COMP307 [winter 2022]</option>
+            <option value="COMP308,winter2023">COMP308 [winter 2023]</option>
+            <option value="COMP309,winter2024">COMP309 [winter 2024]</option>
+            <option value="COMP310,winter2025">COMP310 [winter 2025]</option>
+            <option value="COMP311,winter2026">COMP311 [winter 2026]</option>
+          </select>
+        </div>
 
-		<h2>Operating System</h2>
-		Which operating system do you use? <br>
-		<input type="radio" name="os" value="Windows"> Windows
-		<input type="radio" name="os" value="Mac"> Mac OS X
-		<input type="radio" name="os" value="Linux"> Linux
-		<input type="radio" name="os" value="Other"> Other
+        <!-- Courses select -->
+        <div id="rate-courses-dropdown-container" style="width: 100%;" onchange="selectedTerm(this.value)">
+        </div>
 
-		<br><br>
+        <!-- Start Rating -->
+				<div id="rate-star-container" class="star-select" style="display: none;">
+          <div class="heading2">How would you rate this TA?</div>
+					<input type="radio" name="numberstars" value="1" id="star1">1
+					<input type="radio" name="numberstars" value="2" id="star2">2
+					<input type="radio" name="numberstars" value="3" id="star3">3
+					<input type="radio" name="numberstars" value="4" id="star4">4
+					<input type="radio" name="numberstars" value="5" id="star5">5
+				</div>
 
-		<button class="button positive-button" type="submit">Register</button>
-</div>
+        <!-- Content box -->
+        <div id="rate-comment-container" style="display: none;">
+          <div class="">Comments (optional)</div>
+          <textarea type="text" name="ratecomments" wrap="physical" class="spanning-textbox"></textarea>
+        </div>
 
+        <button id="rate-submit-button" class="button positive-button" type="submit" style="display: none;">Submit</button>
+				
+			</form>
+
+      <!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
+    </div>
+  </div>
 
 <?php
 require(__DIR__ . "rootpath.php");

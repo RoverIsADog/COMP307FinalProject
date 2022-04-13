@@ -22,7 +22,7 @@ EFFECTS/OUTPUTS:
 */
 
 // Python INPUT
-// --username = $username
+// --username
 
 // Python OUTPUT: 5-long list of 0 or 1
 /*

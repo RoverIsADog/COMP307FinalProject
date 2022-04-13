@@ -1,12 +1,14 @@
-# INPUTS
-# --username
-# --ticketid
-#
-# --term_month_year
-# --course_num
-# --ta_id
-# --score (int 12345)
-# --comment
+"""
+INPUTS
+--username
+--ticketid
 
-# OUTPUT
-# exit code 0 : Successful | failure otherwise
+--course_num
+--ta_id
+--term_month_year
+--score (int 12345)
+--comment
+
+OUTPUT
+  exit code 0 : Successful | failure otherwise
+"""

@@ -5,15 +5,17 @@
  * @see rate_getcourses.php
  * @param {string} selectedTA 
  */
-function selectedTA(selectedTA) {
+function selectedTA(selectedCourseTerm) {
     // Gather information requried for the query.
     var username=sessionStorage.getItem("username");
     var ticket=sessionStorage.getItem("ticket");
+    var courseTermArr = selectedCourseTerm.split(",");
     // Prepare PHP call
-    fileString = "rate/get_courses.php?" +
-        "chosenta=" + selectedTA + 
-        "&username=" + username +
-        "&ticket=" + ticket;
+    fileString = "rate-ta/get_tas.php?" +
+        "username=" + username +
+        "&ticketid=" + ticket + 
+        "&chosenCourse=" + courseTermArr[0] +
+        "&chosenTerm=" + courseTermArr[1];
     try {
         // Create the async request
         asyncRequest = new XMLHttpRequest();

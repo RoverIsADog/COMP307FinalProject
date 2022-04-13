@@ -94,6 +94,7 @@ input {
 
 /* ////////// A button that can be pressed ////////// */
 button {
+    width: fit-content;
     height: 3rem;
     float: right;
     border-radius: 0.6rem;

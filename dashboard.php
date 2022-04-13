@@ -24,11 +24,11 @@ if (!$isAuth) {
 }
 
 // Permissions setting
-$is_student = true;
+$is_student = false;
 $is_ta = false;
 $is_prof = false;
 $is_admin = false;
-$is_sysop = false;
+$is_sysop = true;
 include(__ROOT_DIR__ . "register_login/get_user_roles.php");
 ?>
 
@@ -77,11 +77,9 @@ include(__ROOT_DIR__ . "register_login/get_user_roles.php");
 	</div>
 
 	<div id="content-area">
-		<div class="content-box">
 			<?php
 			include(__ROOT_DIR__ . "content_loader.php");
 			?>
-		</div>
 	</div>
 
 </div>
