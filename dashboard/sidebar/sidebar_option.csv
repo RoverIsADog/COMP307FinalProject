@@ -1,0 +1,4 @@
+rate,sidebar-rate,"Rate a TA","pictures/stars.svg","rate.php"
+admin,sidebar-admin,"TA Administration","pictures/building.svg","admin.php"
+management,sidebar-management,"TA Management",""pictures/file.svg","management.php"
+sysop,sidebar-sysop,"Sysop Tasks","pictures/gears.svg","sysop.php"

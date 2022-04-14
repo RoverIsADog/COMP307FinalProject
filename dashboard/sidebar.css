@@ -1,0 +1,128 @@
+/* ====================== SIDEBAR ====================== 
+Note: The sidebar is made up of two parts:
+1. id=sidebar: A 15.625rem wide div actually containing the sidebar content.
+Its position is absolute and the only thing that changes is the width.
+This is so that it can display on top of the content in smaller screen
+sizes. 
+2. id=sidebar-hitbox: A 15.625rem wide div underneath id=sidebar. It is responsible
+for pushing away the content in larger screen sizes, and disappears on smaller
+screen sizes.
+Separating the two also allows smooth transitions. Setting the position of
+id=sidebar to absolute only on smaller screen sizes would replicate most of
+the functionality, but introduces significant choppiness and unwanted
+transitions while resizing.
+*/
+
+#sidebar-hitbox {
+    width: 15.625rem;
+    min-width: 15.625rem;
+    transition: 0.3s;
+}
+
+/* Container for the entire flexbox */
+#sidebar {
+    display: flex;
+    flex-shrink: 0; /* Otherwise pushed off page */
+    flex-direction: column;
+    position: absolute;
+    width: 15.625rem;
+    transition: 0.3s;
+
+    padding-top: 0.625rem;
+    /* 100% - header height - top padding */
+    height: calc(100% - 4.375rem);
+
+    overflow: hidden;
+    background-color: #5D6770;
+    box-shadow: 0.35em 0 0.35rem -0.125rem gray;
+
+}
+#sidebar>* {
+    color: white;
+}
+
+/* User Profile */
+#sidebar-user { /* Container for the choice */
+    flex-direction: row;
+    height: 4.375rem;
+}
+#sidebar-user-img {
+    margin: 0 0.625rem 0 0.35rem;
+    height: 70%; /* (of sidebar-user) MUST BE SQUARE */
+    border-radius: 50%;
+}
+#sidebar-user-text {
+    margin: 0.625rem;
+}
+#userrole {
+    font-size: 0.8rem;
+}
+
+/* Styles for elements forming ONE OPTION in the sidebar */
+.sidebar-item { /* Container for an option */
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    align-items: center;
+    height: 3.125rem;
+    width: 14.375rem;
+    margin: 0 0.625rem;
+    border-radius: 0.40rem;
+
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+.sidebar-item-tick { /* Inside sidebar-item */
+    flex-shrink: 0;
+    height: 100%;
+    width: 0.43rem;
+    border-radius: 0.40rem;
+
+    background-color: #5D6770;
+}
+.sidebar-item-svg { /* Inside sidebar-item */
+    flex-shrink: 0;
+    height: auto;
+    width: 2.2rem;
+    padding-left: 0.625rem;
+}
+.sidebar-item-text { /* Inside sidebar-item */
+    display: flex;
+    flex-shrink: 0;
+    height: 100%;
+    align-items: center;
+    padding: 0 0.625rem;
+}
+
+/* Sidebar option interaction management */
+.sidebar-current {
+    background-color: #43484d;
+}
+.sidebar-current .sidebar-item-tick {
+    background-color: #2f3133;
+}
+.sidebar-item:hover {
+    background-color: #323436;
+}
+.sidebar-item:hover .sidebar-item-tick {
+    background-color: #202122;
+}
+
+@media screen and (max-width: 1090px) {
+    /* In tablet- mode, sidebar goes over content
+    rather than displacing */
+    #sidebar {
+        overflow: hidden !important;
+        position: absolute !important;
+        /* 100% - header height - top padding */
+        height: calc(100% - 4.375rem) !important; 
+    }
+    #sidebar-hitbox {
+        min-width: 0;
+        width: 0;
+    }
+    /* Sidebar can only be closed in tablet- mode */
+    .sidebar-closed {
+        width: 0 !important;
+    }
+}

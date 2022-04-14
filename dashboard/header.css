@@ -1,0 +1,106 @@
+/* ====================== HEADER ====================== 
+The header consists of a horizontal flexbox justified left, with a dummy
+element in the middle to push the course selection dropdown right.
+*/
+
+/* Container to cast shadows, enforce size and contain any overflow. */
+header {
+    height: 3.75rem;
+    width: 100vw;
+    box-shadow: 0 0.32rem 0.32rem gray;
+    color: white;
+    overflow: hidden;
+}
+
+/* Flexbox that distributes header elements (boxes) */
+#header-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #ED1B2F; /* Mcgill red */
+}
+
+/* Generic header element */
+.header-box {
+    flex-shrink: 0;
+    transition: 0.3s;
+}
+
+/* Flexbox containing the hamburger container -- used to center */
+#hamburger-box {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 0;
+    margin-left: 0.625rem;
+    border-radius: 10%;
+}
+
+/* Box to structure the divs making up the hb */
+#hamburger-container {
+    border-radius: 10%;
+    width: 1.875rem;
+    padding: 0.313rem;
+    transition: 0.3s;
+}
+#hamburger-container:hover {
+    background-color: #9E0918; /* Slightly darker red */
+}
+
+/* The hamburger horizontal bars themselves */
+#hamburger-container > div { 
+    width: 80%;
+    height: 0.188rem;
+    background-color: white;
+    margin: 0.32rem;
+    margin-left: 0.188rem;
+}
+
+/* Flexbox for the mcgill bird */
+#birdbox {
+    flex-basis: 0;
+    flex-shrink: 1;
+}
+
+/* The bird image itself. Unfortunately no svg available. */
+#bird {
+    height: 3.75rem;
+    width: 3.75rem;
+    transition: 0.3s;
+}
+
+/* Box for the white bar */
+#whitebarbox {
+    width: 0.125rem;
+    height: calc(100% - 1rem);
+    margin: 0.5rem 0.313rem;
+    background-color: white;
+}
+
+/* Box for the site name */
+#sitenamebox {
+    display: flex;
+    align-items: center;
+    flex-shrink: 1;
+    padding-left: 0.625rem;
+
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: white;
+}
+
+/* ----------------Phone screen hamburger mode ---------------- */
+@media screen and (max-width: 1090px) {
+    /* Actually show the hamburger */
+    #hamburger-box {
+        width: 2.625rem;
+    }
+}
+@media screen and (max-width: 649px) {
+    /* Reduce site name font */
+    #sitenamebox {font-size: 1rem;}
+}
