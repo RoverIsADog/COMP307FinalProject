@@ -9,12 +9,12 @@ INPUTS
 --first_name
 --last_name
 --email
---is_student
---is_prof
 --is_admin
 --is_sysop
---is_ta
 
 OUTPUT
-Exit code 0 if success, failure otherwise.
+	Exit code 0 if success, failure otherwise.
+
+
+Note: Creating a user with TA or sysop role
 """
