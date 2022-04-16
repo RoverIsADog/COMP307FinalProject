@@ -23,7 +23,6 @@ body {
     width: 100vw; /* Will be constrained by sidebar hitbox so it's ok */
     padding: 1.25rem;
     overflow-y: auto; /*scrollbar*/
-    transition: 0.3s;
 }
 
 @media screen and (max-width: 649px) {

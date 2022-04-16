@@ -31,33 +31,66 @@
 		<div class="box-content">
 			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
 			<form action="rateta.php" method="post">
-				<select name="ta-select" id="ta-select">
-					<option value="TassyMcTasface">TassyMcTasface</option>
-					<option value="TassyMcTasface1">TassyMcTasface1</option>
-					<option value="TassyMcTasface2">TassyMcTasface2</option>
-					<option value="TassyMcTasface3">TassyMcTasface3</option>
-					<option value="TassyMcTasface4">TassyMcTasface4</option>
+				<select class="content-box-element" name="user-select" id="user-select">
+					<option value="NONE" selected disabled>Please select a UserID</option>
+					<option value="000000001">000000001</option>
+					<option value="000000002">000000002</option>
+					<option value="000000003">000000003</option>
+					<option value="000000004">000000004</option>
+					<option value="000000005">000000005</option>
 				</select>
 
-				<div class="textfield-container">
-					<div>Name</div>
-					<input type="text" name="name">
-				</div>
-				<div class="textfield-container">
-					<div>Email</div>
-					<input type="text" name="studentid">
-				</div>
-				<div class="textfield-container">
-					<div>Position</div>
-					<input type="text" name="coursenum">
-				</div>
-				<div class="textfield-container">
-					<div>Job</div>
-					<input type="text" name="termmonthyear">
+				<div id="editable-fields" class="">
+					<!-- student_id,firstname,lastname,email,is_student,is_prof,is_admin,is_sysop,is_ta -->
+					
+					<div class="content-box-element labeled-field-container">
+						<div class="labeled-field-label">First Name</div>
+						<input class="labeled-field-field" type="text" name="user-firstname">
+					</div>
+				
+					<div class="content-box-element labeled-field-container">
+						<div class="labeled-field-label">Last Name</div>
+						<input class="labeled-field-field" type="text" name="user-lastname">
+					</div>
+				
+					<h1>Assigned Roles</h1>
+					<div class="textbox-set-container content-box-element">
+					
+						<label class="textbox-set-element content-box-element" for="permission-student">
+							<input class="input-checkbox" type="checkbox" id="permission-student" name="permission-student">
+							<div>Student</div>
+						</label>
+					
+						<label class="textbox-set-element content-box-element" for="permission-ta">
+							<input class="input-checkbox" type="checkbox" id="permission-ta" name="permission-ta">
+							<div>Teaching Assistant</div>
+						</label>
+					
+						<label class="textbox-set-element content-box-element" for="permission-prof">
+							<input class="input-checkbox" type="checkbox" id="permission-prof" name="permission-prof">
+							<div>Professor</div>
+						</label>
+					
+						<label class="textbox-set-element content-box-element" for="permission-admin">
+							<input class="input-checkbox" type="checkbox" id="permission-admin" name="permission-admin">
+							<div>Administrator</div>
+						</label>
+					
+						<label class="textbox-set-element content-box-element" for="permission-sysop">
+							<input class="input-checkbox" type="checkbox" id="permission-sysop" name="permission-sysop">
+							<div>System Operator</div>
+						</label>
+					
+					</div>
+				
+					<div class="content-box-element">
+						<button class="button positive-button" id="modify" type="submit" value="modify">Submit Changes</button>
+						<button class="button negative-button" id="delete" type="submit" value="delete">Delete User</button>
+					</div>
 				</div>
 
-				<button class="button positive-button" id="modify" type="submit" value="Register">Submit Changes</button>
-				<button class="button negative-button" id="delete" type="submit" value="Register">Delete User</button>
+
+
 				
 			</form>
 			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->

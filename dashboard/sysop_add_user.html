@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Add a New User</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="template.js"></script>
+	<link rel="stylesheet" type="text/css" href="template.css">
+	<link rel="stylesheet" type="text/css" href="header.css">
+	<link rel="stylesheet" type="text/css" href="sidebar.css">
+	<link rel="stylesheet" type="text/css" href="content-box.css">
+	<link rel="stylesheet" type="text/css" href="content-elements.css">
+</head>
+
+<body style="font-family: Arial, Helvetica, sans-serif; margin: 0;">
+
+<div id="content-area">
+	<div class="content-box">
+		<div class="box-nav">
+			<a class="box-nav-back-container" href="#">
+				<img class="box-nav-back" src="pictures/backarrow.svg">
+			</a>
+			<div class="box-nav-text">
+				<div class="box-nav-path">Sysop Tasks / <b>Add a New User</b></div>
+				<div class="box-nav-description">
+					<div class="box-nav-description-text">Enter the new user's information</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="box-content">
+			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
+			<form action="rateta.php" method="post">
+
+				<div id="editable-fields" class="">
+					<!-- student_id,firstname,lastname,email,is_student,is_prof,is_admin,is_sysop,is_ta -->
+
+					<div class="content-box-element labeled-field-container">
+						<div class="labeled-field-label">Student ID</div>
+						<input class="labeled-field-field" type="text" name="user-studentid">
+					</div>
+
+					<div class="content-box-element labeled-field-container">
+						<div class="labeled-field-label">Username</div>
+						<input class="labeled-field-field" type="text" name="user-username">
+					</div>
+
+					<div class="content-box-element labeled-field-container">
+						<div class="labeled-field-label">Password</div>
+						<input class="labeled-field-field" type="text" name="user-password">
+					</div>
+					
+					<div class="content-box-element labeled-field-container">
+						<div class="labeled-field-label">First Name</div>
+						<input class="labeled-field-field" type="text" name="user-firstname">
+					</div>
+				
+					<div class="content-box-element labeled-field-container">
+						<div class="labeled-field-label">Last Name</div>
+						<input class="labeled-field-field" type="text" name="user-lastname">
+					</div>
+
+					<div class="content-box-element labeled-field-container">
+						<div class="labeled-field-label">Email</div>
+						<input class="labeled-field-field" type="text" name="user-email">
+					</div>
+				
+					<h1>Assigned Roles</h1>
+					<div class="textbox-set-container content-box-element">
+					
+						<label class="textbox-set-element content-box-element" for="permission-student">
+							<input class="input-checkbox" type="checkbox" id="permission-student" name="permission-student">
+							<div>Student</div>
+						</label>
+					
+						<label class="textbox-set-element content-box-element" for="permission-ta">
+							<input class="input-checkbox" type="checkbox" id="permission-ta" name="permission-ta">
+							<div>Teaching Assistant</div>
+						</label>
+					
+						<label class="textbox-set-element content-box-element" for="permission-prof">
+							<input class="input-checkbox" type="checkbox" id="permission-prof" name="permission-prof">
+							<div>Professor</div>
+						</label>
+					
+						<label class="textbox-set-element content-box-element" for="permission-admin">
+							<input class="input-checkbox" type="checkbox" id="permission-admin" name="permission-admin">
+							<div>Administrator</div>
+						</label>
+					
+						<label class="textbox-set-element content-box-element" for="permission-sysop">
+							<input class="input-checkbox" type="checkbox" id="permission-sysop" name="permission-sysop">
+							<div>System Operator</div>
+						</label>
+					
+					</div>
+				
+					<div class="content-box-element">
+						<button class="button positive-button" id="submit" type="submit" value="submit">Add User</button>
+					</div>
+				</div>
+
+
+
+				
+			</form>
+			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
+		</div>
+	</div>
+</body>

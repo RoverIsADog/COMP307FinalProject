@@ -1,0 +1,171 @@
+{
+	"profile": {
+		"sectionID": "profile",
+		"sectionString": "Profile",
+		"sectionFolder": "profile",
+		"allowedRoles": ["student", "ta", "prof", "admin", "sysop"],
+		"requiredJS": [],
+		"requiredCSS": []
+	},
+
+	"rate": {
+		"sectionID": "rate",
+		"sectionString": "Rate",
+		"sectionFolder": "rate-ta",
+		"allowedRoles": ["student"],
+		"requiredJS": [],
+		"requiredCSS": [],
+		"pages": {
+			"rate_ta": {
+				"pageID": "rate_ta",
+				"pageString": "Rate a TA",
+				"pageDescription": "Select a TA to rate",
+				"pageFolder": "rate-ta",
+				"allowedRoles": ["student"],
+				"requiredJS": ["rate-ta/rate-ta/rate-ta.js"],
+				"requiredCSS": []
+			}
+		}
+	},
+
+	"management": {
+		"sectionID": "management",
+		"sectionString": "Management Tools",
+		"sectionFolder": "ta-management",
+		"allowedRoles": ["ta", "prof", "admin", "sysop"],
+		"requiredJS": [],
+		"requiredCSS": [],
+		"pages": {
+			"oh_responsibilities": {
+				"pageID": "oh_responsibilities",
+				"pageString": "Office Hours & Responsibilities",
+				"pageDescription": "Select and instructor to modify their information",
+				"pageFolder": "oh-responsibilities",
+				"allowedRoles": ["ta", "prof", "admin", "sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			},
+			"add_performance_log": {
+				"pageID": "add_performance_log",
+				"pageString": "Add TA Performance Log",
+				"pageDescription": "Select TA to add performance log",
+				"pageFolder": "add-performance-log",
+				"allowedRoles": ["prof", "admin", "sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			},
+			"wishlist": {
+				"pageID": "wishlist",
+				"pageString": "TA Wishlist",
+				"pageDescription": "Add a TA to your wishlist",
+				"pageFolder": "wishlist",
+				"allowedRoles": ["prof", "admin", "sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			}
+		}
+	},
+
+	"admin": {
+		"sectionID": "admin",
+		"sectionString": "Administration Tools",
+		"sectionFolder": "ta-admin",
+		"allowedRoles": ["admin", "sysop"],
+		"requiredJS": [],
+		"requiredCSS": [],
+		"pages": {
+			"import_ta_cohort": {
+				"pageID": "import_ta_cohort",
+				"pageString": "Import TA Cohort",
+				"pageDescription": "Import TAs from CourseQuota.csv and TACohort.csv?",
+				"pageFolder": "import-ta-cohort",
+				"allowedRoles": ["admin", "sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			},
+			"ta_info_history": {
+				"pageID": "ta_info_history",
+				"pageString": "TA Info and History",
+				"pageDescription": "View all available information on a TA",
+				"pageFolder": "ta-info-history",
+				"allowedRoles": ["admin", "sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			},
+			"course_ta_records": {
+				"pageID": "course_ta_records",
+				"pageString": "Course TA Records",
+				"pageDescription": "View which TAs are assigned to which courses",
+				"pageFolder": "course-ta-records",
+				"allowedRoles": ["admin", "sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			},
+			"add_ta_to_course": {
+				"pageID": "add_ta_to_course",
+				"pageString": "Add TA to Course",
+				"pageDescription": "Select a TA and a course to add them to",
+				"pageFolder": "add-ta-to-course",
+				"allowedRoles": ["admin", "sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			},
+			"remove_ta_from_course": {
+				"pageID": "remove_ta_from_course",
+				"pageString": "Remove TA From Course",
+				"pageDescription": "Select a TA and a course to remove them from",
+				"pageFolder": "remove-ta-from-course",
+				"allowedRoles": ["admin", "sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			}
+		}
+	},
+
+	"sysop": {
+		"sectionID": "sysop",
+		"sectionString": "Sysop Tasks",
+		"sectionFolder": "sysop",
+		"allowedRoles": ["sysop"],
+		"requiredJS": [],
+		"requiredCSS": [],
+		"pages": {
+			"edit_user": {
+				"pageID": "edit_user",
+				"pageString": "Edit or Remove User",
+				"pageDescription": "Select user to edit or delete",
+				"pageFolder": "edit-user",
+				"allowedRoles": ["sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			},
+			"add_user": {
+				"pageID": "add_user",
+				"pageString": "Add a New User",
+				"pageDescription": "Enter the new user's information",
+				"pageFolder": "add-user",
+				"allowedRoles": ["sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			},
+			"import_prof_course": {
+				"pageID": "import_prof_course",
+				"pageString": "Import Prof and Course from CSV",
+				"pageDescription": "Import prof and course info from XXXXX.csv?",
+				"pageFolder": "import-prof-course",
+				"allowedRoles": ["sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			},
+			"manual_add_prof": {
+				"pageID": "manual_add_prof",
+				"pageString": "Manually Add a Prof and Course",
+				"pageDescription": "Enter prof and course information",
+				"pageFolder": "manual-add-prof",
+				"allowedRoles": ["sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			}
+		}
+	}
+}

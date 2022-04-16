@@ -6,5 +6,5 @@ INPUT
 
 OUTPUT
 List of
-  professor_name,log_text
+  professor_name,course_num,term_month_year,note
 """

@@ -81,16 +81,24 @@ header {
     background-color: white;
 }
 
-/* Box for the site name */
-#sitenamebox {
+.header-text-box {
     display: flex;
     align-items: center;
     flex-shrink: 1;
-    padding-left: 0.625rem;
 
     font-size: 1.5rem;
     text-decoration: none;
     color: white;
+}
+
+/* Box for the site name */
+#sitenamebox {
+    padding-left: 0.625rem;
+}
+
+/* Box for the site name */
+#logoutbox {
+    padding-right: 0.625rem;
 }
 
 /* ----------------Phone screen hamburger mode ---------------- */
@@ -102,5 +110,5 @@ header {
 }
 @media screen and (max-width: 649px) {
     /* Reduce site name font */
-    #sitenamebox {font-size: 1rem;}
+    .header-text-box {font-size: 1rem;}
 }

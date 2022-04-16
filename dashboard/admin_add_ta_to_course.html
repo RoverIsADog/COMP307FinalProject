@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-	<title>Rate a TA</title>
+	<title>Add TA to Course</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="template.js"></script>
@@ -30,11 +30,23 @@
 		
 		<div class="box-content">
 			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
-      <form action="rateta.php" method="post">
+			<form action="rateta.php" method="post">
 
-				<div class="labeled-dropdown-container">
-					<div class="labeled-dropdown-name">TA Name</div>
-					<select id="rate-ta-dropdown" name="ta-select-dropdown" style="display: table-cell;" >
+				<div class="content-box-element labeled-field-container">
+					<div class="labeled-field-label">TA Name</div>
+					<select class="labeled-field-field" id="ta-select" name="ta-select">
+						<option selected disabled>Please select a TA</option>
+						<option value="COMP307,winter2022">COMP307 [winter 2022]</option>
+						<option value="COMP308,winter2023">COMP308 [winter 2023]</option>
+						<option value="COMP309,winter2024">COMP309 [winter 2024]</option>
+						<option value="COMP310,winter2025">COMP310 [winter 2025]</option>
+						<option value="COMP307,winter2026">COMP311 [winter 2026]</option>
+					</select>
+				</div>
+
+				<div class="content-box-element labeled-field-container">
+					<div class="labeled-field-label">Add TA to Course</div>
+					<select class="labeled-field-field" id="course-select" name="course-select">
 						<option selected disabled>Please select a course and term</option>
 						<option value="COMP307,winter2022">COMP307 [winter 2022]</option>
 						<option value="COMP308,winter2023">COMP308 [winter 2023]</option>
@@ -44,24 +56,15 @@
 					</select>
 				</div>
 
-				<div class="labeled-dropdown-container">
-					<div class="labeled-dropdown-name">Course and Term</div>
-					<select id="rate-ta-dropdown" name="ta-select-dropdown" style="display: table-cell;" >
-						<option selected disabled>Please select a course and term</option>
-						<option value="COMP307,winter2022">COMP307 [winter 2022]</option>
-						<option value="COMP308,winter2023">COMP308 [winter 2023]</option>
-						<option value="COMP309,winter2024">COMP309 [winter 2024]</option>
-						<option value="COMP310,winter2025">COMP310 [winter 2025]</option>
-						<option value="COMP307,winter2026">COMP311 [winter 2026]</option>
-					</select>
+				<div class="content-box-element labeled-field-container">
+					<div class="labeled-field-label">Assigned Hours</div>
+					<input class="labeled-field-field" type="text" name="assigned-hours">
 				</div>
 
-        <div class="textfield-container">
-          <div>Assigned Hours</div>
-          <input type="text" name="name">
-        </div>
+				<div class="content-box-element">
+					<button class="button positive-button" id="submit" type="submit" value="submit">Submit</button>
+				</div>
 
-        <button class="button positive-button" id="submitrating" type="submit" value="Register">Submit</button>
 				
 			</form>
 			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->

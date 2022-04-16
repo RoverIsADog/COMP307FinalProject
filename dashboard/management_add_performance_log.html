@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-	<title>Rate a TA</title>
+	<title>Add performance log</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="template.js"></script>
@@ -23,7 +23,7 @@
 			<div class="box-nav-text">
 				<div class="box-nav-path">Management Tools / <b>Add TA Performance Log</b></div>
 				<div class="box-nav-description">
-					<div class="box-nav-description-text">Select TA to add performance log</div>
+					<div class="box-nav-description-text">Select TA to add a performance log</div>
 				</div>
 			</div>
 		</div>
@@ -31,20 +31,23 @@
 		<div class="box-content">
 			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
 			<form action="rateta.php" method="post">
-				<select name="ta-select" id="ta-select">
-					<option value="TassyMcTasface">TassyMcTasface</option>
-					<option value="TassyMcTasface1">TassyMcTasface1</option>
-					<option value="TassyMcTasface2">TassyMcTasface2</option>
-					<option value="TassyMcTasface3">TassyMcTasface3</option>
-					<option value="TassyMcTasface4">TassyMcTasface4</option>
+				<select class="content-box-element" name="ta-select" id="ta-select">
+					<option value="NONE" selected disabled>Please select a TA</option>
+					<option value="000000001">TassyMcTasface</option>
+					<option value="000000002">TassyMcTasface1</option>
+					<option value="000000003">TassyMcTasface2</option>
+					<option value="000000004">TassyMcTasface3</option>
+					<option value="000000005">TassyMcTasface4</option>
 				</select>
 
 
-				<div style="width: 100%; padding: 10px 0;">Comments</div>
+				<h1>Comments</h1>
 
-				<textarea type="text" name="ratecomments" wrap="physical" class="spanning-textbox"></textarea>
+				<textarea type="text" name="comment" wrap="physical" class="spanning-textbox"></textarea>
 
-				<button class="button positive-button" id="submitrating" type="submit" value="Register">Submit</button>
+				<div class="content-box-element">
+					<button class="button positive-button" id="submit" type="submit" value="submit">Add</button>
+				</div>
 				
 			</form>
 			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-	<title>Rate a TA</title>
+	<title>Manually Add Prof and Course</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="template.js"></script>
@@ -32,28 +32,29 @@
 			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
 			<form action="rateta.php" method="post">
 
-				<div class="textfield-container">
-					<div>Course Code</div>
-					<input type="text" name="name">
-				</div>
-				<div class="textfield-container">
-					<div>Assigned Prof</div>
-					<input type="text" name="studentid">
-				</div>
-				<div class="textfield-container">
-					<div>Credits</div>
-					<input type="text" name="coursenum">
-				</div>
-				<div class="textfield-container">
-					<div>#Students</div>
-					<input type="text" name="termmonthyear">
-				</div>
-				<div class="textfield-container">
-					<div>Term/Month/Year</div>
-					<input type="text" name="Hours">
+				<div class="content-box-element labeled-field-container">
+					<div class="labeled-field-label">Term/Month/Year</div>
+					<input class="labeled-field-field" type="text" name="user-studentid">
 				</div>
 
-				<button class="button positive-button" id="submitrating" type="submit" value="Register">Submit</button>
+				<div class="content-box-element labeled-field-container">
+					<div class="labeled-field-label">Course Number</div>
+					<input class="labeled-field-field" type="text" name="user-studentid">
+				</div>
+
+				<div class="content-box-element labeled-field-container">
+					<div class="labeled-field-label">Course Name</div>
+					<input class="labeled-field-field" type="text" name="user-studentid">
+				</div>
+
+				<div class="content-box-element labeled-field-container">
+					<div class="labeled-field-label">Instructor Assigned</div>
+					<input class="labeled-field-field" type="text" name="user-studentid">
+				</div>
+
+				<div class="content-box-element">
+					<button class="button positive-button" id="submit" type="submit" value="submit">Submit</button>
+				</div>
 				
 			</form>
 			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->

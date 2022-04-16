@@ -11,4 +11,5 @@ job,
 [start_time, end_time] x 5 for every day,
 notes;
 
+if exit -1, then no info on instructor
 """

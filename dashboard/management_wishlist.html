@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-	<title>Rate a TA</title>
+	<title>Wishlist</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="template.js"></script>
@@ -31,26 +31,30 @@
 		<div class="box-content">
 			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
       <form action="rateta.php" method="post">
-				<select name="ta-select" id="ta-select">
-					<option value="TassyMcTasface">TassyMcTasface</option>
-					<option value="TassyMcTasface1">TassyMcTasface1</option>
-					<option value="TassyMcTasface2">TassyMcTasface2</option>
-					<option value="TassyMcTasface3">TassyMcTasface3</option>
-					<option value="TassyMcTasface4">TassyMcTasface4</option>
+				<select class="content-box-element" name="ta-select" id="ta-select">
+					<option value="NONE" selected disabled>Please select a TA</option>
+					<option value="000000001">TassyMcTasface</option>
+					<option value="000000002">TassyMcTasface1</option>
+					<option value="000000003">TassyMcTasface2</option>
+					<option value="000000004">TassyMcTasface3</option>
+					<option value="000000005">TassyMcTasface4</option>
 				</select>
 
-        <button class="button positive-button" id="submitrating" type="submit" value="Register">Add to Wishlist</button>
-
-        <div class="heading1">Current Wishlist</div>
-        <table>
-          <tr><td>TassyMcTasface</td></tr>
-          <tr><td>Coarse Assasberg</td></tr>
-          <tr><td>TA1</td></tr>
-          <tr><td>TA2</td></tr>
-        </table>
-
+				<div class="content-box-element">
+					<button class="button positive-button" id="submit" type="submit" value="submit">Add to Wishlist</button>
+				</div>
 				
 			</form>
+
+			<div id="current-wishlist" class="content-box-element">
+				<h1>Current Wishlist</h1>
+				<table>
+					<tr><td>TassyMcTasface</td></tr>
+					<tr><td>Coarse Assasberg</td></tr>
+					<tr><td>TA1</td></tr>
+					<tr><td>TA2</td></tr>
+				</table>
+			</div>
 			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
 		</div>
 	</div>

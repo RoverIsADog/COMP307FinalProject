@@ -1,71 +1,100 @@
 /* ////////// General Text Styles ////////// */
-.heading1 {
+h1 {
+  font-weight: normal;
   font-size: 1.5rem;
-  padding: 0.32rem 0;
+  padding: 0.4em 0;
+  margin: 0;
 }
 
-.heading2 {
+h2 {
   font-weight: bold;
   font-size: 1.2rem;
-  padding: 0.25rem 0;
+  padding: 0.25em 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 649px) {
+  .heading1 {
+    font-size: 1.2rem;
+  }
+  .heading2 {
+    font-size: 0.9rem;
+  }
+}
+
+.content-box-element {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 /* ////////// Dropdown Menus ////////// */
 select { /* Consistent drop down menus */
   width: 100%;
-  border-radius: 0.3rem;
-  padding: 0.6rem 0;
-  margin: 0.5rem 0;
+  border-radius: 0.3em;
+  padding: 0.6em 0;
+  margin: 0.5em 0;
+  box-sizing: border-box;
 
-  border: 0.125rem solid black;
+  border: 0.125em solid black;
   font-size: 1.2rem;
   background-color: #D0CECE;
 }
-.labeled-dropdown-container {
-  display: table;
-}
-.labeled-dropdown-name {
-  display: table-cell;
-  width: 40%;
-  padding-left: 0.8rem;
 
-  min-width: 10rem;
-  font-size: 1.2rem;
-}
-
-/* ////////// Single Line Text field ////////// */
-.textfield-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-  margin: 5px 0;
-}
-.textfield-container>div {
-  width: 40%;
-  font-size: 1.2rem;
-  padding: 0 0.8rem;
-}
+/* ////////// Text fieds ////////// */
 input {
-  width: 100%;
-  border-radius: 5px;
-  appearance: textfield;
-  padding: 10px 0;
+  padding: 0.5rem 0.5rem;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 649px) {
+  select {
+    font-size: 1rem;
+  }
+}
+
+/* Represents a field with a label on its side. */
+.labeled-field-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.labeled-field-label {
+  width: 40%;
+  min-width: 13rem;
+  flex-shrink: 0;
+  flex-grow: 0;
+
+  font-size: 1.5rem;
+}
+.labeled-field-field {
+  width: 60%;
+  flex-grow: 1;
+  border-radius: 0.5rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  margin: 0.5rem 0;
+}
+
+@media screen and (max-width: 649px) {
+  .labeled-field-label {
+    font-size: 1.2rem;
+    width: 100%;
+  }
 }
 
 /* ////////// A button that can be pressed ////////// */
-.button-container {
-  width: 100%;
-  height: 3rem; /*same as button*/
-  margin: 0.5rem 0;
-}
 button {
   width: fit-content;
-  min-width: 5.5rem;
-  height: 3rem;
+  min-width: 5.5em;
+  height: 3em;
   float: right;
-  border-radius: 0.6rem;
-  padding: 0.6rem;
+  border-radius: 0.6em;
+  padding: 0.5em;
+  margin-left: 0.5em;
 
   font-size: 1.2rem;
   color: white;
@@ -80,6 +109,11 @@ button:hover {
 .negative-button {background-color: #C00000;}
 .negative-button:hover {background-color: #7a0202;}
 
+@media screen and (max-width: 649px) {
+  button {
+    font-size: 0.8rem;
+  }
+}
 
 /* ////////// Start Rating (TODO) //////////  */
 .star-select {
@@ -91,28 +125,28 @@ button:hover {
 
 /* ////////// Multiline Textbox ////////// */
 .spanning-textbox {
-  width: calc(100% - 1rem);
-  max-width: calc(100% - 1rem);
-  min-width: calc(100% - 1rem); /*so, can only resize vertically*/
-  height: 300px;
-  border-radius: 0.75rem;
-  padding: 0.5rem 0.5rem;
-  margin: 0.5rem 0;
+  width: calc(100% - 1em);
+  max-width: calc(100% - 1em);
+  min-width: calc(100% - 1em); /*so, can only resize vertically*/
+  height: 10rem;
+  border-radius: 0.75em;
+  padding: 0.5em 0.5em;
+  margin: 0.5em 0;
   font-family: Arial, Helvetica, sans-serif;
   
 }
 
 /* ////////// Relating to Tables ////////// */
 table {
-  margin: 5px 0;
+  margin: 0.5em 0;
   border-collapse: collapse;
   width: 100%;
   font-size: 1rem;
 }
 td,th {
+  text-align: left;
   border: 1px solid darkgray;
   font-weight: normal;
-  text-align: left;
 }
 .center-row {
   text-align: center;
@@ -129,3 +163,144 @@ form {
   display: flex;
   flex-direction: column;
 }
+
+@media screen and (max-width: 649px) {
+  table {
+    font-size: 0.8rem;
+  }
+}
+
+/* Related to checkboxes in general */
+.input-checkbox {
+  height: 1.5rem;
+  width: 1.5rem;
+
+  font-size: 1.2rem;
+}
+
+
+/* ////////// Relating to Times //////////
+Organization similar to labeled field (above)
+*/
+/* Large container for everything */
+.oh-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+/* Container for one day */
+.oh-day-container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0.5em 0.5em;
+}
+.oh-day-container:hover {
+  background-color: rgb(182, 182, 182) !important;
+}
+.oh-day-container:nth-child(odd) {
+  background-color: rgb(219, 219, 219);
+}
+.oh-day-container:nth-child(even) {
+  background-color: rgb(240, 240, 240);
+}
+
+/* Contains the name of, and checkbox for, a day */
+.oh-day-label {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 10em;
+
+  flex-shrink: 0;
+  flex-grow: 0;
+  font-size: 1.5rem;
+}
+.oh-day-label>div {
+  text-align: left;
+  width: 7em;
+  padding-left: 0.5em;
+  font-size: 1.2rem;
+}
+
+
+/* Contains the time selectors for a day */
+.oh-day-field {
+  /* For children */
+  display: flex;
+  flex-flow: row-reverse wrap-reverse;
+  align-items: center;
+
+  flex-grow: 1;
+  border-radius: 0.5rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  margin: 0.5rem 0;
+}
+.input-time {
+  vertical-align: middle;
+  flex-grow: 1;
+}
+/*
+@media screen and (max-width: 649px) {
+  .oh-day-label {
+    font-size: 1.2rem;
+    width: 100%;
+  }
+}
+*/
+
+/* ////////// Relating to a checkbox ////////// */
+.textbox-set-container {
+  width: 100%;
+}
+.textbox-set-element {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 10em;
+
+  flex-shrink: 0;
+  flex-grow: 0;
+  padding-left: 0.5rem;
+  font-size: 1.5rem;
+}
+.textbox-set-element>div {
+  text-align: left;
+  padding-left: 0.5em;
+  font-size: 1.2rem;
+}
+
+.textbox-set-element:hover {
+  background-color: rgb(182, 182, 182) !important;
+}
+.textbox-set-element:nth-child(odd) {
+  background-color: rgb(219, 219, 219);
+}
+.textbox-set-element:nth-child(even) {
+  background-color: rgb(240, 240, 240);
+}
+
+
+/* Styles relating to the menu. */
+.menu-entry {
+  display: block;
+  background-color: #BFBFBF;
+  font-size: 1.3rem;
+  padding: 0.4em 0.5em;
+  margin: -0.1em 0;
+
+  color: black;
+  text-decoration: none;
+
+  border-radius: 0.5em;
+}
+.menu-nav {
+  padding-left: 1rem;
+}
+.menu-nav-text {
+  padding: 0.5em 0.5em;
+}
+

@@ -4,7 +4,7 @@
 	<title>Rate a TA</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script async type="text/javascript" src="rate-ta/rate-ta.js"></script>
+	<script type="text/javascript" src="rate-ta/rate-ta/rate-ta.js"></script>
 	<script type="text/javascript" src="template.js"></script>
 	<link rel="stylesheet" type="text/css" href="template.css">
 	<link rel="stylesheet" type="text/css" href="header.css">
@@ -32,10 +32,10 @@
 		<div class="box-content">
 			<!-- ///////////////////////////// CONTENT (JUST PRINT INTO HERE) ///////////////////////////// -->
 			<form action="" method="post">
-				<!-- TA Select -->
+				<!-- Course Select -->
 				<div id="rate-ta-dropdown-container">
-					<select id="rate-ta-dropdown" name="ta-select-dropdown" onchange="selectedTA(this.value)" >
-						<option selected disabled>Please select a course and term</option>
+					<select id="rate-ta-dropdown" name="ta-select-dropdown" onchange="selectedCourseTerm(this.value)" >
+						<option value="NONE" selected disabled>Please select a course and term</option>
 						<option value="COMP307,winter2022">COMP307 [winter 2022]</option>
 						<option value="COMP308,winter2023">COMP308 [winter 2023]</option>
 						<option value="COMP309,winter2024">COMP309 [winter 2024]</option>
@@ -45,11 +45,11 @@
 				</div>
 
 				<!-- Courses select, POPULATED ASYNCHRONOUSLY -->
-				<div id="rate-courses-dropdown-container" style="width: 100%;" onchange="selectedTerm(this.value)"></div>
+				<div id="rate-courses-dropdown-container" style="width: 100%;" onchange="selectedTA(this.value)"></div>
 
 				<!-- Start Rating, HIDDEN UNTIL COURSE CHOSEN -->
-				<div class="heading2">How would you rate this TA?</div>
 				<div id="rate-star-container" class="star-select" style="display: none;">
+					<h2>How would you rate this TA?</h2>
 					<input type="radio" name="numberstars" value="1" id="star1">1
 					<input type="radio" name="numberstars" value="2" id="star2">2
 					<input type="radio" name="numberstars" value="3" id="star3">3

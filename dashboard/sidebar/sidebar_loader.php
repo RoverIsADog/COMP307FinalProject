@@ -10,6 +10,8 @@ require(__DIR__ . "/../rootpath.php");
 // $CURRENT_SECTION = "rate";
 
 /* Loads the sidebar according to the guidelines.
+This method prints content into the sidebar container (id=sidebar).
+
 RELEVANT INPUTS:
 From parent PHP:
 	$is_student;
@@ -32,6 +34,11 @@ EFFECTS/OUTPUTS:
 */
 
 // ////////////////////////////////// GENERATING PROFILE //////////////////////////////////
+
+if (!isset($CURRENT_PAGE) || !isset($CURRENT_SECTION)) {
+	echo "Variable error <br>\n";
+	return;
+}
 
 $sidebarProfileTemplate = '
 <a class="sidebar-item%s" id="sidebar-user" href=profile.php>
@@ -166,3 +173,10 @@ Note: Replace __SELECTED__ with sidebar-current as appropriate.
 */
 
 ?>
+
+<!-- Permanent sidebar elements -->
+<div style="height: 100%;"></div>
+<div id="copyright" style="display:flex; padding: 5px 0; flex-shrink: 0; min-width: 240px;">
+	<div style="padding: 0 15px;">Copyright 2022</div>
+	<a href="https://support.microsoft.com/en-us/office/insert-icons-in-microsoft-office-e2459f17-3996-4795-996e-b9a13486fa79" style="text-decoration: none; color: white;">Attributions</a>
+</div>

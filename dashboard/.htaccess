@@ -1,0 +1,10 @@
+RewriteEngine on
+
+# Don't run rule if directory exists
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Check html file exists
+RewriteCond %{REQUEST_FILENAME}\.html -f
+
+RewriteRule ^(.*)$ $1.html
+

@@ -14,7 +14,7 @@ transitions while resizing.
 */
 
 #sidebar-hitbox {
-    width: 15.625rem;
+    width: 17rem;
     min-width: 15.625rem;
     transition: 0.3s;
 }
@@ -25,7 +25,7 @@ transitions while resizing.
     flex-shrink: 0; /* Otherwise pushed off page */
     flex-direction: column;
     position: absolute;
-    width: 15.625rem;
+    width: 17rem;
     transition: 0.3s;
 
     padding-top: 0.625rem;
@@ -64,9 +64,9 @@ transitions while resizing.
     flex-direction: row;
     flex-shrink: 0;
     align-items: center;
+    width: calc(17rem - 1rem);
     height: 3.125rem;
-    width: 14.375rem;
-    margin: 0 0.625rem;
+    margin: 0 0.5rem;
     border-radius: 0.40rem;
 
     text-decoration: none;

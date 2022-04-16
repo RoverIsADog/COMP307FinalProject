@@ -7,5 +7,5 @@ INPUT
 
 OUTPUT
 List of TA names (no student ids)
-
+Exit code (-1) if no records
 """
