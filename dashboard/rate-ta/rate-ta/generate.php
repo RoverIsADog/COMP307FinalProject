@@ -2,11 +2,7 @@
 session_start();
 require_once(__DIR__ . "/../../rootpath.php");
 require_once(__DIR__ . "/get_courses.php");
-echo "Generating the rate_ta page. <br>\n";
-
-$student_id = $_SESSION["student_id"];
-$username = $_SESSION["username"];
-$student_id = $_SESSION["ticket"];
+if (__DEBUG__) echo "Generating the rate_ta page. <br>\n";
 ?>
 
 
@@ -36,8 +32,8 @@ $student_id = $_SESSION["ticket"];
 	
 	$selectContainer = '
 	<!-- Course Select -->
-	<div id="rate-ta-dropdown-container">
-		<select id="rate-ta-dropdown" name="ta-select-dropdown" onchange="selectedCourseTerm(this.value)">
+	<div id="rate-courses-dropdown-container">
+		<select id="rate-courses-dropdown" name="rate-courses-dropdown" onchange="selectedCourseTerm(this.value)">
 			<option value="NONE" selected disabled>Please select a course and term</option>
 			%s
 		</select>
@@ -63,7 +59,7 @@ $student_id = $_SESSION["ticket"];
 
 
 	<!-- Courses select, POPULATED ASYNCHRONOUSLY -->
-	<div id="rate-courses-dropdown-container" style="width: 100%;" onchange="selectedTA(this.value)"></div>
+	<div id="rate-ta-dropdown-container" style="width: 100%;"></div>
 
 	<!-- Start Rating, HIDDEN UNTIL COURSE CHOSEN -->
 	<div id="rate-star-container" class="star-select" style="display: none;">
@@ -78,7 +74,7 @@ $student_id = $_SESSION["ticket"];
 	<!-- Comment box -->
 	<div id="rate-comment-container" style="display: none;">
 		<div class="">Comments (optional)</div>
-		<textarea type="text" name="ratecomments" wrap="physical" class="spanning-textbox"></textarea>
+		<textarea type="text" name="ratecomments" id="ratecomments" wrap="physical" class="spanning-textbox"></textarea>
 	</div>
 
 	<button id="rate-submit-button" class="button positive-button" type="submit" style="display: none;">Submit</button>

@@ -1,0 +1,42 @@
+<?php
+session_start();
+require_once(__DIR__ . "/../../rootpath.php");
+require_once(__ROOT_DIR__ . "utils/errors.php");
+if (__DEBUG__) echo "Generating the rate_ta page. <br>\n";
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Session integrity check
+$username = "defaultUsername";
+if (isset($_SESSION["username"])) $username = $_SESSION["username"];
+else {
+	genericError();
+	echo "Password not in session\n";
+	// return;
+}
+
+$ticketID = "defaultTicket";
+if (isset($_SESSION["ticket"])) $ticketID = $_SESSION["ticket"];
+else {
+	genericError();
+	echo "Ticket not in session\n";
+	// return;
+}
+
+// Executing the command
+$command = "python3 " .  __DIR__ . "/import_ta_cohort.py "
+. " --username " . "\"$username\""
+. " --ticket_id " . "\"$ticketID\""
+
+. ' --course_quota_path ' . __ROOT_DIR__ . "data/coursequota.csv" // Hardcoded for now
+. ' --ta_cohort_path ' . __ROOT_DIR__ . "data/tacohort.csv"; // Hardcoded for now
+exec($command , $output, $retval);
+if ($retval == -2 || $retval != 0) {
+	genericError();
+}
+
+echo "The files were successfully imported\n";
+
+?>

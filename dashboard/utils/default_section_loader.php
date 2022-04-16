@@ -10,13 +10,13 @@ if (!isset($CURRENT_PAGE) || !isset($CURRENT_SECTION) || !isset($json) || !isset
 // $CURRENT_SECTION = "admin";
 // $CURRENT_PAGE = "";
 
-echo "/// Entering default_section_loader<br>";
+if (__DEBUG__) echo "/// Entering default_section_loader<br>";
 
 /* ==================================== Page processing ==================================== */
 // No page specified, go to menu
 if ($CURRENT_PAGE == "") {
 	require(__ROOT_DIR__ . "utils/menu_generator.php");
-  echo "Building the menu <br>";
+  if (__DEBUG__) echo "Building the menu <br>";
 	buildMenu($json, $CURRENT_SECTION);
 	return;
 }
@@ -42,7 +42,7 @@ generateNavigation($CURRENT_SECTION, $CURRENT_PAGE);
 echo '<div class="box-content">'; // Only let page generate be responsible for the box-content
 
 $dest = __ROOT_DIR__ . $json[$CURRENT_SECTION]['sectionFolder'] . "/" . $json[$CURRENT_SECTION]["pages"][$CURRENT_PAGE]["pageFolder"] . "/generate.php";
-echo "Moving on to $dest<br>\n";
+if (__DEBUG__) echo "Moving on to $dest<br>\n";
 require($dest);
 
 echo '</div>'; // Done

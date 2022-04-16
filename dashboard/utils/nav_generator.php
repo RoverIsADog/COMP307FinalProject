@@ -59,7 +59,7 @@ function generateContentBox(string $sectionID, string $pageID) {
  */
 function generateNavigation(string $sectionID, string $pageID) {
 	global $json;
-	echo "Generating the navigation bar for $pageID inside $sectionID<br>\n";
+	if (__DEBUG__) echo "Generating the navigation bar for $pageID inside $sectionID<br>\n";
 
 	$navTemplate = '
 	<div class="box-nav">

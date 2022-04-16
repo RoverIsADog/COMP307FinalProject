@@ -6,29 +6,29 @@
  * @param {string} selectedTA 
  */
 function selectedCourseTerm(selectedCourseTerm) {
-	// Gather information requried for the query.
+	console.log("Course-term option selected: " + selectedCourseTerm);
 	// Prepare PHP call
 	fileString ="rate-ta/rate-ta/get_tas.php?dropdown_index=" + selectedCourseTerm;
 	try {
+		/**
+		 * Callback function to replace the content of the courses dropdown when
+		 * the async call returns.
+		 */
+		 function populateTAsDropdown() {
+			if (asyncRequest.readyState == 4 && asyncRequest.status == 200) {
+				var x = document.getElementById("rate-ta-dropdown-container");
+				x.innerHTML = asyncRequest.responseText;
+			}
+		}
+
 		// Create the async request
-		asyncRequest = new XMLHttpRequest();
+		var asyncRequest = new XMLHttpRequest();
 		asyncRequest.onreadystatechange = populateTAsDropdown; // callback
 		asyncRequest.open("GET", fileString, true);
 		asyncRequest.send(null);
 	}
 	catch (exception) {
-		alert("Error while retrieving course information for this TA");
-	}
-}
-
-/**
- * Callback function to replace the content of the courses dropdown when
- * the async call returns.
- */
-function populateTAsDropdown() {
-	if (asyncRequest.readyState == 4 && asyncRequest.status == 200) {
-		var x = document.getElementById("rate-courses-dropdown-container");
-		x.innerHTML = asyncRequest.responseText;
+		alert("Error while retrieving courses.");
 	}
 }
 
@@ -37,10 +37,11 @@ function populateTAsDropdown() {
  * comments and submit buttons.
  * @param {string} value 
  */
-function selectedTA(value) {
-	var stars = document.getElementById("rate-star-container");
-	var comments = document.getElementById("rate-comment-container");
-	var button = document.getElementById("rate-submit-button");
+function selectedTA(selectedTa) {
+	console.log("TA option selected: " + selectedTa);
+	let stars = document.getElementById("rate-star-container");
+	let comments = document.getElementById("rate-comment-container");
+	let button = document.getElementById("rate-submit-button");
 	stars.style.display = "block";
 	comments.style.display = "block";
 	button.style.display = "block";
@@ -50,10 +51,23 @@ const reviewForm = document.getElementById("rate-ta-form");
 
 reviewForm.addEventListener("submit", (e) => {
 	e.preventDefault(); // Don't refresh page
+	console.log("Submitting form...");
+	try {
 
-	const asyncRequest = new XMLHttpRequest(); // We dont actually care about state changes
-	asyncRequest.open("POST", "add_rating.php");
-	
+		function callbackFunc() {
+			alert(asyncRequest.responseText);
+			window.location.replace("rate.php?page=rate_ta");
 
+		}
+
+		console.log("TA review form submitted!");
+		var asyncRequest = new XMLHttpRequest(); // We dont actually care about state changes
+		asyncRequest.onload = callbackFunc
+		asyncRequest.open("POST", "rate-ta/rate-ta/add_rating.php");
+		asyncRequest.send(new FormData(reviewForm));
+	}
+	catch (exception) {
+		alert("Error while submitting the rating.");
+	}
 
 });

@@ -24,6 +24,15 @@
 				"allowedRoles": ["student"],
 				"requiredJS": ["rate-ta/rate-ta/rate-ta.js"],
 				"requiredCSS": []
+			},
+			"see_ratings": {
+				"pageID": "see_ratings",
+				"pageString": "See Previous Ratings",
+				"pageDescription": "See instructors you have previously rated.",
+				"pageFolder": "see_ratings",
+				"allowedRoles": ["student"],
+				"requiredJS": [],
+				"requiredCSS": []
 			}
 		}
 	},
@@ -80,7 +89,7 @@
 				"pageDescription": "Import TAs from CourseQuota.csv and TACohort.csv?",
 				"pageFolder": "import-ta-cohort",
 				"allowedRoles": ["admin", "sysop"],
-				"requiredJS": [],
+				"requiredJS": ["ta-admin/import-ta-cohort/import_ta_cohort.js"],
 				"requiredCSS": []
 			},
 			"ta_info_history": {
@@ -89,7 +98,7 @@
 				"pageDescription": "View all available information on a TA",
 				"pageFolder": "ta-info-history",
 				"allowedRoles": ["admin", "sysop"],
-				"requiredJS": [],
+				"requiredJS": ["ta-admin/ta-info-history/ta_info_history.js"],
 				"requiredCSS": []
 			},
 			"course_ta_records": {

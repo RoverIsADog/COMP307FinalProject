@@ -46,6 +46,8 @@ $chosenOption = str_getcsv($_SESSION["rate_ta_courseslist"][$optionNum]);
 // Run the command. Output: list of csv lines of studentid,taname
 $output = null; $retval = null;
 $command = "python3 " .  __DIR__ . "/get_tas.py "
+. " --username " . $_SESSION["username"]
+. " --ticket_id " . $_SESSION["ticket"]
 . "--course_num" . $chosenOption[0]
 . "--term_month_year" . $chosenOption[1];
 exec(escapeshellcmd($command) , $output, $retval);
@@ -55,9 +57,12 @@ if ($retval != 0) {
 	return;
 }
 
+// Storing possible values for security & input validation
+$_SESSION["rate_ta_taslist"] = $output;
+
 // Container for the select
 $selectFrame = '
-<select id="rate-courses-dropdown" name="rate-courses-dropdown" >
+<select id="rate-ta-dropdown" name="ta-select-dropdown" onchange="selectedTA(this.value)">
 <option value="NONE" selected disabled>Please select a TA for the course</option>
 %s
 </select>
@@ -73,8 +78,8 @@ if(__DEBUG__) echo print_r($output) . "<br>\n";
 // Create the list of options
 foreach ($output as $optionNum => $entry) {
 	$curLine = str_getcsv($entry);
-	if(__DEBUG__) echo $entry . "<br>\n";
-	$allSelects = $allSelects . sprintf($selectChoice, $curLine[0], $curLine[1]);
+	if(__DEBUG__) echo "Current line: " . $entry . ", idx0 = " . $curLine[0] . " idx1" . $curLine[1] . "<br>\n";
+	$allSelects = $allSelects . sprintf($selectChoice, $optionNum, $curLine[1]);
 }
 
 // Insert list of options into the container

@@ -8,6 +8,7 @@
     max-width: 46.875rem;
     border-radius: 0.625rem;
     padding: 1rem;
+    margin-bottom: 30vh; /* So not crammed at bottom of screen */
     background-color: #F2F2F2;
 }
 

@@ -1,10 +1,10 @@
 /* ====================== SIDEBAR ====================== 
 Note: The sidebar is made up of two parts:
-1. id=sidebar: A 15.625rem wide div actually containing the sidebar content.
+1. id=sidebar: A 17rem wide div actually containing the sidebar content.
 Its position is absolute and the only thing that changes is the width.
 This is so that it can display on top of the content in smaller screen
 sizes. 
-2. id=sidebar-hitbox: A 15.625rem wide div underneath id=sidebar. It is responsible
+2. id=sidebar-hitbox: A 17rem wide div underneath id=sidebar. It is responsible
 for pushing away the content in larger screen sizes, and disappears on smaller
 screen sizes.
 Separating the two also allows smooth transitions. Setting the position of
@@ -15,7 +15,7 @@ transitions while resizing.
 
 #sidebar-hitbox {
     width: 17rem;
-    min-width: 15.625rem;
+    min-width: 17rem;
     transition: 0.3s;
 }
 

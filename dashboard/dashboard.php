@@ -70,13 +70,6 @@ if ($is_sysop) array_push($userPermissions, "sysop");
 	<link rel="stylesheet" type="text/css" href="content-elements.css">
 	<script type="text/javascript" src="dashboard.js"></script>
 	<script src="jquery-3.6.0.min.js"></script>
-	<?php
-	// ==================================================== PHP START ====================================================
-	// Loading dependencies
-	require_once(__ROOT_DIR__ . "utils/dependency_loader.php");
-	importDependencies($json, $CURRENT_SECTION, $CURRENT_PAGE);
-	// ==================================================== PHP END ====================================================
-	?>
 
 </head>
 
@@ -120,18 +113,18 @@ if ($is_sysop) array_push($userPermissions, "sysop");
 		<!-- Content box itself -->
 		<div class="content-box">
 			<?php
-			if (!empty($CURRENT_PAGE) || !empty($CURRENT_SECTION) || !empty($json) || !empty($userPermissions)) {
-				echo "Variable unset error<br>\n";
+			if (!isset($CURRENT_PAGE) || !isset($CURRENT_SECTION) || !isset($json) || !isset($userPermissions)) {
+				if (__DEBUG__) echo "Variable unset error<br>\n";
 			}
 			// ==================================================== PHP START ====================================================
 
-			echo "About to call content_loader with CURRENT_SECTION: $CURRENT_SECTION<br>\n";
-			echo "About to call content_loader with CURRENT_PAGE: $CURRENT_PAGE<br>\n";
+			if (__DEBUG__) echo "About to call content_loader with CURRENT_SECTION: $CURRENT_SECTION<br>\n";
+			if (__DEBUG__) echo "About to call content_loader with CURRENT_PAGE: $CURRENT_PAGE<br>\n";
 		
-			echo "Trying to generate $CURRENT_SECTION / $CURRENT_PAGE<br>\n";
+			if (__DEBUG__) echo "Trying to generate $CURRENT_SECTION / $CURRENT_PAGE<br>\n";
 		
-			echo "You have permissions: <br>\n";
-			echo print_r($userPermissions, true) . "<br>\n";
+			if (__DEBUG__) echo "You have permissions: <br>\n";
+			if (__DEBUG__) echo print_r($userPermissions, true) . "<br>\n";
 		
 			/* ==================================== Section processing ==================================== */
 		
@@ -143,8 +136,8 @@ if ($is_sysop) array_push($userPermissions, "sysop");
 		
 			$selectedSection = $json[$CURRENT_SECTION];
 		
-			echo "The requested page requires permissions: <br>\n";
-			echo print_r($selectedSection["allowedRoles"], true) . "<br>\n";
+			if (__DEBUG__) echo "The requested page requires permissions: <br>\n";
+			if (__DEBUG__) echo print_r($selectedSection["allowedRoles"], true) . "<br>\n";
 		
 		
 			// Check section permissions
@@ -154,7 +147,7 @@ if ($is_sysop) array_push($userPermissions, "sysop");
 			}
 
 			// Section security checks done, load section with designated section loader
-			echo "Building section $CURRENT_SECTION with " . __ROOT_DIR__ . $json[$CURRENT_SECTION]["sectionFolder"] . "/section_loader.php <br>\n";
+			if (__DEBUG__) echo "Building section $CURRENT_SECTION with " . __ROOT_DIR__ . $json[$CURRENT_SECTION]["sectionFolder"] . "/section_loader.php <br>\n";
 			require(__ROOT_DIR__ . $json[$CURRENT_SECTION]["sectionFolder"] . "/section_loader.php"); // <--- Inside each section's folder
 
 			// ==================================================== PHP END ====================================================
@@ -162,4 +155,11 @@ if ($is_sysop) array_push($userPermissions, "sysop");
 		</div>
 	</div>
 </div>
+<?php
+// ==================================================== PHP START ====================================================
+// Loading dependencies at the end in case they rely on elements in front
+require_once(__ROOT_DIR__ . "utils/dependency_loader.php");
+importDependencies($json, $CURRENT_SECTION, $CURRENT_PAGE);
+// ==================================================== PHP END ====================================================
+?>
 </body>

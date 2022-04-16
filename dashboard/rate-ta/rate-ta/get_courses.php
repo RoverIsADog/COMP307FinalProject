@@ -1,10 +1,17 @@
 <?php
+session_start();
 require_once(__DIR__ . "/../../rootpath.php");
 require_once(__ROOT_DIR__ . "utils/errors.php");
-session_start();
-/*
-This file gets every course a given user is registered to.
-*/
+
+/**
+ * This file is meant to assist with page generation and act as PHP weapper
+ * for get_courses.py. Returns a list of csv-formatted strings containing:
+ * courseID,Term
+ * 
+ * This file assumes the following are set:
+ * 	$_SESSION["username]
+ * 	$_SESSION["ticket]
+ */
 
 //getCourses();
 
@@ -12,15 +19,13 @@ This file gets every course a given user is registered to.
  * Given a studentID and ticket, get all courses this user is
  * registered to. Assumes that student, ticket are currently
  * in the session.
- * @param student_id Student id of the user.
- * @param ticket_id Ticket id of the user.
- * @return returns a list of {course} => {term}, null if some error.
+ * @return returns a list of {id} => {course,term}, null if some error.
  */
 function getCourses():?array {
 	// Pass relevannt arguments into python and execute.
 	$command = "python3 " . __DIR__ . "/get_courses.py "
 	. " --username " . $_SESSION["username"]
-	. " --password " . $_SESSION["ticket_id"];
+	. " --ticket_id " . $_SESSION["ticket"];
 	if (__DEBUG__) echo "Getting courses: $command<br>\n";
 	exec(escapeshellcmd($command), $output, $exitCode);
 	if ($exitCode != "0") return null;
