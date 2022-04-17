@@ -54,6 +54,10 @@ reviewForm.addEventListener("submit", (e) => {
 	console.log("Submitting form...");
 	try {
 
+		/**
+		 * Callback function that notifies the user of success or failure
+		 * before refreshing the page.
+		 */
 		function callbackFunc() {
 			alert(asyncRequest.responseText);
 			window.location.replace("rate.php?page=rate_ta");

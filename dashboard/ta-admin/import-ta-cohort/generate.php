@@ -1,8 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) session_start();
 require_once(__DIR__ . "/../../rootpath.php");
 require_once(__ROOT_DIR__ . "utils/errors.php");
-if (__DEBUG__) echo "Generating the rate_ta page. <br>\n";
 
 ?>
 

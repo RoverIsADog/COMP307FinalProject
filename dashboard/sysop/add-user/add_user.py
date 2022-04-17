@@ -1,3 +1,5 @@
+import sys
+
 """
 INPUTS
 --username
@@ -18,3 +20,5 @@ OUTPUT
 
 Note: Creating a user with TA or sysop role
 """
+
+sys.exit(0)

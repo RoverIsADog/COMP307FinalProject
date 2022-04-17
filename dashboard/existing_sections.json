@@ -8,6 +8,15 @@
 		"requiredCSS": []
 	},
 
+	"register": {
+		"sectionID": "register",
+		"sectionString": "Registered Courses",
+		"sectionFolder": "register",
+		"allowedRoles": ["student"],
+		"requiredJS": [],
+		"requiredCSS": []
+	},
+
 	"rate": {
 		"sectionID": "rate",
 		"sectionString": "Rate",
@@ -116,7 +125,7 @@
 				"pageDescription": "Select a TA and a course to add them to",
 				"pageFolder": "add-ta-to-course",
 				"allowedRoles": ["admin", "sysop"],
-				"requiredJS": [],
+				"requiredJS": ["ta-admin/add-ta-to-course/add_ta_to_course.js"],
 				"requiredCSS": []
 			},
 			"remove_ta_from_course": {
@@ -125,7 +134,7 @@
 				"pageDescription": "Select a TA and a course to remove them from",
 				"pageFolder": "remove-ta-from-course",
 				"allowedRoles": ["admin", "sysop"],
-				"requiredJS": [],
+				"requiredJS": ["ta-admin/remove-ta-from-course/confirm_remove.js"],
 				"requiredCSS": []
 			}
 		}
@@ -139,22 +148,22 @@
 		"requiredJS": [],
 		"requiredCSS": [],
 		"pages": {
-			"edit_user": {
-				"pageID": "edit_user",
-				"pageString": "Edit or Remove User",
-				"pageDescription": "Select user to edit or delete",
-				"pageFolder": "edit-user",
-				"allowedRoles": ["sysop"],
-				"requiredJS": [],
-				"requiredCSS": []
-			},
 			"add_user": {
 				"pageID": "add_user",
 				"pageString": "Add a New User",
 				"pageDescription": "Enter the new user's information",
 				"pageFolder": "add-user",
 				"allowedRoles": ["sysop"],
-				"requiredJS": [],
+				"requiredJS": ["sysop/add-user/add_user.js"],
+				"requiredCSS": []
+			},
+			"edit_user": {
+				"pageID": "edit_user",
+				"pageString": "Edit or Remove User",
+				"pageDescription": "Select user to edit or delete",
+				"pageFolder": "edit-user",
+				"allowedRoles": ["sysop"],
+				"requiredJS": ["sysop/edit-user/edit_user.js"],
 				"requiredCSS": []
 			},
 			"import_prof_course": {
@@ -163,16 +172,16 @@
 				"pageDescription": "Import prof and course info from XXXXX.csv?",
 				"pageFolder": "import-prof-course",
 				"allowedRoles": ["sysop"],
-				"requiredJS": [],
+				"requiredJS": ["sysop/import-prof-course/import_prof_course.js"],
 				"requiredCSS": []
 			},
-			"manual_add_prof": {
-				"pageID": "manual_add_prof",
+			"manual_add_prof_course": {
+				"pageID": "manual_add_prof_course",
 				"pageString": "Manually Add a Prof and Course",
 				"pageDescription": "Enter prof and course information",
-				"pageFolder": "manual-add-prof",
+				"pageFolder": "manual-add-prof-course",
 				"allowedRoles": ["sysop"],
-				"requiredJS": [],
+				"requiredJS": ["sysop/manual-add-prof-course/manual_add_prof.js"],
 				"requiredCSS": []
 			}
 		}

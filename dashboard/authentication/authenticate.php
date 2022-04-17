@@ -1,7 +1,7 @@
 <?php
 // Use __ROOT_DIR__ to refer to root directory from here
 require(__DIR__ . "/../rootpath.php");
-session_start();
+if (!isset($_SESSION)) session_start();
 
 function authenticate() {
 	$ticket_id = $_SESSION['ticket'];

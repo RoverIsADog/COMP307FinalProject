@@ -1,5 +1,5 @@
 <?php
-session_start();
+if (!isset($_SESSION)) session_start();
 require_once(__DIR__ . "/../../rootpath.php");
 require_once(__ROOT_DIR__ . "utils/errors.php");
 
@@ -20,7 +20,7 @@ $username = "defaultUsername";
 if (isset($_SESSION["username"])) $username = $_SESSION["username"];
 else {
 	genericError();
-	echo "Password not in session\n";
+	echo "Username not in session\n";
 	// return;
 }
 

@@ -8,6 +8,8 @@ header {
     height: 3.75rem;
     width: 100vw;
     box-shadow: 0 0.32rem 0.32rem gray;
+    z-index: 2;
+    position: relative;
     color: white;
     overflow: hidden;
 }

@@ -18,6 +18,10 @@ function doesNotExist() {
 	echo "<h1>406 NOT ACCEPTABLE. The value selected does not exist.</h1><br>\n";
 }
 
+function inputValueError() {
+	echo "<h1>400 BAD REQUEST. An input value is not correctly formatted.</h1><br>\n";
+}
+
 function genericError() {
 	echo "<h1>500 INTERNAL SERVER ERROR.</h1><br>\n";
 }

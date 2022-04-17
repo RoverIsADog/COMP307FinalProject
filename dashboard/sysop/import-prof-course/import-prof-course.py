@@ -1,3 +1,5 @@
+import sys
+
 """
 INPUTS
 --username
@@ -6,3 +8,5 @@ INPUTS
 OUTPUTS
 0 if success, failure otherwise
 """
+
+sys.exit(0)

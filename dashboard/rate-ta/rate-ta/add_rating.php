@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . "/../../rootpath.php");
 require_once(__ROOT_DIR__ . "utils/errors.php");
-session_start();
+if (!isset($_SESSION)) session_start();
 
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
@@ -14,7 +14,7 @@ session_start();
 // if (__DEBUG__) echo "The content of the session is: <br>\n";
 // if (__DEBUG__) print_r($_SESSION) . "<br>\n";
 
-// Session integrity check
+// ================================== Session integrity check ==================================
 $coursesList = null;
 if (isset($_SESSION["rate_ta_courseslist"])) $coursesList = $_SESSION["rate_ta_courseslist"];
 else {
@@ -35,7 +35,7 @@ $username = "defaultUsername";
 if (isset($_SESSION["username"])) $username = $_SESSION["username"];
 else {
 	genericError();
-	echo "Password not in session\n";
+	echo "Username not in session\n";
 	// return;
 }
 
@@ -47,7 +47,7 @@ else {
 	// return;
 }
 
-// Get form content
+// ================================== Get form content ==================================
 $chosenCourseNum = "";
 if (isset($_POST["rate-courses-dropdown"])) {
 	$chosenCourseNum = $_POST["rate-courses-dropdown"];
@@ -65,7 +65,7 @@ if (isset($_POST["ratecomments"])) {
 	$comments = $_POST["ratecomments"];
 }
 
-// Input Security Check
+// ================================== Input Security Check ==================================
 if (!key_exists($chosenCourseNum, $coursesList) || !key_exists($chosenTANum, $tasList)) {
 	doesNotExist();
 	return;
@@ -77,14 +77,15 @@ if ($chosenCourseNum == "" || $chosenTANum == "" || $numberStars == "") {
 	return;
 }
 
-// Formatting python inputs
+// ================================== Formatting python inputs ==================================
 $chosenTAStudentID = str_getcsv($tasList[$chosenTANum])[0];
 $tmp = str_getcsv($coursesList[$chosenCourseNum]);
 $chosenCourseID = $tmp[0];
 $chosenTerm = $tmp[1];
 
 
-// Run the command. Output: list of csv lines of studentid,taname
+// ================================== Run the command ==================================
+// Output: list of csv lines of studentid,taname
 $output = null; $retval = null;
 $command = "python3 " .  __DIR__ . "/add_rating.py "
 . " --username " . "\"$username\""
@@ -98,6 +99,8 @@ $command = "python3 " .  __DIR__ . "/add_rating.py "
 exec(escapeshellcmd($command) , $output, $retval);
 // if (__DEBUG__) echo $command . "<br>\n";
 
+
+// ================================== Final Output ==================================
 if ($retval != 0) {
 	genericError();
 	echo "Some error prevented your rating from being submitted\n";

@@ -35,6 +35,7 @@ transitions while resizing.
     overflow: hidden;
     background-color: #5D6770;
     box-shadow: 0.35em 0 0.35rem -0.125rem gray;
+    z-index: 2;
 
 }
 #sidebar>* {
