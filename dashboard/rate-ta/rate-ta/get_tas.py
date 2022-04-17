@@ -2,20 +2,27 @@
 import argparse
 import sqlite3
 import sys
-# INPUT
-# --username
-# --course_num
-# --term_month_year
+from utils import validate, getId
 
-# OUTPUT
-# List of {StudendID,TAName}. One per line
-# Exit code 0 if failure
+parser = argparse.ArgumentParser()
+parser.add_argument("--course_num", type=str)
+parser.add_argument("--term_month_year", type=str)
 
-print('"%s", "%s"' % ('000000001', 'TA 1'))
-print('"%s", "%s"' % ('000000002', 'TA 2'))
-print('"%s", "%s"' % ('000000003', 'TA 3'))
-print('"%s", "%s"' % ('000000004', 'TA 4'))
-print('"%s", "%s"' % ('000000005', 'TA 3'))
-print('"%s", "%s"' % ('000000006', 'TA 6'))
+args = parser.parse_args()
+
+con = sqlite3.connect('../../project.db')
+cur = con.cursor()
+
+# Query database for all the TAs in a given course
+cur.execute("SELECT DISTINCT student_id, name "
+			"FROM teaches "
+			"WHERE course_num = ? AND term_month_year = ? AND assigned_hours != -1;",
+			[args.course_num, args.term_month_year])
+
+for record in cur.fetchall():
+	print('"%s","%s"' % (str(record[0]), str(record[1])))
+
+con.commit()
+con.close()
 
 sys.exit(0)

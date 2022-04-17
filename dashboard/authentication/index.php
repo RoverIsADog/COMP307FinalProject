@@ -1,51 +1,39 @@
 <?php
-if (!isset($_SESSION)) session_start();
-require_once(__DIR__ . "/../rootpath.php");
+session_start();
+require_once("../rootpath.php");
 
-$username = $_POST["username"];
-$password = $_POST["password"];
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 if (isset($_POST['login-btn'])) {
-
-	echo "Username = $username <br>\n";
-	echo "Password = $password <br>\n";
+	$username = $_POST['username'];
+	$password = $_POST['password'];
 	
 	if (!empty($username) && !empty($password)) {
-		$command = escapeshellcmd('python3 '.__ROOT_DIR__.'register_login/verify_login.py'.' '.$username.' '.$password);
+		$command = escapeshellcmd('python3 ' . __ROOT_DIR__ . 'authentication/verify_login.py --username '.$username.' --password '.$password);
+		echo "Command: $command<br>\n";
 		$output = exec($command);
 		
+		echo print_r($output, true);
+
 		if ($output == '1') {
 			echo '<script>alert("Invalid username or password.")</script>';
-			//header("Refresh:0");
-			//exit;
+			header("Refresh:0");
+			exit;
 		}
 		
-
-		echo print_r($output) . "<br>";
 		$ticket = explode(",", $output);
-
-		echo print_r($ticket) . "<br>";
-
 		$_SESSION['ticket'] = $ticket[0];
 		$_SESSION['username'] = $ticket[1];
-
-		// $_SESSION['username'] = $username;
-		// $_SESSION['password'] = $password;
-
-		// echo "Username = $username <br>\n";
-		// echo "Password = $password <br>\n";
-
-		echo "ticket = " . $_SESSION["ticket"] .  "<br>\n";
-		echo "username = " . $_SESSION["username"] .  "<br>\n";
 		
-		header("Location: http://r469.yetongzhou.ca:20563/dashboard/dashboard.php");
+		// header("Location: ../dashboard.php");
     } else {
 		echo '<script>alert("Some of the fields were left empty.")</script>';
-		//header("Refresh:0");	
-		//exit;
+		header("Refresh:0");	
+		exit;
 	}
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +43,6 @@ if (isset($_POST['login-btn'])) {
 		<link rel="stylesheet" href="styles/stylesheet.css">
 		<title>McGill TA Management System | Login</title>
 	</head>
-
 
 	<body>
 		<div class="header">

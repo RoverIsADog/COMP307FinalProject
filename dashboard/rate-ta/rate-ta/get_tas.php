@@ -46,14 +46,15 @@ $chosenOption = str_getcsv($_SESSION["rate_ta_courseslist"][$optionNum]);
 // Run the command. Output: list of csv lines of studentid,taname
 $output = null; $retval = null;
 $command = "python3 " .  __DIR__ . "/get_tas.py "
-. "--course_num"      . escapeshellarg($chosenOption[0])
-. "--term_month_year" . escapeshellarg($chosenOption[1]);
+	. "--course_num"      . escapeshellarg($chosenOption[0])
+	. "--term_month_year" . escapeshellarg($chosenOption[1]);
 if (__DEBUG__) echo "Getting every TA for course: $command <br>\n";
 exec(escapeshellcmd($command) , $output, $retval);
 
 if ($retval != 0) {
 	genericError();
-	return;
+	echo "Error retrieving TAs for the given course<br>\n";
+	exit();
 }
 
 // Storing possible values for security & input validation

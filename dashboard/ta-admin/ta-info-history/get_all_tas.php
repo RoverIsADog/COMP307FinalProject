@@ -21,7 +21,11 @@ function getAllTAs():?array {
 	$command = "python3 " . __DIR__ . "/get_all_tas.py";
 	if (__DEBUG__) echo "Getting all TAs: $command<br>\n";
 	exec(escapeshellcmd($command), $output, $exitCode);
-	if ($exitCode != "0") return null;
+	if ($exitCode != "0") {
+		genericError();
+		echo "Error fetching TAs<br>\n";
+		exit();
+	}
 
 	$ret = array();
 

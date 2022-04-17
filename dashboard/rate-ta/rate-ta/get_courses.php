@@ -38,6 +38,7 @@ function getCourses():?array {
 	exec(escapeshellcmd($command), $output, $exitCode);
 	if ($exitCode != "0") {
 		genericError();
+		echo "An error prevented fetching courses (get_courses.php)<br>\n";
 		exit();
 	}
 

@@ -1,20 +1,19 @@
+#!/usr/bin/python
+import sqlite3
 import sys
 
-"""
-INPUTS
+con = sqlite3.connect('../../../project.db')
+cur = con.cursor()
 
-OUTPUT
-List of:
-  course_id,term
+# Query database for all the courses the user is registered to
+cur.execute("SELECT course_num, term_month_year FROM courses;")
 
-"""
+for record in cur.fetchall():
+	print('"%s","%s"' % (str(record[0]), str(record[1])))
 
-print('"COMP401","WINTER2051"')
-print('"COMP402","WINTER2052"')
-print('"COMP403","WINTER2053"')
-print('"COMP404","WINTER2054"')
-print('"COMP405","WINTER2055"')
-print('"COMP406","WINTER2056"')
-print('"COMP407","WINTER2057"')
+
+con.commit()
+con.close()
+
 
 sys.exit(0)

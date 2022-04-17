@@ -3,36 +3,29 @@ import argparse
 import sqlite3
 import sys
 
+
 def close():
 	con.commit()
 	con.close()
 
-def add_admin_sysop():
-	if args.is_admin == 1:
-		cur.execute("INSERT INTO assigned VALUES (?,3);", [args.student_id])
-
-	if args.is_sysop == 1:
-		cur.execute("INSERT INTO assigned VALUES (?,4);", [args.student_id])
-
 
 parser = argparse.ArgumentParser()
-
-parser.add_argument("--new_username", type=str)
+parser.add_argument("--username", type=str)
 parser.add_argument("--password", type=str)
+parser.add_argument("--confirm_password", type=str)
 parser.add_argument("--email", type=str)
-parser.add_argument("--student_id", type=int)
+parser.add_argument("--student_id", type=str)
 parser.add_argument("--first_name", type=str)
 parser.add_argument("--last_name", type=str)
-parser.add_argument("--role", type=str)  # student:"student", TA and student:"ta", prof:"prof"
-parser.add_argument("--is_admin", type=int)  # 1 if true, 0 if not
-parser.add_argument("--is_sysop", type=int)  # 1 if true, 0 if not
+parser.add_argument("--role", type=int)  # student:1, TA and student:2, prof:3
+
 args = parser.parse_args()
 
-con = sqlite3.connect('../../../project.db')
+con = sqlite3.connect('project.db')
 cur = con.cursor()
 
 # check if username already exists. return 1 if it does
-cur.execute("SELECT COUNT(*) FROM users WHERE username = ?;", [args.new_username])
+cur.execute("SELECT COUNT(*) FROM users WHERE username = ?;", [args.username])
 count = cur.fetchone()[0]
 
 if count != 0:
@@ -55,36 +48,43 @@ if count != 0:
 	close()
 	sys.exit(3)
 
+# check if the provided passwords match. return 4 if they do not
+if args.password != args.confirm_password:
+	close()
+	sys.exit(4)
+
 # else, create a new user, check for permissions
 cur.execute("INSERT INTO users VALUES (?,?,?,?,?);",
-			[args.student_id, args.new_username, args.password, str(args.first_name + " " + args.last_name), args.email])
+			[args.student_id, args.username, args.password, str(args.first_name + " " + args.last_name), args.email])
 
 # check permissions
-if args.role == "ta":
+if args.role == 2:
 	# check if the student id matches that of a TA. If so, assign TA role (and student role since all TAs are students)
 	cur.execute("SELECT COUNT(*) FROM teacherassistants WHERE student_id = ? ;", [args.student_id])
 	count = cur.fetchone()[0]
 	if count != 0:
 		cur.execute("INSERT INTO assigned VALUES ((?, 5), (?, 1));", [args.student_id, args.student_id])
-		add_admin_sysop()
+
 		close()
 		sys.exit(0)
 
 	else:
 		# if they requested TA and was invalid, assign student and return 5
 		cur.execute("INSERT INTO assigned VALUES (?, 1);", [args.student_id])
-		add_admin_sysop()
+
 		close()
 		sys.exit(5)
 
-elif args.role == "prof":
+elif args.role == 3:
 	# check if the entered name matches the name of a prof with a temporary ID. If so, assign prof role
 	cur.execute("SELECT COUNT(*) FROM professors WHERE name = ? and is_temporary = 1;",
 				[str(args.first_name + " " + args.last_name)])
 	count = cur.fetchone()[0]
 	if count != 0:
 		cur.execute("INSERT INTO assigned VALUES (?, 2);", [args.student_id])
-		# change temp_id for provided id
+		# if a record exists in the professors table, but the prof is just now registering, then the id for this
+		# professor in the database is a temporary generated one, so update this value to the prof's real id
+		# first, retrieve the generated id in order to update the rest of the database with the real id
 		cur.execute("SELECT professor_id FROM professors WHERE name = ?;", [str(args.first_name + " " + args.last_name)])
 		temp_id = cur.fetchone()[0]
 
@@ -100,20 +100,19 @@ elif args.role == "prof":
 
 		# update id in the wishlist table
 		cur.execute("UPDATE wishlists SET prof_id = ? WHERE prof_id = ?;", [args.student_id, temp_id])
-		add_admin_sysop()
+
 		close()
 		sys.exit(0)
 
 	else:
 		# if they requested prof and was invalid, assign student and return 6
 		cur.execute("INSERT INTO assigned VALUES (?, 1);", [args.student_id])
-		add_admin_sysop()
+
 		close()
 		sys.exit(6)
 
-elif args.role == "student":
+elif args.role == 1:
 	cur.execute("INSERT INTO assigned VALUES (?, 1);", [args.student_id])
-	add_admin_sysop()
 	close()
 	sys.exit(0)
 

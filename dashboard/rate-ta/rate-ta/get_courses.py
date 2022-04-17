@@ -2,39 +2,30 @@
 import argparse
 import sqlite3
 import sys
+from utils import validate, getId
 
-"""
-Input:
-  --username
+parser = argparse.ArgumentParser()
+parser.add_argument("--username", type=str)
 
-Output:
-  Multiple lines of:
-    course_number,term_month_year
-"""
+args = parser.parse_args()
 
-# Input: username
+con = sqlite3.connect('../../project.db')
+cur = con.cursor()
 
-# OUTPUT:
-#Multiple lines of:
-#  course_number,term_month_year
+# get student_id
+student_id, num_records = getId(args.username)
 
+# Query database for all the courses the user is registered to
+cur.execute("SELECT r.course_num, c.term_month_year "
+			"FROM registered r JOIN courses c on r.course_num = c.course_num "
+			"WHERE student_id = ?;", [student_id])
 
-# parser = argparse.ArgumentParser()
-# parser.add_argument("--student_id", type=int)
-# parser.add_argument("--student_id", type=int)
-# parser.add_argument("--student_id", type=int)
-# 
-# args = parser.parse_args()
+for record in cur.fetchall():
+	print('"%s","%s"' % (str(record[0]), str(record[1])))
 
 
-# Query database for all assignments of the provided TA to a course
-#cur.execute("SELECT DISTINCT course_num, term_month_year FROM assists WHERE student_id = ?", args.student_id)
-#for record in cur.fetchall():
-#	print(record)
-print('"%s","%s"' % ("COMP307", "may2077"))
-print('"%s","%s"' % ("COMP308", "june2077"))
-print('"%s","%s"' % ("COMP309", "july2077"))
-print('"%s","%s"' % ("COMP310", "august2077"))
-print('"%s","%s"' % ("COMP311", "winter2077"))
+con.commit()
+con.close()
+
 
 sys.exit(0)

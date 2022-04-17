@@ -1,29 +1,42 @@
 <?php
-require( __DIR__ . "/../rootpath.php");
+require("rootpath.php");
 
 if (isset($_POST['register-btn'])) {
 	$username = $_POST['username'];
-	$password = md5($_POST['password']);
-	$password_confirm = md5($_POST['password_confirm']);
+	$password = $_POST['password'];
+	$password_confirm = $_POST['password_confirm'];
 	$email = $_POST['email'];
 	$studentid = $_POST['studentid'];
 	$first_name = $_POST['firstname'];
 	$last_name = $_POST['lastname'];
+	$role = $_POST['role'];
 	
-	if (!empty($username) && !empty($password) && !empty($password_confirm) && !empty($email) && !empty($studentid) && !empty($first_name) && !empty($last_name)) {
-		$command = escapeshellcmd('python '.__ROOT_DIR__.'register_login/register_user.py'.' '.$username.' '.$password.' '.$password_confirm.' '.$email.' '.$studentid.' '.$first_name.' '.$last_name);
+	if (!empty($username) && !empty($password) && !empty($password_confirm) && !empty($email) && !empty($studentid) && !empty($first_name) && !empty($last_name) && !empty($role)) {
+		$command = escapeshellcmd('python register_user.py --username '.$username.' --password '.$password.' --confirm_password '.$password_confirm.' --email '.$email.' --student_id '.$studentid.' --first_name '.$first_name.' --last_name '.$last_name.' --role '.$role);
 		$output = exec($command);
 	
 		if ($output == '1' || $output == '2' || $output == '3') {
 			echo '<script>alert("User already exists. Enter new credentials.")</script>';
-			//header("Refresh:0");
-			//exit;
+			header("Refresh:0");
+			exit;
 		}
 	
 		if ($output == '4') {
 			echo '<script>alert("Make sure that your passwords match.")</script>';
-			//header("Refresh:0");
-			//exit;
+			header("Refresh:0");
+			exit;
+		}
+		
+		if ($output == '5' || '6') {
+			echo '<script>alert("Invalid role assignment.")</script>';
+			header("Refresh:0");
+			exit;
+		}
+		
+		if ($output == '7') {
+			echo '<script>alert("ERROR.")</script>';
+			header("Refresh:0");
+			exit;
 		}
 	
 		if ($output == '0') {
@@ -33,8 +46,8 @@ if (isset($_POST['register-btn'])) {
 		}
 	} else {
 		echo '<script>alert("Some of the fields were left empty.")</script>';
-		//header("Refresh:0");	
-		//exit;
+		header("Refresh:0");	
+		exit;
 	}
 }
 ?>
@@ -68,7 +81,15 @@ if (isset($_POST['register-btn'])) {
 					<label for="lastname">Last name: </label>
 					<input type="text" name="lastname" id="lastname">
 					
+					<input type="radio" name="role" value="1">
+                    <label for="student">Student</label>
+                    <input type="radio" name="role" value="2">
+                    <label for="ta">Teacher's Assistant</label>
+                    <input type="radio" name="role" value="3">
+                    <label for="professor">Professor</label>
+					
 					<button type="submit" name="register-btn" class="submit" value="Register">Register</button>
+				</form>
 			</div>
 
 			<div class="login-link">

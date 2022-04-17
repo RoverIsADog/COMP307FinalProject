@@ -1,20 +1,31 @@
+#!/usr/bin/python
+import argparse
+import sqlite3
 import sys
 
-"""
-INPUT
---student_id (of the TA)
 
-OUTPUT
-List of
-  professor_name,course_num,term_month_year,note
-"""
+parser = argparse.ArgumentParser()
+parser.add_argument("--student_id", type=int)
 
-print('"Proof Proffe the 1st","COMP307","FALL1999","Note1"')
-print('"Proof Proffe the 2nd","COMP308","FALL2000","Note2"')
-print('"Proof Proffe the 3rd","COMP309","FALL2001","Note3"')
-print('"Proof Proffe the 4th","COMP310","FALL2002","Note4"')
-print('"Proof Proffe the 5th","COMP311","FALL2003","Note5"')
+required_role = 3
+
+args = parser.parse_args()
+
+con = sqlite3.connect('../../../project.db')
+cur = con.cursor()
+
+# get all logs associated with a given TA
+cur.execute("SELECT prof_id, course_num, term_month_year, note FROM logs WHERE ta_id = ?;", [args.student_id])
+records = cur.fetchall()
+for record in records:
+	# get prof name using the ID
+	cur.execute("SELECT name FROM users WHERE student_id = ?;", [record[0]])
+	prof_name = cur.fetchone()
+	print('"%s","%s","%s","%s"', (str(prof_name[0]), record[1], record[2], record[3]))
+
+
+con.commit()
+con.close()
+
 
 sys.exit(0)
-
-

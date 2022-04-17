@@ -1,26 +1,31 @@
+#!/usr/bin/python
+import sqlite3
 import sys
 
-"""
-INPUTS
+con = sqlite3.connect('../../../project.db')
+cur = con.cursor()
 
-OUTPUTS
-List of:
-  student_id,name,email,is_student,is_prof,is_admin,is_sysop,is_ta
+# query database for all users, except for genesis account (student_id -1)
+cur.execute("SELECT student_id, name, email FROM users WHERE student_id != -1;")
+records = cur.fetchall()
 
-#################### COMBINE NAME ################################
-Booleans are one or zero
+# for each user, get a list of their permissions and print out everything
+for record in records:
+	# get roles for a given student_id
+	cur.execute("SELECT role_id FROM assigned WHERE student_id = ?;", [record[0]])
+	output = cur.fetchall()
 
+	roles = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+	for role in roles:
+		for r in output:
+			if r[0] == role:
+				roles[role] = 1
+				break
 
-FIELDS ARE PRELIMINARY
-"""
+	# print all the information
+	print('"%s","%s","%s","%s","%s","%s","%s","%s"' % (record[0], record[1], record[2],
+													   roles[1], roles[2], roles[3], roles[4], roles[5]))
 
-print('"username1","000000001","firstname001","lastnname001","my01@mail.com","ta","0","0"')
-print('"username2","000000002","firstname002","lastnname002","my02@mail.com","student","0","1"')
-print('"username3","000000003","firstname003","lastnname003","my03@mail.com","prof","1","0"')
-print('"username4","000000004","firstname004","lastnname004","my04@mail.com","ta","1","1"')
-print('"username5","000000005","firstname005","lastnname005","my05@mail.com","student","0","0"')
-print('"username6","000000006","firstname006","lastnname006","my06@mail.com","prof","0","1"')
-print('"username7","000000007","firstname007","lastnname007","my07@mail.com","student","1","0"')
-print('"username8","000000008","firstname008","lastnname008","my08@mail.com","ta","1","1"')
-
+con.commit()
+con.close()
 sys.exit(0)

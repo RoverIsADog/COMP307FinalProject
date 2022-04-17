@@ -1,13 +1,29 @@
-"""
-INPUT
---student_id (of selected TA)
+#!/usr/bin/python
+import argparse
+import sqlite3
+import sys
 
-OUTPUT
-	prof name, courseNum, termMonthYear
-"""
 
-print('"Victor Frankenstein","COMP307","winter2033"')
-print('"Dumbledore","COMP307","winter2034"')
-print('"Prof 2","COMP307","winter2035"')
-print('"Prof 3","COMP307","winter2036"')
-print('"Comma, Test","COMP307","winter2037"')
+parser = argparse.ArgumentParser()
+parser.add_argument("--student_id", type=int)
+
+args = parser.parse_args()
+
+con = sqlite3.connect('../../../project.db')
+cur = con.cursor()
+
+# get all profs who have the TA on their wishlist
+cur.execute("SELECT prof_id, course_num, term_month_year FROM wishlists WHERE ta_id = ?;", [args.student_id])
+records = cur.fetchall()
+for record in records:
+	# get prof name using the ID
+	cur.execute("SELECT name FROM users WHERE student_id = ?;", [record[0]])
+	prof_name = cur.fetchone()
+	print('"%s","%s","%s"', (str(prof_name[0]), str(record[1]), str(record[2])))
+
+
+con.commit()
+con.close()
+
+
+sys.exit(0)
