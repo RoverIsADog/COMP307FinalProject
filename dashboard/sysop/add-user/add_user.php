@@ -8,24 +8,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// ================================== Session integrity check ==================================
-
-$username = "defaultUsername";
-if (isset($_SESSION["username"])) $username = $_SESSION["username"];
-else {
-	genericError();
-	echo "Username not in session\n";
-	// return;
-}
-
-$ticketID = "defaultTicket";
-if (isset($_SESSION["ticket"])) $ticketID = $_SESSION["ticket"];
-else {
-	genericError();
-	echo "Ticket not in session\n";
-	// return;
-}
-
 // ================================== Get form content ==================================
 if (__DEBUG__) echo "Content of POST is: \n";
 if (__DEBUG__) print_r($_POST);
@@ -91,8 +73,6 @@ if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL) || !($newRole=="student"||$new
 // ================================== Preparing to send to Python ==================================
 $output = null; $retval = null;
 $command = "python3 " .  __DIR__ . "/add_user.py "
-. " --username " . "\"$username\""
-. " --ticket_id " . "\"$ticketID\""
 
 . ' --new_student_id ' . escapeshellarg($newStudentID)
 . ' --new_username '   . escapeshellarg($newUsername)

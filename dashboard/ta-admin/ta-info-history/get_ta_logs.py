@@ -2,8 +2,6 @@ import sys
 
 """
 INPUT
---username
---ticket_id
 --student_id (of the TA)
 
 OUTPUT

@@ -2,11 +2,9 @@ import sys
 
 """
 INPUTS
---username
---ticket_id
 
---term_month_year
 --course_num
+--term_month_year
 --course_name
 --instructor_name
 

@@ -4,13 +4,11 @@ import sqlite3
 import sys
 """
 INPUT
---username
---ticketid
 --course_num
 --term_month_year
 OUTPUT
 List of:
-  StudendID,TAName. One per line
+  StudendID,TAName.
 Exit code 0 if failure
 """
 

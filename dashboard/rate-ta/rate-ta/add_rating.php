@@ -31,20 +31,11 @@ else {
 	return;
 }
 
-$username = "defaultUsername";
+$username = "genericUsername";
 if (isset($_SESSION["username"])) $username = $_SESSION["username"];
 else {
 	genericError();
-	echo "Username not in session\n";
-	// return;
-}
-
-$ticketID = "defaultTicket";
-if (isset($_SESSION["ticket"])) $ticketID = $_SESSION["ticket"];
-else {
-	genericError();
-	echo "Ticket not in session\n";
-	// return;
+	echo "The username is not in the session (add_rating.php)<br>\n";
 }
 
 // ================================== Get form content ==================================
@@ -88,16 +79,14 @@ $chosenTerm = $tmp[1];
 // Output: list of csv lines of studentid,taname
 $output = null; $retval = null;
 $command = "python3 " .  __DIR__ . "/add_rating.py "
-. " --username " . "\"$username\""
-. " --ticket_id " . "\"$ticketID\""
-
-. ' --course_num ' . "\"$chosenCourseID\""
-. ' --term_month_year ' . "\"$chosenTerm\""
-. ' --ta_id ' . "\"$chosenTAStudentID\""
-. ' --score ' . "\"$numberStars\""
-. ' --comment ' . "\"$comments\"";
+	. ' --username '        . escapeshellarg($username)
+	. ' --course_num '      . escapeshellarg($chosenCourseID)
+	. ' --term_month_year ' . escapeshellarg($chosenTerm)
+	. ' --ta_id '           . escapeshellarg($chosenTAStudentID)
+	. ' --score '           . escapeshellarg($numberStars)
+	. ' --comment '         . escapeshellarg($comments);
+if (__DEBUG__) echo "Adding rating: " . $command . "<br>\n";
 exec(escapeshellcmd($command) , $output, $retval);
-// if (__DEBUG__) echo $command . "<br>\n";
 
 
 // ================================== Final Output ==================================

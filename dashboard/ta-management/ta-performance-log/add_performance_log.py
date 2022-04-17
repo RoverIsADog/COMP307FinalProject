@@ -1,9 +1,8 @@
 """
 INPUTS
---username
---ticketid
+--username (of prof)
 --student_id (of chosen ta)
---course_number
+--course_num
 --term_month_year
 --comment
 

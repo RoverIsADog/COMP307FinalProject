@@ -1,7 +1,6 @@
 """
 INPUTS
 --username
---ticketid
 --student_id (of chosen TA)
 --course_num
 --term_month_year

@@ -2,8 +2,6 @@ import sys
 
 """
 INPUTS
---username
---ticket_id
 
 --name (of ta) TODO REMOVE
 --student_id (of ta)

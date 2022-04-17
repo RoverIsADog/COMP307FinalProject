@@ -3,9 +3,9 @@ if (!isset($_SESSION)) session_start();
 require_once(__DIR__ . "/../../rootpath.php");
 require_once(__ROOT_DIR__ . "utils/errors.php");
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // ================================== Session integrity check ==================================
 $tasList = null;
@@ -14,22 +14,6 @@ else {
 	genericError();
 	echo "Session corrupted\n";
 	return;
-}
-
-$username = "defaultUsername";
-if (isset($_SESSION["username"])) $username = $_SESSION["username"];
-else {
-	genericError();
-	echo "Username not in session\n";
-	// return;
-}
-
-$ticketID = "defaultTicket";
-if (isset($_SESSION["ticket"])) $ticketID = $_SESSION["ticket"];
-else {
-	genericError();
-	echo "Ticket not in session\n";
-	// return;
 }
 
 // ================================== Get TA choice ==================================
@@ -94,7 +78,7 @@ $unbalancedTwoColTableEntry = '
 	<th style="text-align: center;">%s</th>
 	<th>%s</th>
 </tr>
-'; // NOT UNIVERSAL (only here, all 1st columns are centered)
+';
 $balancedTwoColTableEntry = '
 <tr>
 	<th style="text-align: center;">%s</th>
@@ -111,14 +95,13 @@ $fourColTableEntry = '
 ';
 
 // ================================== Wishlist Membership ==================================
+
 // Execute python command (return list of prof names)
 echo '<h1>Wishlisted by</h1>';
-$command = "python3 " . __DIR__ . "/get_wishlist.py "
-. " --username " . $username
-. " --ticket_id " . $ticketID
-. " --student_id " . $chosenTAID;
-if (__DEBUG__) echo "Getting wishlist membership: $command<br>\n";
 $output = null; $exitCode = null;
+$command = "python3 " . __DIR__ . "/get_wishlist.py "
+	. " --student_id "  . escapeshellarg($chosenTAID);
+if (__DEBUG__) echo "Getting wishlist membership: $command<br>\n";
 exec(escapeshellcmd($command), $output, $exitCode);
 if ($exitCode != "0") {
 	echo "Error loading wishlist<br>\n";
@@ -133,9 +116,10 @@ else {
 		$tableEntries = "";
 		foreach($output as $idx => $entry) {
 			$tmp = str_getcsv($entry);
-			$tableEntries = $tableEntries . sprintf($oneColTableEntry, $tmp[0]);
+			$termStr = $tmp[1] . " [" . $tmp[2] . "]";
+			$tableEntries = $tableEntries . sprintf($balancedTwoColTableEntry, $tmp[0], $termStr);
 		}
-		echo sprintf($oneColTableContainer, "Professor Name", $tableEntries);
+		echo sprintf($balancedTwoColTableContainer, "Professor Name", "Course/Term", $tableEntries);
 	}
 }
 
@@ -143,9 +127,7 @@ else {
 // Execute python command (return list of {coursenum,term})
 echo '<h1>Assigned To</h1>';
 $command = "python3 " . __DIR__ . "/ta_assigned_courses.py "
-. " --username " . $username
-. " --ticket_id " . $ticketID
-. " --student_id" . $chosenTAID;
+	. " --student_id" . escapeshellarg($chosenTAID);
 if (__DEBUG__) echo "Getting Course assignment information: $command<br>\n";
 $output = null; $exitCode = null;
 exec(escapeshellcmd($command), $output, $exitCode);
@@ -171,9 +153,7 @@ else {
 // ================================== Average details ==================================
 // Execute python command (return list of {coursenum,term})
 $command = "python3 " . __DIR__ . "/ta_review_avg.py "
-. " --username " . $username
-. " --ticket_id " . $ticketID
-. " --student_id" . $chosenTAID;
+	. " --student_id" . escapeshellarg($chosenTAID);
 if (__DEBUG__) echo "Getting ratings and average: $command<br>\n";
 $output = null; $exitCode = null;
 exec(escapeshellcmd($command), $output, $exitCode);
@@ -206,9 +186,7 @@ else {
 // Execute python command (return list of {profName,coursenum,term,note})
 echo '<h1>Professor Performance Logs</h1>';
 $command = "python3 " . __DIR__ . "/get_ta_logs.py "
-. " --username " . $username
-. " --ticket_id " . $ticketID
-. " --student_id" . $chosenTAID;
+	. " --student_id" . escapeshellarg($chosenTAID);
 if (__DEBUG__) echo "Getting prof performance logs: $command<br>\n";
 $output = null; $exitCode = null;
 exec(escapeshellcmd($command), $output, $exitCode);

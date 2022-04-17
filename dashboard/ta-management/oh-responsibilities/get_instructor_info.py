@@ -1,9 +1,7 @@
 """
 INPUTS
---username
---ticket_id
 --student_id (instructor)
---course_id
+--course_num
 --term_month_year
 
 OUTPUTS

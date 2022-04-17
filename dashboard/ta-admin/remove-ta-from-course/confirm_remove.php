@@ -30,22 +30,6 @@ else {
 	return;
 }
 
-$username = "defaultUsername";
-if (isset($_SESSION["username"])) $username = $_SESSION["username"];
-else {
-	genericError();
-	echo "Username not in session\n";
-	// return;
-}
-
-$ticketID = "defaultTicket";
-if (isset($_SESSION["ticket"])) $ticketID = $_SESSION["ticket"];
-else {
-	genericError();
-	echo "Ticket not in session\n";
-	// return;
-}
-
 // ================================== Get form content ==================================
 if (__DEBUG__) echo "<b>The POST is: </b><br>\n";
 if (__DEBUG__) print_r($_POST);
@@ -81,13 +65,10 @@ $courseID = $coursesList[$chosenCourseNum][0];
 
 $output = null; $retval = null;
 $command = "python3 " .  __DIR__ . "/remove_ta_assignment.py "
-. " --username " . "\"$username\""
-. " --ticket_id " . "\"$ticketID\""
-
-. ' --student_id ' . "\"$taID\""
-. ' --term_month_year ' . "\"$termMonthYear\""
-. ' --course_num ' . "\"$courseID\"";
-if (__DEBUG__) echo "Submitting task to python: " . $command . "<br>\n";
+	. ' --student_id '      . escapeshellarg($taID)
+	. ' --term_month_year ' . escapeshellarg($termMonthYear)
+	. ' --course_num '      . escapeshellarg($courseID);
+if (__DEBUG__) echo "Submitting removal task to python: " . $command . "<br>\n";
 exec(escapeshellcmd($command) , $output, $retval);
 
 if ($retval != 0) {
@@ -97,6 +78,6 @@ if ($retval != 0) {
 
 // ================================== Finally, done ==================================
 
-echo("The student has been removed from the course.");
+echo("The TA has been removed from the course.");
 
 ?>

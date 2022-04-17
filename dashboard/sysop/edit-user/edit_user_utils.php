@@ -8,8 +8,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 /**
- * Returns a list of every user in the system. Assumes that the ticket and username
- * are already in the system.
+ * Returns a list of every user in the system. Assumes that the username
+ * is already in the session.
  * For each index, there is an array of the fields of each user.
  */
 function getAllUsers():?array {

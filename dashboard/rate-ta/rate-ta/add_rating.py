@@ -3,7 +3,6 @@ import sys
 """
 INPUTS
 --username
---ticketid
 
 --course_num
 --term_month_year

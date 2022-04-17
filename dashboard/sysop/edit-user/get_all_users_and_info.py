@@ -2,12 +2,12 @@ import sys
 
 """
 INPUTS
---username
---ticketid
 
 OUTPUTS
 List of:
-  student_id,firstname,lastname,email,is_student,is_prof,is_admin,is_sysop,is_ta
+  student_id,name,email,is_student,is_prof,is_admin,is_sysop,is_ta
+
+#################### COMBINE NAME ################################
 Booleans are one or zero
 
 

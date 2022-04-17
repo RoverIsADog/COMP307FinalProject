@@ -4,7 +4,6 @@ import sqlite3
 import sys
 # INPUT
 # --username
-# --ticketid
 # --course_num
 # --term_month_year
 

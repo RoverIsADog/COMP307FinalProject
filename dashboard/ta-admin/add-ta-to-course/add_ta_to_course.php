@@ -25,22 +25,6 @@ else {
 	return;
 }
 
-$username = "defaultUsername";
-if (isset($_SESSION["username"])) $username = $_SESSION["username"];
-else {
-	genericError();
-	echo "Username not in session\n";
-	// return;
-}
-
-$ticketID = "defaultTicket";
-if (isset($_SESSION["ticket"])) $ticketID = $_SESSION["ticket"];
-else {
-	genericError();
-	echo "Ticket not in session\n";
-	// return;
-}
-
 // ================================== Get form content ==================================
 if (__DEBUG__) echo "Content of POST is: \n" . print_r($_POST);
 $chosenCourseNum = "";
@@ -87,8 +71,6 @@ $courseID = $coursesList[$chosenCourseNum][0];
 
 $output = null; $retval = null;
 $command = "python3 " .  __DIR__ . "/add_ta_to_course.py "
-. " --username " . "\"$username\""
-. " --ticket_id " . "\"$ticketID\""
 
 . ' --name ' . "\"$taName\""
 . ' --student_id ' . "\"$taID\""

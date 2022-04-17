@@ -6,7 +6,6 @@ import sys
 """
 Input:
   --username
-  --ticket_id
 
 Output:
   Multiple lines of:

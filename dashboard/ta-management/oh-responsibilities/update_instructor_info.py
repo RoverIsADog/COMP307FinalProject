@@ -1,7 +1,6 @@
 """
 INPUTS
---username
---ticket
+--student_id (of instructor)
 --courseid
 --term_month_year
 --job

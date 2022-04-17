@@ -34,8 +34,8 @@ if (!key_exists("rate_ta_courseslist", $_SESSION) || !key_exists($optionNum, $_S
 }
 
 // DEBUG
-if(__DEBUG__) echo "<b>The current state of the session is:</b><br>\n";
-if(__DEBUG__) echo print_r($_SESSION) . "<br>\n";
+// if(__DEBUG__) echo "<b>The current state of the session is:</b><br>\n";
+// if(__DEBUG__) echo print_r($_SESSION) . "<br>\n";
 if(__DEBUG__) echo "<b>The current state of the rate_ta_courseslist is:</b><br>\n";
 if(__DEBUG__) echo print_r($_SESSION["rate_ta_courseslist"]) . "<br>\n";
 if(__DEBUG__) echo "<b>The current state of dropdown_index is:</b><br>\n";
@@ -46,10 +46,9 @@ $chosenOption = str_getcsv($_SESSION["rate_ta_courseslist"][$optionNum]);
 // Run the command. Output: list of csv lines of studentid,taname
 $output = null; $retval = null;
 $command = "python3 " .  __DIR__ . "/get_tas.py "
-. " --username " . $_SESSION["username"]
-. " --ticket_id " . $_SESSION["ticket"]
-. "--course_num" . $chosenOption[0]
-. "--term_month_year" . $chosenOption[1];
+. "--course_num"      . escapeshellarg($chosenOption[0])
+. "--term_month_year" . escapeshellarg($chosenOption[1]);
+if (__DEBUG__) echo "Getting every TA for course: $command <br>\n";
 exec(escapeshellcmd($command) , $output, $retval);
 
 if ($retval != 0) {
@@ -78,7 +77,6 @@ if(__DEBUG__) echo print_r($output) . "<br>\n";
 // Create the list of options
 foreach ($output as $optionNum => $entry) {
 	$curLine = str_getcsv($entry);
-	if(__DEBUG__) echo "Current line: " . $entry . ", idx0 = " . $curLine[0] . " idx1" . $curLine[1] . "<br>\n";
 	$allSelects = $allSelects . sprintf($selectChoice, $optionNum, $curLine[1]);
 }
 

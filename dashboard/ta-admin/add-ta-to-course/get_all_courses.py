@@ -2,8 +2,6 @@ import sys
 
 """
 INPUTS
---username
---ticket_id
 
 OUTPUT
 List of:

@@ -2,17 +2,13 @@ import sys
 
 """
 INPUTS
---username
---ticket_id
 
 --student_id (of chosen)
---first_name
---last_name
+--name // COMBINED COMBINED
 --email
---is_student
---is_prof
+--role ("student", "ta", "prof")
 --is_admin
---is_sysop,is_ta
+--is_sysop
 
 (all fields)
 

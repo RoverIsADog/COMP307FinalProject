@@ -2,15 +2,14 @@ import sys
 
 """
 INPUTS
---username
---ticket_id
 
---student_id
---username
+--new_username
 --password
+--email
+--student_id
 --first_name
 --last_name
---email
+--role ("student", "ta", "prof")
 --is_admin
 --is_sysop
 

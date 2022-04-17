@@ -14,19 +14,16 @@ error_reporting(E_ALL);
  * 
  * This file assumes the following are set:
  * 	$_SESSION["username]
- * 	$_SESSION["ticket]
  */
 
  /**
-	* Returns a list of every TA in the system. Assumes that the ticket and username
-	* are already in the system.
+	* Returns a list of every TA in the system. Assumes that the username
+	* is already in the system.
   */
 function getAllTAs():?array {
 	// Pass relevant arguments into python and execute.
 	$output = null; $exitCode = null;
-	$command = "python3 " . __DIR__ . "/get_all_tas.py "
-	. " --username " . $_SESSION["username"] // TODO REMOVE
-	. " --ticket_id " . $_SESSION["ticket"]; // TODO REMOVE
+	$command = "python3 " . __DIR__ . "/get_all_tas.py "; // No inputs
 	if (__DEBUG__) echo "Getting all TAs: $command<br>\n";
 	exec(escapeshellcmd($command), $output, $exitCode);
 	if ($exitCode != "0") {
@@ -45,15 +42,13 @@ function getAllTAs():?array {
 }
 
 /**
- * Returns a list of every TA in the system. Assumes that the ticket and username
- * are already in the system.
+ * Returns a list of every TA in the system. Assumes that the username
+ * is already in the system.
  */
 function getAllCourses():?array {
 	// Pass relevant arguments into python and execute.
 	$output = null; $exitCode = null;
-	$command = "python3 " . __DIR__ . "/get_all_courses.py "
-	. " --username " . $_SESSION["username"] // TODO REMOVE
-	. " --ticket_id " . $_SESSION["ticket"]; // TODO REMOVE
+	$command = "python3 " . __DIR__ . "/get_all_courses.py "; // No inputs
 	if (__DEBUG__) echo "Getting all courses: $command<br>\n";
 	exec(escapeshellcmd($command), $output, $exitCode);
 	if ($exitCode != "0") {

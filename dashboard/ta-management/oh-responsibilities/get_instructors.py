@@ -1,9 +1,7 @@
 """
 INPUTS
---username
---ticket
---courseid
---term_month_yea
+--course_num
+--term_month_year
 
 OUTPUTS
 List of:

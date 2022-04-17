@@ -9,22 +9,6 @@ error_reporting(E_ALL);
 
 // ================================== Session integrity check ==================================
 
-$username = "defaultUsername";
-if (isset($_SESSION["username"])) $username = $_SESSION["username"];
-else {
-	genericError();
-	echo "Username not in session\n";
-	// return;
-}
-
-$ticketID = "defaultTicket";
-if (isset($_SESSION["ticket"])) $ticketID = $_SESSION["ticket"];
-else {
-	genericError();
-	echo "Ticket not in session\n";
-	// return;
-}
-
 echo '<h1>Course TA Assignment</h1>';
 
 $tableEntryTemplate = '
@@ -46,9 +30,7 @@ $tableFrame = '
 
 // ================================== Wishlist Membership ==================================
 // Execute python command (return list of prof names)
-$command = "python3 " . __DIR__ . "/get_all_course_ta_assigments.py "
-. " --username " . $username
-. " --ticket_id " . $ticketID;
+$command = "python3 " . __DIR__ . "/get_all_course_ta_assigments.py "; // No inputs
 if (__DEBUG__) echo "Retrieving course TA records: $command<br>\n";
 $output = null; $exitCode = null;
 exec(escapeshellcmd($command), $output, $exitCode);
@@ -65,7 +47,8 @@ else {
 		$tableEntries = "";
 		foreach($output as $idx => $entry) {
 			$tmp = str_getcsv($entry);
-			$tableEntries = $tableEntries . sprintf($tableEntryTemplate, $tmp[0], $tmp[1]);
+			$courseStr = $tmp[0] . " [" . $tmp[1] . "]";
+			$tableEntries = $tableEntries . sprintf($tableEntryTemplate, $courseStr, $tmp[1]);
 		}
 		echo sprintf($tableFrame, $tableEntries);
 	}

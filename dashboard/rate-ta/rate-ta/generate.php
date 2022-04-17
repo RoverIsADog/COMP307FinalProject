@@ -26,8 +26,8 @@ if (__DEBUG__) echo "Generating the rate_ta page. <br>\n";
 	// Store the available choices to compare to output.
 	$_SESSION["rate_ta_courseslist"] = $coursesList;
 	
-	error_log ( "List of courses for generation: \n", 3, __ROOT_DIR__ . "output.log");
-	error_log( print_r($coursesList, true) , 3, __ROOT_DIR__ . "output.log");
+	if (__DEBUG__) echo "List of courses for generation: \n";
+	if (__DEBUG__) print_r($coursesList);
 	//echo print_r($_SESSION["rate_ta_courseslist"]);
 	
 	$selectContainer = '
@@ -41,12 +41,12 @@ if (__DEBUG__) echo "Generating the rate_ta page. <br>\n";
 	';
 
 	$inputTemplate = '<option value="%s">%s [%s]</option>' . "\n";
-	$selectOptions = "";
-
+	
 	/* For each line, create an input with:
-		value: index in the array;
-		display: course_id [term_month_year]
+	value: index in the array;
+	display: course_id [term_month_year]
 	*/
+	$selectOptions = "";
 	foreach ($coursesList as $optionNum => $entry) {
 		$curLine = str_getcsv($entry);
 		$selectOptions = $selectOptions . sprintf($inputTemplate, $optionNum, $curLine[0], $curLine[1]);
