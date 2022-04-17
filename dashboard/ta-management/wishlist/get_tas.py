@@ -2,7 +2,6 @@
 import argparse
 import sqlite3
 import sys
-from utils import getId
 
 parser = argparse.ArgumentParser()
 
@@ -10,7 +9,7 @@ parser.add_argument("--term_month_year", type=str)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../../project.db')
+con = sqlite3.connect("/home/yetong/web/www/html/COMP307FinalProject/dashboard/project.db")
 cur = con.cursor()
 
 # Query database for all the TAs

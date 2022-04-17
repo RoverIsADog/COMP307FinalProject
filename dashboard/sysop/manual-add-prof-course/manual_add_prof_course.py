@@ -11,7 +11,7 @@ parser.add_argument("--instructor_name", type=str)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../../project.db')
+con = sqlite3.connect("/home/yetong/web/www/html/COMP307FinalProject/dashboard/project.db")
 cur = con.cursor()
 
 # add courses to database

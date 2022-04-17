@@ -13,7 +13,7 @@ parser.add_argument("--is_admin", type=int)  # 1 if true, 0 if not
 parser.add_argument("--is_sysop", type=int)  # 1 if true, 0 if not
 args = parser.parse_args()
 
-con = sqlite3.connect('../../project.db')
+con = sqlite3.connect("/home/yetong/web/www/html/COMP307FinalProject/dashboard/project.db")
 cur = con.cursor()
 
 # update the users record

@@ -9,7 +9,7 @@ parser.add_argument("--path", type=str)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../../project.db')
+con = sqlite3.connect("/home/yetong/web/www/html/COMP307FinalProject/dashboard/project.db")
 cur = con.cursor()
 
 csv_file = csv.reader(args.path)

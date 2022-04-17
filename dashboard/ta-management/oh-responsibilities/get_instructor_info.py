@@ -10,7 +10,7 @@ parser.add_argument("--term_month_year", type=str)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../../project.db')
+con = sqlite3.connect("/home/yetong/web/www/html/COMP307FinalProject/dashboard/project.db")
 cur = con.cursor()
 
 cur.execute("SELECT job_description, monday_start, monday_end,"

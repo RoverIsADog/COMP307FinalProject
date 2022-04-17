@@ -3,11 +3,11 @@ import argparse
 import sqlite3
 import sys
 import time
-import os
 
 def close():
 	con.commit()
 	con.close()
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--username", type=str)

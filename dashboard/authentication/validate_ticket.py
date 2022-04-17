@@ -1,11 +1,8 @@
 #!/usr/bin/python
 import argparse
-from utils import validate
 import sqlite3
 import time
 import sys
-
-from utils import getId
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--username", type=str)
@@ -13,7 +10,7 @@ parser.add_argument("--ticket_id", type=int)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../project.db')
+con = sqlite3.connect("/home/yetong/web/www/html/COMP307FinalProject/dashboard/project.db")
 cur = con.cursor()
 
 def close():
@@ -47,7 +44,9 @@ cur.execute("UPDATE tickets SET "
 			"WHERE ticket_id = ? AND username = ?;", [time.time() + 30, args.ticket_id, args.username])
 
 # get student_id for provided username
-student_id, num_records = getId(args.username)
+cur.execute("SELECT student_id, COUNT(*) FROM users WHERE username = ?;", [args.username])
+record = cur.fetchone()
+student_id, num_records = record[0], record[1]
 
 # if user does not exist, return 3
 if num_records == 0:

@@ -2,7 +2,7 @@
 import sqlite3
 import sys
 
-con = sqlite3.connect('../../project.db')
+con = sqlite3.connect("/home/yetong/web/www/html/COMP307FinalProject/dashboard/project.db")
 cur = con.cursor()
 
 # Query database for all the courses the user is registered to
