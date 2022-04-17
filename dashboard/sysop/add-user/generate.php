@@ -13,7 +13,8 @@ error_reporting(E_ALL);
 <p>
 	<h2>
 		Note: TA and Prof roles can only be assigned if an entry with the same STUDENTID exists in the
-		database. To add a professor or TA not in the system, please import them first.
+		database. To add a professor or TA not in the system, please import them first. Selecting the role
+		of TA will automatically grant the role of student.
 	</h2>
 </p>
 <form id="add-user-form">
