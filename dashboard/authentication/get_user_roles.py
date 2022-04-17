@@ -9,7 +9,7 @@ parser.add_argument("--username", type=str)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('project.db')
+con = sqlite3.connect('../project.db')
 cur = con.cursor()
 
 # get username's student_id

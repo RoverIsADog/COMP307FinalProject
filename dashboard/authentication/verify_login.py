@@ -3,11 +3,11 @@ import argparse
 import sqlite3
 import sys
 import time
+import os
 
 def close():
 	con.commit()
 	con.close()
-
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--username", type=str)
@@ -15,9 +15,9 @@ parser.add_argument("--password", type=str)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../project.db')
-cur = con.cursor()
+con = sqlite3.connect("/home/yetong/web/www/html/COMP307FinalProject/dashboard/project.db")
 
+cur = con.cursor()
 
 # else, get check if username and password exist
 cur.execute("SELECT COUNT(*) FROM users WHERE username = ? AND password = ?", [args.username, args.password])

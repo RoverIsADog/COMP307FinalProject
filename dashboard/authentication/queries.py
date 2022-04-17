@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import sqlite3
 
-con = sqlite3.connect('project.db')
+con = sqlite3.connect('../project.db')
 cur = con.cursor()
 
 

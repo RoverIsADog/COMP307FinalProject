@@ -21,7 +21,7 @@ parser.add_argument("--role", type=int)  # student:1, TA and student:2, prof:3
 
 args = parser.parse_args()
 
-con = sqlite3.connect('project.db')
+con = sqlite3.connect('../project.db')
 cur = con.cursor()
 
 # check if username already exists. return 1 if it does

@@ -1,7 +1,7 @@
 import sqlite3
 import time
 
-con = sqlite3.connect('project.db')
+con = sqlite3.connect('../project.db')
 cur = con.cursor()
 
 def close():

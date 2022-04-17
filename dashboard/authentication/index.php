@@ -11,26 +11,30 @@ if (isset($_POST['login-btn'])) {
 	$password = $_POST['password'];
 	
 	if (!empty($username) && !empty($password)) {
-		$command = escapeshellcmd('python3 ' . __ROOT_DIR__ . 'authentication/verify_login.py --username '.$username.' --password '.$password);
+		$output = null; $exitCode = null;
+		$command = 'python3 ' . __ROOT_DIR__ . 'authentication/verify_login.py '
+			. ' --username ' . escapeshellarg($username)
+			. ' --password ' . escapeshellarg($password);
 		echo "Command: $command<br>\n";
-		$output = exec($command);
+		exec(escapeshellcmd($command), $output, $exitCode);
 		
 		echo print_r($output, true);
+		echo print_r($exitCode, true);
 
-		if ($output == '1') {
+		if ($exitCode == 1) {
 			echo '<script>alert("Invalid username or password.")</script>';
-			header("Refresh:0");
+			// header("Refresh:0");
 			exit;
 		}
 		
-		$ticket = explode(",", $output);
+		$ticket = explode(",", $output[0]);
 		$_SESSION['ticket'] = $ticket[0];
 		$_SESSION['username'] = $ticket[1];
 		
 		// header("Location: ../dashboard.php");
     } else {
 		echo '<script>alert("Some of the fields were left empty.")</script>';
-		header("Refresh:0");	
+		// header("Refresh:0");	
 		exit;
 	}
 }
