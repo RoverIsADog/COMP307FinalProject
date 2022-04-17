@@ -179,10 +179,8 @@ def loadRoles():
 
 
 def main():
-	cur.execute("SELECT * FROM roles;")
-	records = cur.fetchall()
-	for record in records:
-		print(record)
+	createTables()
+	loadRoles()
 	con.commit()
 	con.close()
 

@@ -14,7 +14,7 @@ parser.add_argument("--comment", type=str)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../../../project.db')
+con = sqlite3.connect('../../project.db')
 cur = con.cursor()
 
 

@@ -12,7 +12,7 @@ args = parser.parse_args()
 
 required_role = 3
 
-con = sqlite3.connect('../../../project.db')
+con = sqlite3.connect('../../project.db')
 cur = con.cursor()
 
 f = open(args.course_quota_path)

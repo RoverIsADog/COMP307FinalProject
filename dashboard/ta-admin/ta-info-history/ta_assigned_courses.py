@@ -10,7 +10,7 @@ parser.add_argument("--student_id", type=int)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../../../project.db')
+con = sqlite3.connect('../../project.db')
 cur = con.cursor()
 
 

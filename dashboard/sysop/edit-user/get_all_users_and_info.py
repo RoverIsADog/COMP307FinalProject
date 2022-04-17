@@ -2,7 +2,7 @@
 import sqlite3
 import sys
 
-con = sqlite3.connect('../../../project.db')
+con = sqlite3.connect('../../project.db')
 cur = con.cursor()
 
 # query database for all users, except for genesis account (student_id -1)

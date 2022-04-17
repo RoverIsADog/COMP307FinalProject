@@ -11,7 +11,7 @@ required_role = 3
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../../../project.db')
+con = sqlite3.connect('../../project.db')
 cur = con.cursor()
 
 # get all logs associated with a given TA
