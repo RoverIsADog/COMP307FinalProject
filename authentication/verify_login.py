@@ -27,12 +27,12 @@ args = parser.parse_args()
 path = pathlib.Path(__file__).parent.parent
 con = sqlite3.connect(str(path) + "/project.db")
 
- #print(os.getcwd())
- #print("checkpoint2")
+#print(os.getcwd())
+#print("checkpoint2")
 
 cur = con.cursor()
 
- #print("checkpoint3")
+#print("checkpoint3")
 
 # else, get check if username and password exist
 cur.execute("SELECT COUNT(*) FROM users WHERE username = ? AND password = ?;", [args.username, args.password])

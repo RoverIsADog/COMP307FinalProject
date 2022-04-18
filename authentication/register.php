@@ -28,43 +28,45 @@ if (isset($_POST['register-btn'])) {
 			. ' --first_name '         . escapeshellarg($first_name)
 			. ' --last_name '          . escapeshellarg($last_name)
 			. ' --role '               . escapeshellarg($role);
-		echo '<script>alert(' . "Command: $command<br>\n" . ')</script>';
+		echo "Command: $command<br>\n";
 		exec(escapeshellcmd($command), $output, $exitCode);
 
 		echo "The exit code was: $exitCode<br>\n";
+		echo "The output was: <br>";
+		print_r($output);
 	
 		if ($exitCode == 1 || $exitCode == 2 || $exitCode == 3) {
 			echo '<script>alert("User already exists. Enter new credentials.")</script>';
-			header("Refresh:0");
+//			header("Refresh:0");
 			exit;
 		}
 	
 		if ($exitCode == 4) {
 			echo '<script>alert("Make sure that your passwords match.")</script>';
-			header("Refresh:0");
+//			header("Refresh:0");
 			exit;
 		}
 		
 		if ($exitCode == 5 || $exitCode == 6) {
 			echo '<script>alert("Could not grant your requested role. Defaulted to student. Please contact a system operator to have your role changed..")</script>';
-			header("Refresh:0");
+//			header("Refresh:0");
 			exit;
 		}
 		
 		if ($exitCode == 7) {
 			echo '<script>alert("ERROR.")</script>';
-			header("Refresh:0");
+//			header("Refresh:0");
 			exit;
 		}
 	
 		if ($exitCode == '0') {
 			echo '<script>alert("Your account has been registered successfully.")</script>';
-			header("Location: index.php");
+//			header("Location: index.php");
 			exit;
 		}
 	} else {
 		echo '<script>alert("Some of the fields were left empty.")</script>';
-		header("Refresh:0");	
+//		header("Refresh:0");	
 		exit;
 	}
 }

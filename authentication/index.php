@@ -15,9 +15,10 @@ if (isset($_POST['login-btn'])) {
 	
 	if (!empty($username) && !empty($password)) {
 		$output = null; $exitCode = null;
-		$command = 'python3 ' . __ROOT_DIR__ . 'authentication/verify_login.py '
+		$command = 'python3 ' . __ROOT_DIR__ . 'authentication/verify_login.py'
 			. ' --username ' . escapeshellarg($username)
-			. ' --password ' . escapeshellarg($password);
+			. ' --password ' . escapeshellarg($password)
+			. ' 2>&1';
 		// echo "Command: $command<br>\n";
 		exec(escapeshellcmd($command), $output, $exitCode);
 		
@@ -40,8 +41,8 @@ if (isset($_POST['login-btn'])) {
 		$_SESSION['ticket'] = $ticket[0];
 		$_SESSION['username'] = $ticket[1];
 
-		setcookie("ticket", $ticket[0], 0, "/");
-		setcookie("username", $ticket[1], 0, "/");
+//		setcookie("ticket", $ticket[0], 0, "/");
+//		setcookie("username", $ticket[1], 0, "/");
 
 		echo "The session consists of: <br>\n";
 		print_r($_SESSION);

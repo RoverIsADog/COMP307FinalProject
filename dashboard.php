@@ -9,8 +9,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-if (__DEBUG__) echo "The content of the cookie is:<br>\n";
-if (__DEBUG__) echo nl2br(print_r($_COOKIE, true));
+// if (__DEBUG__) echo "The content of the cookie is:<br>\n";
+// if (__DEBUG__) echo nl2br(print_r($_COOKIE, true));
+
+if (__DEBUG__) echo "The content of the session is:<br>\n";
+if (__DEBUG__) echo nl2br(print_r($_SESSION, true));
 
 // echo print_r($_SESSION) . "<br>\n";
 // echo "Username is " . $_SESSION["username"] . "<br>\n";

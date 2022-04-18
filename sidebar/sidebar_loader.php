@@ -54,8 +54,8 @@ $sidebarProfileTemplate = '
 // Get user profile pic path, username, role
 $profilePicPath = 'pictures/id_full_white.svg'; // DO NOT PUT __ROOT_DIR__ HERE
 $username = "John Doe";
-//if (isset($_SESSION["username"])) $username = $_SESSION["username"];
-if (isset($_COOKIE["username"])) $username = $_COOKIE["username"];
+if (isset($_SESSION["username"])) $username = $_SESSION["username"];
+// if (isset($_COOKIE["username"])) $username = $_COOKIE["username"];
 
 // Successive ifs to get highest.
 $userrole = "Undefined Role";

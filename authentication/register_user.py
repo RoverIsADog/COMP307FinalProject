@@ -24,40 +24,69 @@ args = parser.parse_args()
 
 path = pathlib.Path(__file__).parent.parent
 con = sqlite3.connect(str(path) + "/project.db")
+print(str(path) + "/project.db")
 cur = con.cursor()
+
+print("checkpoint1")
 
 # check if username already exists. return 1 if it does
 cur.execute("SELECT COUNT(*) FROM users WHERE username = ?;", [args.username])
 count = cur.fetchone()[0]
 
+print ("There were %d matches for userid = %s." % (count, args.username))
+
 if count != 0:
 	close()
+	print("About to exit 1")
 	sys.exit(1)
+
+print("checkpoint2")
 
 # check if there is already a user with the provided student_id. return 2 if there is
 cur.execute("SELECT COUNT(*) FROM users WHERE student_id = ?;", [args.student_id])
 count = cur.fetchone()[0]
 
+print ("There were %d other users with id:  %s." % (count, args.username))
+
 if count != 0:
 	close()
+	print("About to exit 3")
 	sys.exit(2)
+
+print("checkpoint3")
 
 # check if there is already a user with the provided email. return 3 if there is
 cur.execute("SELECT COUNT(*) FROM users WHERE email = ?;", [args.email])
 count = cur.fetchone()[0]
 
+print ("There were %d other users with email %s." % (count, args.email))
+
 if count != 0:
 	close()
+	print("About to exit 3")
 	sys.exit(3)
+
+print("checkpoint4")
 
 # check if the provided passwords match. return 4 if they do not
 if args.password != args.confirm_password:
 	close()
+	print("About to exit 5")
 	sys.exit(4)
 
+print("checkpoint5")
+
 # else, create a new user, check for permissions
-cur.execute("INSERT INTO users VALUES (?,?,?,?,?);",
-			[args.student_id, args.username, args.password, str(args.first_name + " " + args.last_name), args.email])
+print ("COMMAND ABOUT TO BE GIVEN")
+print ("INSERT INTO users VALUES (%s,%s,%s,%s,%s);" % (args.student_id, args.username, args.password, str(args.first_name + " " + args.last_name), args.email))
+
+try:
+	cur.execute("INSERT INTO users VALUES (?,?,?,?,?);",[args.student_id, args.username, args.password, str(args.first_name + " " + args.last_name), args.email])
+except Exception as e:
+	print("INSERT FAILED")
+	print(e)
+
+print("checkpoint6")
 
 # check permissions
 if args.role == 2:
@@ -68,6 +97,7 @@ if args.role == 2:
 		cur.execute("INSERT INTO assigned VALUES ((?, 5), (?, 1));", [args.student_id, args.student_id])
 
 		close()
+		print("About to exit 0")
 		sys.exit(0)
 
 	else:
@@ -75,6 +105,7 @@ if args.role == 2:
 		cur.execute("INSERT INTO assigned VALUES (?, 1);", [args.student_id])
 
 		close()
+		print("About to exit 5")
 		sys.exit(5)
 
 elif args.role == 3:
@@ -111,6 +142,7 @@ elif args.role == 3:
 		cur.execute("INSERT INTO assigned VALUES (?, 1);", [args.student_id])
 
 		close()
+		print("About to exit 6")
 		sys.exit(6)
 
 elif args.role == 1:
@@ -120,4 +152,5 @@ elif args.role == 1:
 
 else:
 	close()
+	print("About to exit 7")
 	sys.exit(7)

@@ -4,11 +4,11 @@ require_once(__DIR__ . "/../rootpath.php");
 if (!isset($_SESSION)) session_start();
 
 function authenticate() {
-//	$ticket_id = $_SESSION['ticket'];
-//	$username = $_SESSION['username'];
+	$ticket_id = $_SESSION['ticket'];
+	$username = $_SESSION['username'];
 
-	$ticket_id = $_COOKIE["ticket"];
-	$username = $_COOKIE["username"];
+//	$ticket_id = $_COOKIE["ticket"];
+//	$username = $_COOKIE["username"];
 
 	/* MICHEAL'S AUTHENTICATION CODE
 	I don't care what happens in here, but after this block $loggedIn should
