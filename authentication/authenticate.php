@@ -4,11 +4,18 @@ require_once(__DIR__ . "/../rootpath.php");
 if (!isset($_SESSION)) session_start();
 
 function authenticate() {
+
+	// Duplicate storage just in case
+	$username = ""; $ticket_id = "";
+
 	$ticket_id = $_SESSION['ticket'];
 	$username = $_SESSION['username'];
 
-//	$ticket_id = $_COOKIE["ticket"];
-//	$username = $_COOKIE["username"];
+	$ticket_id = $_COOKIE["ticket"];
+	$username = $_COOKIE["username"];
+
+	if (__DEBUG__) echo nl2br("The content of the session is: \n");
+	if (__DEBUG__) echo nl2br(print_r($_SESSION, true));
 
 	/* MICHEAL'S AUTHENTICATION CODE
 	I don't care what happens in here, but after this block $loggedIn should
@@ -25,8 +32,9 @@ function authenticate() {
 
 	$output = null; $exitCode = null;
 	$command = 'python3 ' . __ROOT_DIR__ . 'authentication/validate_ticket.py '
-		. ' --username ' . escapeshellarg($username)
-		. ' --ticket_id ' . escapeshellarg($ticket_id);
+		. ' --username '  . escapeshellarg($username)
+		. ' --ticket_id ' . escapeshellarg($ticket_id)
+		. ' 2>&1';
 	if (__DEBUG__) echo "Command: $command<br>\n";
 	exec(escapeshellcmd($command), $output, $exitCode);
 	
@@ -38,7 +46,8 @@ function authenticate() {
 	
 	$output = null; $exitCode = null;
 	$command = 'python3 ' . __ROOT_DIR__ . 'authentication/get_user_roles.py '
-		. ' --username ' . escapeshellarg($username);
+		. ' --username ' . escapeshellarg($username)
+		. ' 2>&1';
 	if (__DEBUG__) echo "Command: $command<br>\n";
 	exec(escapeshellcmd($command), $output, $exitCode);
 	
