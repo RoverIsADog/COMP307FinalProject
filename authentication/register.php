@@ -19,7 +19,7 @@ if (isset($_POST['register-btn'])) {
 	if (!empty($username) && !empty($password) && !empty($password_confirm) && !empty($email) && !empty($studentid) && !empty($first_name) && !empty($last_name) && !empty($role)) {
 
 		$output = null; $exitCode = null;
-		$command = 'python3 ' . __ROOT_DIR__ . 'authentication/register_user.py '
+		$command = escapeshellcmd('python3 ' . __ROOT_DIR__ . 'authentication/register_user.py '
 			. ' --username '           . escapeshellarg($username)
 			. ' --password '           . escapeshellarg($password)
 			. ' --confirm_password '   . escapeshellarg($password_confirm)
@@ -27,9 +27,9 @@ if (isset($_POST['register-btn'])) {
 			. ' --student_id '         . escapeshellarg($studentid)
 			. ' --first_name '         . escapeshellarg($first_name)
 			. ' --last_name '          . escapeshellarg($last_name)
-			. ' --role '               . escapeshellarg($role);
+			. ' --role '               . escapeshellarg($role));
 		echo "Command: $command<br>\n";
-		exec(escapeshellcmd($command), $output, $exitCode);
+		exec($command, $output, $exitCode);
 
 		echo "The exit code was: $exitCode<br>\n";
 		echo "The output was: <br>";

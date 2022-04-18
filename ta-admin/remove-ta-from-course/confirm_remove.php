@@ -64,12 +64,12 @@ $termMonthYear = $coursesList[$chosenCourseNum][1]; // [0]: courseid, [1]: term
 $courseID = $coursesList[$chosenCourseNum][0];
 
 $output = null; $retval = null;
-$command = "python3 " .  __DIR__ . "/remove_ta_assignment.py "
+$command = escapeshellcmd("python3 " .  __DIR__ . "/remove_ta_assignment.py "
 	. ' --student_id '      . escapeshellarg($taID)
 	. ' --term_month_year ' . escapeshellarg($termMonthYear)
-	. ' --course_num '      . escapeshellarg($courseID);
+	. ' --course_num '      . escapeshellarg($courseID));
 if (__DEBUG__) echo "Submitting removal task to python: " . $command . "<br>\n";
-exec(escapeshellcmd($command) , $output, $retval);
+exec($command , $output, $retval);
 
 if ($retval != 0) {
 	genericError();

@@ -23,9 +23,9 @@ error_reporting(E_ALL);
 function getAllTAs():?array {
 	// Pass relevant arguments into python and execute.
 	$output = null; $exitCode = null;
-	$command = "python3 " . __DIR__ . "/get_all_tas.py"; // No arguments
+	$command = escapeshellcmd("python3 " . __DIR__ . "/get_all_tas.py"); // No arguments
 	if (__DEBUG__) echo "Getting all TAs: $command<br>\n";
-	exec(escapeshellcmd($command), $output, $exitCode);
+	exec($command, $output, $exitCode);
 	if ($exitCode != "0") {
 		genericError();
 		exit();
@@ -47,10 +47,10 @@ function getAllTAs():?array {
 function getAllCoursesForTA(string $taID):?array {
 	// Pass relevant arguments into python and execute.
 	$output = null; $exitCode = null;
-	$command = "python3 " . __DIR__ . "/get_all_courses_for_a_ta.py "
-		. ' --student_id ' . escapeshellarg($taID);
+	$command = escapeshellcmd("python3 " . __DIR__ . "/get_all_courses_for_a_ta.py "
+		. ' --student_id ' . escapeshellarg($taID));
 	if (__DEBUG__) echo "Getting all courses for TA $taID: $command<br>\n";
-	exec(escapeshellcmd($command), $output, $exitCode);
+	exec($command, $output, $exitCode);
 	if ($exitCode != "0") {
 		genericError();
 		exit();

@@ -99,10 +99,10 @@ $fourColTableEntry = '
 // Execute python command (return list of prof names)
 echo '<h1>Wishlisted by</h1>';
 $output = null; $exitCode = null;
-$command = "python3 " . __DIR__ . "/get_wishlist.py "
-	. " --student_id "  . escapeshellarg($chosenTAID);
+$command = escapeshellcmd("python3 " . __DIR__ . "/get_wishlist.py "
+	. " --student_id "  . escapeshellarg($chosenTAID));
 if (__DEBUG__) echo "Getting wishlist membership: $command<br>\n";
-exec(escapeshellcmd($command), $output, $exitCode);
+exec($command, $output, $exitCode);
 if ($exitCode != "0") {
 	echo "Error loading wishlist<br>\n";
 }
@@ -126,11 +126,11 @@ else {
 // ================================== Current Assignment Details ==================================
 // Execute python command (return list of {coursenum,term})
 echo '<h1>Assigned To</h1>';
-$command = "python3 " . __DIR__ . "/ta_assigned_courses.py "
-	. " --student_id" . escapeshellarg($chosenTAID);
+$command = escapeshellcmd("python3 " . __DIR__ . "/ta_assigned_courses.py "
+	. " --student_id" . escapeshellarg($chosenTAID));
 if (__DEBUG__) echo "Getting Course assignment information: $command<br>\n";
 $output = null; $exitCode = null;
-exec(escapeshellcmd($command), $output, $exitCode);
+exec($command, $output, $exitCode);
 if ($exitCode != "0") {
 	echo "Error loading course assignmentn<br>\n";
 }
@@ -152,11 +152,11 @@ else {
 
 // ================================== Average details ==================================
 // Execute python command (return list of {coursenum,term})
-$command = "python3 " . __DIR__ . "/ta_review_avg.py "
-	. " --student_id" . escapeshellarg($chosenTAID);
+$command = escapeshellcmd("python3 " . __DIR__ . "/ta_review_avg.py "
+	. " --student_id" . escapeshellarg($chosenTAID));
 if (__DEBUG__) echo "Getting ratings and average: $command<br>\n";
 $output = null; $exitCode = null;
-exec(escapeshellcmd($command), $output, $exitCode);
+exec($command, $output, $exitCode);
 if ($exitCode != "0") {
 	echo "Error loading ratings<br>\n";
 }
@@ -185,11 +185,11 @@ else {
 // ================================== Professor Performance Logs ==================================
 // Execute python command (return list of {profName,coursenum,term,note})
 echo '<h1>Professor Performance Logs</h1>';
-$command = "python3 " . __DIR__ . "/get_ta_logs.py "
-	. " --student_id" . escapeshellarg($chosenTAID);
+$command = escapeshellcmd("python3 " . __DIR__ . "/get_ta_logs.py "
+	. " --student_id" . escapeshellarg($chosenTAID));
 if (__DEBUG__) echo "Getting prof performance logs: $command<br>\n";
 $output = null; $exitCode = null;
-exec(escapeshellcmd($command), $output, $exitCode);
+exec($command, $output, $exitCode);
 if ($exitCode != "0") {
 	echo "Error loading prof performance logs<br>\n";
 }

@@ -80,7 +80,7 @@ $userStudentID = $usersList[$selectedUserNum]["student_id"];
 
 // ================================== Preparing to send to Python ==================================
 $output = null; $retval = null;
-$command = "python3 " .  __DIR__ . "/submit_changes.py "
+$command = escapeshellcmd("python3 " .  __DIR__ . "/submit_changes.py "
 
 . ' --student_id '     . escapeshellarg($userStudentID)
 . ' --first_name '     . escapeshellarg($newFirstname)
@@ -88,9 +88,9 @@ $command = "python3 " .  __DIR__ . "/submit_changes.py "
 . ' --email '          . escapeshellarg($newEmail)
 . ' --role '           . escapeshellarg($newRole)
 . ' --is_admin '       . escapeshellarg($newIsAdmin)
-. ' --is_sysop '       . escapeshellarg($newIsSysop);
+. ' --is_sysop '       . escapeshellarg($newIsSysop));
 if (__DEBUG__) echo "Submitting task to python: $command\n";
-exec(escapeshellcmd($command) , $output, $retval);
+exec($command , $output, $retval);
 
 if ($retval != 0) {
 	genericError();

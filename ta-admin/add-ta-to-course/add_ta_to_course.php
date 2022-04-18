@@ -70,15 +70,15 @@ $courseID = $coursesList[$chosenCourseNum][0];
 
 
 $output = null; $retval = null;
-$command = "python3 " .  __DIR__ . "/add_ta_to_course.py "
+$command = escapeshellcmd("python3 " .  __DIR__ . "/add_ta_to_course.py "
 
-. ' --name ' . "\"$taName\""
-. ' --student_id ' . "\"$taID\""
-. ' --term_month_year ' . "\"$termMonthYear\""
-. ' --course_num ' . "\"$courseID\""
-. ' --assigned_hours ' . "\"$assignedHours\"";
-if (__DEBUG__) echo "Submitting task to python: " . $command;
-exec(escapeshellcmd($command) , $output, $retval);
+. ' --name '              . escapeshellarg($taName)
+. ' --student_id '        . escapeshellarg($taID)
+. ' --term_month_year '   . escapeshellarg($termMonthYear)
+. ' --course_num '        . escapeshellarg($courseID)
+. ' --assigned_hours '    . escapeshellarg($assignedHours));
+if (__DEBUG__) echo "Submitting task to python: $command\n";
+exec($command , $output, $retval);
 
 if ($retval != 0) {
 	genericError();

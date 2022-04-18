@@ -15,9 +15,9 @@ error_reporting(E_ALL);
 function getAllUsers():?array {
 	// Pass relevant arguments into python and execute.
 	$output = null; $exitCode = null;
-	$command = "python3 " . __DIR__ . "/get_all_users_and_info.py";
+	$command = escapeshellcmd("python3 " . __DIR__ . "/get_all_users_and_info.py");
 	if (__DEBUG__) echo "Getting all users: $command<br>\n";
-	exec(escapeshellcmd($command), $output, $exitCode);
+	exec($command, $output, $exitCode);
 	if ($exitCode != "0") {
 		genericError();
 		exit();

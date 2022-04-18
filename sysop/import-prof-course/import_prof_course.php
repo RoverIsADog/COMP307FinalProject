@@ -11,9 +11,10 @@ error_reporting(E_ALL);
 // ================================== Session integrity check ==================================
 
 // Executing the command
-$command = "python3 " .  __DIR__ . "/import_prof_course.py "
-. ' --path ' . escapeshellarg(__ROOT_DIR__ . "data/profcourse.csv"); // Hardcoded for now
-exec(escapeshellcmd($command) , $output, $retval);
+$command = escapeshellcmd("python3 " .  __DIR__ . "/import_prof_course.py "
+. ' --path ' . escapeshellarg(__ROOT_DIR__ . "data/profcourse.csv")
+. ' 2>&1'); // Hardcoded for now
+exec($command , $output, $retval);
 if ($retval != 0) {
 	genericError();
 }

@@ -10,8 +10,13 @@ if (!isset($_SESSION) && false) {
 	session_start();
 }
 
-function consoleLog(string $str) {
-	echo "<script>console.log(" . escapeshellarg($str) . ");</script>";;
+function consoleLog($output, $with_script_tags = true) {
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
 }
 
 // ini_set('display_errors', 1);

@@ -4,11 +4,12 @@ require_once(__DIR__ . "/../rootpath.php");
 require_once(__ROOT_DIR__ . "/utils/errors.php");
 
 $output = null; $retval = null;
-$command = "python3 " .  __DIR__ . "/verify_login.py "
+$command = escapeshellcmd("python3 " .  __DIR__ . "/verify_login.py "
 	. ' --username defaultsysop'
-	. ' --password 1234';
+	. ' --password 1234')
+	. ' 2>&1';
 if (__DEBUG__) echo "Submitting task to python: $command\n";
-exec(escapeshellcmd($command) , $output, $retval);
+exec($command , $output, $retval);
 
 //if ($retval != 0) {
 //	genericError();

@@ -32,10 +32,10 @@ function getCourses():?array {
 		echo "The username is not in the session (get_courses.php)<br>\n";
 	}
 	// Pass relevannt arguments into python and execute.
-	$command = "python3 " . __DIR__ . "/get_courses.py "
-		. " --username " . escapeshellarg($username); // USERNAME REQUIRED
+	$command = escapeshellcmd("python3 " . __DIR__ . "/get_courses.py "
+		. " --username " . escapeshellarg($username)); // USERNAME REQUIRED
 	if (__DEBUG__) echo "Getting courses: $command<br>\n";
-	exec(escapeshellcmd($command), $output, $exitCode);
+	exec($command, $output, $exitCode);
 	if ($exitCode != "0") {
 		genericError();
 		echo "An error prevented fetching courses (get_courses.php)<br>\n";

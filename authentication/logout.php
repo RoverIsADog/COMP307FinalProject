@@ -23,10 +23,11 @@ if (isset($_SESSION["ticket"])) unset($_SESSION["ticket"]);
 if (isset($_SESSION["username"])) unset($_SESSION["username"]);
 
 $output = null; $exitCode = null;
-$command = 'python3 ' . __ROOT_DIR__ . 'authentication/logout.py '
-	. ' --username ' . escapeshellarg($username);
+$command = escapeshellcmd('python3 ' . __ROOT_DIR__ . 'authentication/logout.py '
+	. ' --username ' . escapeshellarg($username))
+	. ' 2>&1';
 echo "Command: $command<br>\n";
-exec(escapeshellcmd($command), $output, $exitCode);
+exec($command, $output, $exitCode);
 
 header("Location:index.php");
 ?>

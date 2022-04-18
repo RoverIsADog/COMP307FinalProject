@@ -18,9 +18,9 @@ require_once(__ROOT_DIR__ . "utils/errors.php");
  */
 function getAllTAs():?array {
 	// Pass relevannt arguments into python and execute.
-	$command = "python3 " . __DIR__ . "/get_all_tas.py";
+	$command = escapeshellcmd("python3 " . __DIR__ . "/get_all_tas.py");
 	if (__DEBUG__) echo "Getting all TAs: $command<br>\n";
-	exec(escapeshellcmd($command), $output, $exitCode);
+	exec($command, $output, $exitCode);
 	if ($exitCode != "0") {
 		genericError();
 		echo "Error fetching TAs<br>\n";

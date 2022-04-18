@@ -38,13 +38,13 @@ if ($termMonthYear == "" || $courseNum == "" || $courseName == "" || $instructor
 
 // ================================== Preparing to send to Python ==================================
 $output = null; $retval = null;
-$command = "python3 " .  __DIR__ . "/manual_add_prof_course.py "
+$command = escapeshellcmd("python3 " .  __DIR__ . "/manual_add_prof_course.py "
 . ' --term_month_year '    . escapeshellarg($termMonthYear)
 . ' --course_num '         . escapeshellarg($courseNum)
 . ' --course_name '        . escapeshellarg($courseName)
-. ' --instructor_name '    . escapeshellarg($instructorName);
+. ' --instructor_name '    . escapeshellarg($instructorName));
 if (__DEBUG__) echo "Submitting task to python: $command\n";
-exec(escapeshellcmd($command) , $output, $retval);
+exec($command , $output, $retval);
 
 if ($retval != 0) {
 	genericError();

@@ -78,15 +78,15 @@ $chosenTerm = $tmp[1];
 // ================================== Run the command ==================================
 // Output: list of csv lines of studentid,taname
 $output = null; $retval = null;
-$command = "python3 " .  __DIR__ . "/add_rating.py "
+$command = escapeshellcmd("python3 " .  __DIR__ . "/add_rating.py "
 	. ' --username '        . escapeshellarg($username)
 	. ' --course_num '      . escapeshellarg($chosenCourseID)
 	. ' --term_month_year ' . escapeshellarg($chosenTerm)
 	. ' --ta_id '           . escapeshellarg($chosenTAStudentID)
 	. ' --score '           . escapeshellarg($numberStars)
-	. ' --comment '         . escapeshellarg($comments);
+	. ' --comment '         . escapeshellarg($comments));
 if (__DEBUG__) echo "Adding rating: " . $command . "<br>\n";
-exec(escapeshellcmd($command) , $output, $retval);
+exec($command , $output, $retval);
 
 
 // ================================== Final Output ==================================

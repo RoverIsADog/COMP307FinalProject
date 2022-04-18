@@ -30,10 +30,10 @@ $tableFrame = '
 
 // ================================== Wishlist Membership ==================================
 // Execute python command (return list of prof names)
-$command = "python3 " . __DIR__ . "/get_all_course_ta_assignments.py "; // No inputs
+$command = escapeshellcmd("python3 " . __DIR__ . "/get_all_course_ta_assignments.py"); // No inputs
 if (__DEBUG__) echo "Retrieving course TA records: $command<br>\n";
 $output = null; $exitCode = null;
-exec(escapeshellcmd($command), $output, $exitCode);
+exec($command, $output, $exitCode);
 if ($exitCode != "0") {
 	echo "Error retrieving information<br>\n";
 }
