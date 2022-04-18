@@ -1,9 +1,16 @@
 <?php
-if (!isset($_SESSION)) session_start();
+session_start();
 
 # __ROOT_DIR__ = /var/www/html/dashboard/
 require_once(__DIR__ . "/rootpath.php");
 require_once(__ROOT_DIR__ . "/utils/errors.php");
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+if (__DEBUG__) echo "The content of the cookie is:<br>\n";
+if (__DEBUG__) echo nl2br(print_r($_COOKIE, true));
 
 // echo print_r($_SESSION) . "<br>\n";
 // echo "Username is " . $_SESSION["username"] . "<br>\n";
@@ -38,22 +45,24 @@ $json = json_decode($jsonStr, true);
 // Checking for authentication
 $isAuth = true;
 require(__ROOT_DIR__ . "authentication/authenticate.php"); // <-- MICHEAL'S CODE
+$retArr = authenticate();
+$isAuth = $retArr["isAuth"];
 if (!$isAuth) { // Exit if not authorized.
 	echo "You do not have authorization to view this page!";
 	exit();
 }
+$userPermissions = $retArr["userPermissions"];
 
 // Permissions setting
-$is_student = true; $is_ta = true; $is_prof = true; $is_admin = true; $is_sysop = true;
-require(__ROOT_DIR__ . "authentication/get_user_roles.php"); // <-- MICHEAL'S CODE
+// $is_student = true; $is_ta = true; $is_prof = true; $is_admin = true; $is_sysop = true;
 
 // Create list of permissions for this user
-$userPermissions = array();
-if ($is_student) array_push($userPermissions, "student");
-if ($is_ta) array_push($userPermissions, "ta");
-if ($is_prof) array_push($userPermissions, "prof");
-if ($is_admin) array_push($userPermissions, "admin");
-if ($is_sysop) array_push($userPermissions, "sysop");
+// $userPermissions = array();
+// if ($is_student) array_push($userPermissions, "student");
+// if ($is_ta) array_push($userPermissions, "ta");
+// if ($is_prof) array_push($userPermissions, "prof");
+// if ($is_admin) array_push($userPermissions, "admin");
+// if ($is_sysop) array_push($userPermissions, "sysop");
 
 // ==================================================== PHP END ====================================================
 ?>

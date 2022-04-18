@@ -2,6 +2,7 @@
 import argparse
 import sqlite3
 import sys
+import pathlib
 
 
 parser = argparse.ArgumentParser()
@@ -11,7 +12,8 @@ parser.add_argument("--student_id", type=int)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../../../project.db')
+path = pathlib.Path(__file__).parent.parent.parent
+con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
 

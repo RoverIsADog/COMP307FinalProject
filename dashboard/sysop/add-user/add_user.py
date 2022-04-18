@@ -2,6 +2,7 @@
 import argparse
 import sqlite3
 import sys
+import pathlib
 
 def close():
 	con.commit()
@@ -28,7 +29,8 @@ parser.add_argument("--is_admin", type=int)  # 1 if true, 0 if not
 parser.add_argument("--is_sysop", type=int)  # 1 if true, 0 if not
 args = parser.parse_args()
 
-con = sqlite3.connect('../../../project.db')
+path = pathlib.Path(__file__).parent.parent.parent
+con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
 # check if username already exists. return 1 if it does

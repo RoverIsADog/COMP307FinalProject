@@ -1,8 +1,10 @@
 #!/usr/bin/python
 import sqlite3
 import sys
+import pathlib
 
-con = sqlite3.connect('../../../project.db')
+path = pathlib.Path(__file__).parent.parent.parent
+con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
 # Query database for all the courses the user is registered to

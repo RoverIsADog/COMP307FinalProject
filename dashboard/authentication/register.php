@@ -1,5 +1,10 @@
 <?php
-require("rootpath.php");
+if (!isset($_SESSION)) session_start();
+require_once(__DIR__ . "/../rootpath.php");
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 if (isset($_POST['register-btn'])) {
 	$username = $_POST['username'];
@@ -12,34 +17,47 @@ if (isset($_POST['register-btn'])) {
 	$role = $_POST['role'];
 	
 	if (!empty($username) && !empty($password) && !empty($password_confirm) && !empty($email) && !empty($studentid) && !empty($first_name) && !empty($last_name) && !empty($role)) {
-		$command = escapeshellcmd('python register_user.py --username '.$username.' --password '.$password.' --confirm_password '.$password_confirm.' --email '.$email.' --student_id '.$studentid.' --first_name '.$first_name.' --last_name '.$last_name.' --role '.$role);
-		$output = exec($command);
+
+		$output = null; $exitCode = null;
+		$command = 'python3 ' . __ROOT_DIR__ . 'authentication/register_user.py '
+			. ' --username '           . escapeshellarg($username)
+			. ' --password '           . escapeshellarg($password)
+			. ' --confirm_password '   . escapeshellarg($password_confirm)
+			. ' --email '              . escapeshellarg($email)
+			. ' --student_id '         . escapeshellarg($studentid)
+			. ' --first_name '         . escapeshellarg($first_name)
+			. ' --last_name '          . escapeshellarg($last_name)
+			. ' --role '               . escapeshellarg($role);
+		echo '<script>alert(' . "Command: $command<br>\n" . ')</script>';
+		exec(escapeshellcmd($command), $output, $exitCode);
+
+		echo "The exit code was: $exitCode<br>\n";
 	
-		if ($output == '1' || $output == '2' || $output == '3') {
+		if ($exitCode == 1 || $exitCode == 2 || $exitCode == 3) {
 			echo '<script>alert("User already exists. Enter new credentials.")</script>';
 			header("Refresh:0");
 			exit;
 		}
 	
-		if ($output == '4') {
+		if ($exitCode == 4) {
 			echo '<script>alert("Make sure that your passwords match.")</script>';
 			header("Refresh:0");
 			exit;
 		}
 		
-		if ($output == '5' || '6') {
-			echo '<script>alert("Invalid role assignment.")</script>';
+		if ($exitCode == 5 || $exitCode == 6) {
+			echo '<script>alert("Could not grant your requested role. Defaulted to student. Please contact a system operator to have your role changed..")</script>';
 			header("Refresh:0");
 			exit;
 		}
 		
-		if ($output == '7') {
+		if ($exitCode == 7) {
 			echo '<script>alert("ERROR.")</script>';
 			header("Refresh:0");
 			exit;
 		}
 	
-		if ($output == '0') {
+		if ($exitCode == '0') {
 			echo '<script>alert("Your account has been registered successfully.")</script>';
 			header("Location: index.php");
 			exit;

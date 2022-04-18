@@ -1,5 +1,5 @@
 <?php
-require(__DIR__ . "/../rootpath.php");
+require_once(__DIR__ . "/../rootpath.php");
 
 // $is_student = false;
 // $is_ta = false;
@@ -54,13 +54,16 @@ $sidebarProfileTemplate = '
 // Get user profile pic path, username, role
 $profilePicPath = 'pictures/id_full_white.svg'; // DO NOT PUT __ROOT_DIR__ HERE
 $username = "John Doe";
+//if (isset($_SESSION["username"])) $username = $_SESSION["username"];
+if (isset($_COOKIE["username"])) $username = $_COOKIE["username"];
+
 // Successive ifs to get highest.
 $userrole = "Undefined Role";
-if ($is_student) $userrole = "Student";
-if ($is_ta) $userrole = "Teaching Assistant";
-if ($is_prof) $userrole = "Professor";
-if ($is_admin) $userrole = "TA Administrator";
-if ($is_sysop) $userrole = "System Administrator";
+if (in_array("student", $userPermissions)) {$userrole = "Student"; $is_student = true; }
+if (in_array("ta", $userPermissions)) {$userrole = "Teaching Assistant"; $is_ta = true;}
+if (in_array("prof", $userPermissions)) {$userrole = "Professor"; $is_prof = true;}
+if (in_array("admin", $userPermissions)) {$userrole = "TA Administrator"; $is_admin = true;}
+if (in_array("sysop", $userPermissions)) {$userrole = "System Administrator"; $is_sysop = true;}
 
 $selected = "";
 if ($CURRENT_SECTION == "profile") {
@@ -77,14 +80,14 @@ echo sprintf($sidebarProfileTemplate, $selected, $profilePicPath, $username, $us
  * indexed by section for easy retrieval.
  */
 class SidebarOption {
-	public string $section; // rate
-	public string $div_id; // sidebar-rate
-	public string $option_name; // "Rate a TA"
-	public string $img_src; // "pictures/stars.svg"
-	public string $link; // "rate.php"
+	public $section; // rate
+	public $div_id; // sidebar-rate
+	public $option_name; // "Rate a TA"
+	public $img_src; // "pictures/stars.svg"
+	public $link; // "rate.php"
 	
 	/** Constructor for a sidebar option class. Takes all properties as argument. */
-	public function __construct(string $section, string $div_id, string $option_name, string $img_src, string $link) {
+	public function __construct($section, $div_id, $option_name, $img_src, $link) {
 		$this->section = $section;
 		$this->div_id = $div_id;
 		$this->option_name = $option_name;
@@ -135,19 +138,19 @@ while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 fclose($handle);
 
 // Only students have access to Rate a TA
-if ($is_student) {
+if (in_array("student", $userPermissions)) {
 	echo $index["rate"]->generate();
 }
 // Only TA's and above have access to management
-if ($is_ta || $is_prof || $is_admin || $is_sysop) {
+if (in_array("ta", $userPermissions) || in_array("prof", $userPermissions) || in_array("admin", $userPermissions) || in_array("sysop", $userPermissions)) {
 	echo $index["management"]->generate();
 }
 // Only admins and above have access to administration
-if ($is_admin || $is_sysop) {
+if (in_array("admin", $userPermissions) || in_array("sysop", $userPermissions)) {
 	echo $index["admin"]->generate();
 }
 // Only sysops have access to sysop tasks
-if ($is_sysop) {
+if (in_array("sysop", $userPermissions)) {
 	echo $index["sysop"]->generate();
 }
 

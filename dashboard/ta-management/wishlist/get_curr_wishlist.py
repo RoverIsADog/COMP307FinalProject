@@ -2,7 +2,7 @@
 import argparse
 import sqlite3
 import sys
-from utils import getId
+import pathlib
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--username", type=str)
@@ -11,10 +11,14 @@ parser.add_argument("--term_month_year", type=str)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../../../project.db')
+path = pathlib.Path(__file__).parent.parent.parent
+con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
-prof_id = getId(args.username)
+# get the prof's student_id from the ticket username
+cur.execute("SELECT student_id FROM users WHERE username = ?;", [args.username])
+record = cur.fetchone()
+prof_id = record[0]
 
 # Query database for the prof's wishlist
 cur.execute("SELECT DISTINCT ta_id FROM wishlists "

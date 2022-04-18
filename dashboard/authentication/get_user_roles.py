@@ -2,18 +2,21 @@
 import argparse
 import sqlite3
 import sys
-from utils import getId
+import pathlib
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--username", type=str)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('project.db')
+path = pathlib.Path(__file__).parent.parent
+con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
 # get username's student_id
-student_id, num_records = getId(args.username)
+cur.execute("SELECT student_id FROM users WHERE username = ?;", [args.username])
+record = cur.fetchone()
+student_id = record[0]
 
 # get roles for a given username
 cur.execute("SELECT role_id FROM assigned WHERE student_id = ?;", [student_id])

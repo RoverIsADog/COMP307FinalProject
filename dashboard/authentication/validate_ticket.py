@@ -1,19 +1,20 @@
 #!/usr/bin/python
 import argparse
-from utils import validate
 import sqlite3
 import time
 import sys
-
-from utils import getId
+import pathlib
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--username", type=str)
 parser.add_argument("--ticket_id", type=int)
 
+timeOutTime = 3600
+
 args = parser.parse_args()
 
-con = sqlite3.connect('project.db')
+path = pathlib.Path(__file__).parent.parent
+con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
 def close():
@@ -35,7 +36,7 @@ cur.execute("SELECT timeout FROM tickets WHERE ticket_id = ? AND username = ?;",
 timeout = cur.fetchone()[0]
 
 # if timed out, delete ticket and return 2
-if curr_time > timeout:
+if curr_time > float(timeout):
 	cur.execute("DELETE FROM tickets WHERE ticket_id = ?;", [args.ticket_id])
 	close()
 	sys.exit(2)
@@ -44,10 +45,12 @@ if curr_time > timeout:
 # Update timeout
 cur.execute("UPDATE tickets SET "
 				"timeout = ?"
-			"WHERE ticket_id = ? AND username = ?;", [time.time() + 30, args.ticket_id, args.username])
+			"WHERE ticket_id = ? AND username = ?;", [time.time() + timeOutTime, args.ticket_id, args.username])
 
 # get student_id for provided username
-student_id, num_records = getId(args.username)
+cur.execute("SELECT student_id, COUNT(*) FROM users WHERE username = ?;", [args.username])
+record = cur.fetchone()
+student_id, num_records = record[0], record[1]
 
 # if user does not exist, return 3
 if num_records == 0:

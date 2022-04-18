@@ -2,6 +2,7 @@
 import argparse
 import sqlite3
 import sys
+import pathlib
 
 
 def close():
@@ -21,7 +22,8 @@ parser.add_argument("--role", type=int)  # student:1, TA and student:2, prof:3
 
 args = parser.parse_args()
 
-con = sqlite3.connect('project.db')
+path = pathlib.Path(__file__).parent.parent
+con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
 # check if username already exists. return 1 if it does

@@ -3,6 +3,7 @@ import argparse
 import sqlite3
 import sys
 import csv
+import pathlib
 
 
 parser = argparse.ArgumentParser()
@@ -12,7 +13,8 @@ args = parser.parse_args()
 
 required_role = 3
 
-con = sqlite3.connect('../../../project.db')
+path = pathlib.Path(__file__).parent.parent.parent
+con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
 f = open(args.course_quota_path)
@@ -102,7 +104,7 @@ for row in csv_f:
 					 row[14], row[15], row[2], row[0]])
 
 	# check if there is a user with the same student ID, and give them the TA role
- 	cur.execute("SELECT COUNT(*) FROM users WHERE student_id = ?;", [row[2]])
+	cur.execute("SELECT COUNT(*) FROM users WHERE student_id = ?;", [row[2]])
 	if cur.fetchone() == 1:
 		# update user info based on csv
 		cur.execute("UPDATE users SET "

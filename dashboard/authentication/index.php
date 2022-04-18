@@ -1,36 +1,55 @@
 <?php
-session_start();
-require_once("../rootpath.php");
+if (!isset($_SESSION)) session_start();
+require_once(__DIR__ . "/../rootpath.php");
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+ echo "The content of the session is:<br>\n";
+ echo nl2br(print_r($_SESSION, true));
 
 if (isset($_POST['login-btn'])) {
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	
 	if (!empty($username) && !empty($password)) {
-		$command = escapeshellcmd('python3 ' . __ROOT_DIR__ . 'authentication/verify_login.py --username '.$username.' --password '.$password);
-		echo "Command: $command<br>\n";
-		$output = exec($command);
+		$output = null; $exitCode = null;
+		$command = 'python3 ' . __ROOT_DIR__ . 'authentication/verify_login.py '
+			. ' --username ' . escapeshellarg($username)
+			. ' --password ' . escapeshellarg($password);
+		// echo "Command: $command<br>\n";
+		exec(escapeshellcmd($command), $output, $exitCode);
 		
 		echo print_r($output, true);
+		echo print_r($exitCode, true);
 
-		if ($output == '1') {
-			echo '<script>alert("Invalid username or password.")</script>';
+		if ($exitCode == 1) {
+			// echo '<script>alert("Invalid username or password.")</script>';
 			header("Refresh:0");
 			exit;
 		}
 		
-		$ticket = explode(",", $output);
+		$ticket = explode(',', $output[0]);
+
+//		echo "The ticket consists of: <br>\n";
+//		print_r($ticket);
+//		echo "The output consists of: <br>\n";
+//		print_r($output[0]);
+
 		$_SESSION['ticket'] = $ticket[0];
 		$_SESSION['username'] = $ticket[1];
+
+		setcookie("ticket", $ticket[0], 0, "/");
+		setcookie("username", $ticket[1], 0, "/");
+
+		echo "The session consists of: <br>\n";
+		print_r($_SESSION);
 		
-		// header("Location: ../dashboard.php");
+		header("Location: ../dashboard.php");
     } else {
 		echo '<script>alert("Some of the fields were left empty.")</script>';
-		header("Refresh:0");	
+		header("Refresh:0");
 		exit;
 	}
 }

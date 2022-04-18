@@ -28,7 +28,7 @@ if (__DEBUG__) echo "Generating the rate_ta page. <br>\n";
 	
 	if (__DEBUG__) echo "List of courses for generation: \n";
 	if (__DEBUG__) print_r($coursesList);
-	//echo print_r($_SESSION["rate_ta_courseslist"]);
+	echo print_r($_SESSION["rate_ta_courseslist"]);
 	
 	$selectContainer = '
 	<!-- Course Select -->

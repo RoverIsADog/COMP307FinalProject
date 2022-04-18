@@ -2,6 +2,7 @@
 import sqlite3
 import sys
 import argparse
+import pathlib
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--course_num", type=str)
@@ -11,7 +12,8 @@ parser.add_argument("--instructor_name", type=str)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../../../project.db')
+path = pathlib.Path(__file__).parent.parent.parent
+con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
 # add courses to database

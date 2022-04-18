@@ -3,13 +3,15 @@ import argparse
 import sqlite3
 import sys
 import csv
+import pathlib
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--path", type=str)
 
 args = parser.parse_args()
 
-con = sqlite3.connect('../../../project.db')
+path = pathlib.Path(__file__).parent.parent.parent
+con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
 csv_file = csv.reader(args.path)

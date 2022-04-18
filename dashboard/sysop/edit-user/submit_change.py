@@ -2,6 +2,7 @@
 import argparse
 import sqlite3
 import sys
+import pathlib
 
 parser = argparse.ArgumentParser()
 
@@ -11,10 +12,10 @@ parser.add_argument("--email", type=str)
 parser.add_argument("--role", type=str)  # student:"student", TA and student:"ta", prof:"prof"
 parser.add_argument("--is_admin", type=int)  # 1 if true, 0 if not
 parser.add_argument("--is_sysop", type=int)  # 1 if true, 0 if not
-# TODO: change role from 123 to strings
 args = parser.parse_args()
 
-con = sqlite3.connect('../../../project.db')
+path = pathlib.Path(__file__).parent.parent.parent
+con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
 # update the users record
