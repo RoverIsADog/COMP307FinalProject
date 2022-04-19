@@ -17,11 +17,13 @@ if (__DEBUG__) echo "Generating the rate_ta page. <br>\n";
 	// Get courses using python
 	$coursesList = getCourses();
 
-	if ($coursesList == null) {
-		echo "<h1>An error occured...</h1>\n";
-	}
+	if (__DEBUG__) echo "Gotten list: <br>\n" . print_r($coursesList, true) . "<br>\n";
 
-	// echo print_r($coursesList);
+	// Stop here if the list is empty
+	if (sizeof($coursesList) == 0) {
+		echo "<h2>You are not registered to any courses</h2>";
+		return;
+	}
 
 	// Store the available choices to compare to output.
 	$_SESSION["rate_ta_courseslist"] = $coursesList;

@@ -24,21 +24,28 @@ error_reporting(E_ALL);
  * in the session.
  * @return returns a list of {id} => {course,term}, null if some error.
  */
-function getCourses():?array {
+function getCourses():array {
 	$username = "";
 	if (isset($_SESSION["username"])) $username = $_SESSION["username"];
 	else {
 		genericError();
 		echo "The username is not in the session (get_courses.php)<br>\n";
+		exit();
 	}
-	// Pass relevannt arguments into python and execute.
+	// Pass relevant arguments into python and execute.
+	$output = null; $exitCode = null;
 	$command = escapeshellcmd("python3 " . __DIR__ . "/get_courses.py "
-		. " --username " . escapeshellarg($username)); // USERNAME REQUIRED
+		. " --username " . escapeshellarg($username))
+		. " 2>&1"; // USERNAME REQUIRED
 	if (__DEBUG__) echo "Getting courses: $command<br>\n";
 	exec($command, $output, $exitCode);
-	if ($exitCode != "0") {
+
+	if (__DEBUG__) echo "getcourses output: <br>\n";
+	if (__DEBUG__) echo print_r($output, true)."<br>\n";
+
+	if ($exitCode != 0) {
 		genericError();
-		echo "An error prevented fetching courses (get_courses.php)<br>\n";
+		echo "Exit code in get_courses.php: $exitCode<br>\n";
 		exit();
 	}
 

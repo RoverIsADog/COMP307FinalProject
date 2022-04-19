@@ -12,7 +12,7 @@ error_reporting(E_ALL);
  * is already in the session.
  * For each index, there is an array of the fields of each user.
  */
-function getAllUsers():?array {
+function getAllUsers():array {
 	// Pass relevant arguments into python and execute.
 	$output = null; $exitCode = null;
 	$command = escapeshellcmd("python3 " . __DIR__ . "/get_all_users_and_info.py");

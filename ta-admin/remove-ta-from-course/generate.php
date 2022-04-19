@@ -15,7 +15,8 @@ $tasList = getAllTAs();
 if (__DEBUG__) echo print_r($tasList) . "<br>\n";
 
 if ($tasList == null || sizeof($tasList) == 0) {
-	echo "<h1>There are no TAs in the database!</h1>\n";
+	echo "<h2>There are no TAs in the database!</h2>\n";
+	return;
 }
 
 // ================================== Building TA dropdown ==================================

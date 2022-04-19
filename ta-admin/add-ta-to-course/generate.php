@@ -19,11 +19,11 @@ if (__DEBUG__) print_r($coursesList) . "<br>\n";
 
 // Print appropriate message if either no courses or no tas
 if ($tasList == null || sizeof($tasList) == 0) {
-	echo "<h1>There are no TAs registered in the system!</h1>";
+	echo "<h2>There are no TAs registered in the system!</h2>";
 	return;
 }
 if ($coursesList == null || sizeof($coursesList) == 0) {
-	echo "<h1>There are no courses registered in the system!</h1>";
+	echo "<h2>There are no courses registered in the system!</h2>";
 	return;
 }
 

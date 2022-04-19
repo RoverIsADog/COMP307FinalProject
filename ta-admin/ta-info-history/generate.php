@@ -8,6 +8,11 @@ if (__DEBUG__) echo "Generating the ta_info_history page. <br>\n";
 require(__DIR__ . "/get_all_tas.php");
 $taslist = getAllTAs();
 
+if (sizeof($taslist) == 0) {
+	echo "<h2>There are no TAs in the database!</h2>";
+	return;
+}
+
 // Build the dropdown
 
 $taDropdownContainer = '
