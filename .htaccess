@@ -1,6 +1,6 @@
 RewriteEngine on
 
-# Don't run rule if directory exists
+# Rewrite any request to corresponding HTML files
 RewriteCond %{REQUEST_FILENAME} !-d
 
 # Check html file exists

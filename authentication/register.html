@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="../template.css">
+	<link rel="stylesheet" type="text/css" href="../header.css">
+	<link rel="stylesheet" type="text/css" href="../sidebar.css">
+	<link rel="stylesheet" type="text/css" href="../content-box.css">
+	<link rel="stylesheet" type="text/css" href="../content-elements.css">
+	<link rel="stylesheet" type="text/css" href="auth.css">
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif; margin: 0;">
+	<!-- Header -->
+	<header id="auth-header">
+		<div id="auth-header-container"> <!-- Flexbox to contain the header items -->
+			<a class="header-box" id="socsbox" href="https://www.cs.mcgill.ca/">
+				<img id="socs" src="../pictures/socs_logo.png">
+			</a>
+			<div class="header-box" id="header-filler-box" style="flex-grow: 1"></div>
+			<a class="header-box header-text-box" id="namebox" href="index.html">TA Management System</a>
+		</div>
+	</header>
+	
+	<!-- Sidebar and content flexbox -->
+	<div id="auth-page-container">
+	
+		<div id="auth-content-area">
+			<div class="auth-content-box">
+				<div class="box-nav">
+					<a class="box-nav-back-container" href="index.html">
+						<img class="box-nav-back" src="../pictures/backarrow.svg">
+					</a>
+					<div class="box-nav-path"><b>Login Page</b></div>
+				</div>
+				<div class="box-content">
+					<h1 class="auth-h1" style="color: red;"><b>Note</b></h1>
+					When selected, the TA and Professor roles will only be given if a corresponding TA or Professor
+					entry exists in the database. If you are not in the corresponding database, you will be given
+					the role of student by default. Please contact a system administrator to add yourself onto
+					the list of TAs and Professors. 
+					<br>
+					<form id="register-form">
+						<!-- student_id,firstname,lastname,email,is_student,is_prof,is_admin,is_sysop,is_ta -->
+						<div class="content-box-element labeled-field-container">
+							<div class="labeled-field-label">Username</div>
+							<input class="labeled-field-field " type="text" name="user-username" name="user-username" required placeholder="jdoe3">
+						</div>
+						<div class="content-box-element labeled-field-container">
+							<div class="labeled-field-label">Student ID</div>
+							<input class="labeled-field-field" type="text" name="user-studentid" name="user-studentid" required placeholder="123123123">
+						</div>
+
+						<div class="content-box-element labeled-field-container">
+							<div class="labeled-field-label">First Name</div>
+							<input class="labeled-field-field" type="text" name="user-firstname" name="user-firstname" required placeholder="John">
+						</div>
+					
+						<div class="content-box-element labeled-field-container">
+							<div class="labeled-field-label">Last Name</div>
+							<input class="labeled-field-field" type="text" name="user-lastname" name="user-lastname" required placeholder="Doe">
+						</div>
+						<div class="content-box-element labeled-field-container">
+							<div class="labeled-field-label">Email</div>
+							<input class="labeled-field-field" type="email" name="user-email" name="user-email" required placeholder="jdoe@mail.com">
+						</div>
+
+						<div class="content-box-element labeled-field-container">
+							<div class="labeled-field-label">Password</div>
+							<input class="labeled-field-field" type="password" id="user-password" name="user-password" required>
+						</div>
+						<div class="content-box-element labeled-field-container">
+							<div class="labeled-field-label">Confirm Password</div>
+							<input class="labeled-field-field" type="password" id="user-confirm-password" name="user-confirm-password" required>
+						</div>
+
+						<h1>I am a...</h1>
+						Only select Teaching Assistant if you are both a TA and a Student
+						<div class="textbox-set-container content-box-element">
+						
+							<label class="textbox-set-element content-box-element" for="permission-student">
+								<input class="input-checkbox" type="radio" id="permission-student" name="user-role" value="1" required checked>
+								<div>Student</div>
+							</label>
+						
+							<label class="textbox-set-element content-box-element" for="permission-ta">
+								<input class="input-checkbox" type="radio" id="permission-ta" name="user-role" value="2" required>
+								<div>Teaching Assistant</div>
+							</label>
+						
+							<label class="textbox-set-element content-box-element" for="permission-prof">
+								<input class="input-checkbox" type="radio" id="permission-prof" name="user-role" value="3" required>
+								<div>Professor</div>
+							</label>
+						
+						</div>
+
+						<div class="content-box-element">
+							<button class="button positive-button" id="submit" type="submit" value="submit">Register</button>
+						</div>
+
+
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <script type="text/javascript" src="register.js"></script> -->
+	<script type="text/javascript" src="register.js"></script>
+</body>

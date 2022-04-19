@@ -1,13 +1,26 @@
 <?php
 require_once(__DIR__ . "/../rootpath.php");
 require_once(__ROOT_DIR__ . "utils/cookies_utils.php");
-if (isset($_SESSION)) session_destroy(); // Get rid of stuff from previous session
+if (isset($_SESSION)) {
+	$success = session_destroy(); // Get rid of stuff from previous session
+	if (!$success) {
+		appendMsg("Failed to delete session\n");
+	}
+	unset($_SESSION);
+}
 deleteAllCookies();
 if (!isset($_SESSION)) session_start();
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+/**
+ * This file is expected to be called from a POST request containing fields
+ * 'username' and 'password'. It should return a JSON array of {[exitcode]: ? ,[message]: ?}
+ *     exitcode: Exit code of the program (for JS to get and process)
+ *     message: Any print statement so that JS can relay them to the console
+ */
 
 $retArr = array(
 	"exitcode" => "",
@@ -19,8 +32,10 @@ function appendMsg($msg) {
 	$retArr["message"] = $retArr["message"] . $msg;
 }
 
-if (__DEBUG__) appendMsg("The content of the session is: \n");
+if (__DEBUG__) appendMsg("The initial content of the session is: \n");
 if (__DEBUG__) appendMsg(print_r($_SESSION, true));
+if (__DEBUG__) appendMsg("The initial content of POST is: \n");
+if (__DEBUG__) appendMsg(print_r($_POST, true));
 $username = $_POST['username'];
 $password = $_POST['password'];
 
@@ -62,7 +77,7 @@ $ticket = json_decode($output[0], true);
 
 if (__DEBUG__) appendMsg("The ticket consists of: \n");
 if (__DEBUG__) appendMsg(print_r($ticket, true));
-if (__DEBUG__) appendMsg("The output consists of: <br>\n");
+if (__DEBUG__) appendMsg("The output consists of: \n");
 if (__DEBUG__) appendMsg(print_r($output[0], true));
 
 // Dual saving just in case
@@ -71,7 +86,7 @@ $_SESSION['username'] = $ticket["username"];
 setcookie("ticket", $ticket["ticket_id"], 0, "/");
 setcookie("username", $ticket["username"], 0, "/");
 
-if (__DEBUG__) appendMsg("The session consists of: ");
+if (__DEBUG__) appendMsg("The session consists of: \n");
 if (__DEBUG__) appendMsg(print_r($_SESSION, true));
 
 // Session set, let them through

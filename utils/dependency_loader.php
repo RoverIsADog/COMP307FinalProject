@@ -14,8 +14,8 @@ function importDependencies(array $json, string $sectionID, string $pageID) {
       echo sprintf($styleImportStr, $link);
     }
 
-    // Import dependencies for current page (if page exists)
-    if (key_exists($pageID, $currentSection["pages"])) {
+    // Import dependencies for current page (if page exists, some sections also dont have pages)
+    if (key_exists("pages", $currentSection) && key_exists($pageID, $currentSection["pages"])) {
       $currentPage = $currentSection["pages"][$pageID];
       foreach ($currentPage["requiredJS"] as $idx => $link) {
         echo sprintf($scriptImportStr, $link);

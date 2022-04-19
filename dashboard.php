@@ -1,5 +1,5 @@
 <?php
-session_start();
+if (!isset($_SESSION)) session_start();
 
 # __ROOT_DIR__ = /var/www/html/dashboard/
 require_once(__DIR__ . "/rootpath.php");

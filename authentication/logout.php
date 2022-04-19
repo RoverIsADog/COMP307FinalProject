@@ -26,5 +26,5 @@ if ($username != "") {
 	exec($command, $output, $exitCode);
 }
 
-header("Location:index.php");
+header("Location:index.html");
 ?>

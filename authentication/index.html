@@ -11,82 +11,74 @@
 	<link rel="stylesheet" type="text/css" href="auth.css">
 </head>
 <body style="font-family: Arial, Helvetica, sans-serif; margin: 0;">
-	<!-- Header -->
-	<header id="auth-header">
-		<div id="auth-header-container"> <!-- Flexbox to contain the header items -->
-			<a class="header-box" id="socsbox" href="https://www.cs.mcgill.ca/">
-				<img id="socs" src="../pictures/socs_logo.png">
-			</a>
-			<div class="header-box" id="header-filler-box" style="flex-grow: 1"></div>
-			<a class="header-box header-text-box" id="namebox" href="authentication/logout.php">TA Management System</a>
-		</div>
-	</header>
-	
-	<!-- Sidebar and content flexbox -->
-	<div id="auth-page-container">
-		<form id="login-form" name="login-form">
-		<!-- ////////////////////////////// ANYTHING SIDEBAR RELATED ////////////////////////////// -->
+<!-- Header -->
+<header id="auth-header">
+	<div id="auth-header-container"> <!-- Flexbox to contain the header items -->
+		<a class="header-box" id="socsbox" href="https://www.cs.mcgill.ca/">
+			<img id="socs" src="../pictures/socs_logo.png">
+		</a>
+		<div class="header-box" id="header-filler-box" style="flex-grow: 1"></div>
+		<a class="header-box header-text-box" id="namebox" href="index.html">TA Management System</a>
+	</div>
+</header>
+
+<!-- Sidebar and content flexbox -->
+<div id="auth-page-container">
+	<form id="login-form" name="login-form">
+	<!-- ////////////////////////////// ANYTHING SIDEBAR RELATED ////////////////////////////// -->
 		<div id="auth-sidebar">
-			<!-- /////////// SIDEBAR OPTIONS GENERATION FORMAT ///////////
-				-- Only generate sidebar elements if the user has permission to do so.
-			<a class="sidebar-item" id="sidebar-$NAME$" href="$LINK$">
-				<div class="sidebar-item-tick"></div>
-				<img class="sidebar-item-svg" src="pictures/$ICON$.svg">
-				<div class="sidebar-item-text" href="$LINK$">$TEXT$</div>
-			</a>
-			-->
 			<div class="auth-sidebar-item" id="auth-sidebar-login">
 				Log In
 			</div>
-			<input class="auth-sidebar-item auth-textfield" type="text" id="username" name="password" placeholder="Username" required>
+			<input class="auth-sidebar-item auth-textfield" type="text" id="username" name="username" placeholder="Username" required>
 			<input class="auth-sidebar-item auth-textfield" type="password" id="password" name="password" placeholder="Password" required>
 
 			<div class="auth-sidebar-item auth-button-container">
 				<button class="auth-button button positive-button" id="login-button" type="submit" value="submit">Log In</button>
 			</div>
 			<div class="auth-sidebar-item" style="text-align: right;">
-				<a id="auth-sidebar-register" href="register.php">Register</a>
+				<a id="auth-sidebar-register" href="register.html">Register</a>
 			</div>
 			<!-- Permanent sidebar elements -->
 			<div style="height: 100%;"></div>
 			<div id="copyright" style="display:flex; padding: 5px 0; flex-shrink: 0; min-width: 240px;">
 				<div style="padding: 0 15px;">Copyright 2022</div>
-				<a href="https://support.microsoft.com/en-us/office/insert-icons-in-microsoft-office-e2459f17-3996-4795-996e-b9a13486fa79" style="text-decoration: none; color: white;">Attributions</a>
+				<a href="../attributions.html" style="text-decoration: none; color: white;">Attributions</a>
 			</div>
 		</div>
-		</form>
-	
-	
-		<div id="auth-content-area">
-			<div class="auth-content-box">
-				<div class="box-content">
-					<h1 class="auth-h1"><b>Welcome to the New McGill SOCS TA Management System!</b></h1>
-					<h2>Students</h2>
-					<p>
-						Students can use this website to rate TAs in courses they are taking.
-					</p>
-					<h2>Teaching Assistants</h2>
-					<p>
-						TAs can access and edit information on the courses they are teaching.
-					</p>
-					<h2>Teachers</h2>
-					<p>
-						Teachers can manage and edit TAs in their courses.
-					</p>
-					<h2>TA Administrators</h2>
-					<p>
-						TA administrators can view and manage TA course assignments.
-					</p>
-					<h2>System Operators</h2>
-					<p>
-						System Operators can manage and edit users.
-					</p>
-					<p>
-						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis sunt maxime soluta voluptatibus hic rem molestiae dolor, unde ab accusantium eum, temporibus facere? Accusantium, distinctio, excepturi itaque velit necessitatibus quidem quasi harum iure voluptatem omnis maiores porro nesciunt corporis perferendis, repudiandae facilis consectetur perspiciatis quibusdam unde rem laborum autem! Impedit, recusandae. Distinctio ea nemo quisquam molestiae officia maiores, nostrum veritatis delectus quidem impedit cupiditate repellat in magnam deserunt quod vitae vero nobis! Necessitatibus, asperiores dolorum minima accusantium at, consectetur quas corporis commodi laborum nam itaque nulla harum totam iure vitae blanditiis voluptatibus ex quam. Ducimus deserunt excepturi esse nisi ipsum voluptate quisquam laborum, assumenda dolorum, commodi, perspiciatis nemo voluptatum voluptatem ab! Totam corporis laudantium unde aspernatur alias, consectetur corrupti tenetur officiis impedit mollitia, suscipit cupiditate maxime dolorum facere ipsa quo deserunt ut ratione natus porro, nisi quis necessitatibus eos molestiae. Officia neque nostrum consequuntur asperiores est, magni quam deserunt reprehenderit fugit facere tempora, blanditiis id ut doloremque? Eum magni, fugiat tenetur ut quidem ipsa quibusdam dolore. Voluptate repellendus recusandae et iste natus velit sed hic aliquam minus ipsam quas id, nobis quia, consequuntur eaque laudantium sint praesentium? Eligendi deserunt, rerum sint adipisci unde nobis non facilis et animi est error exercitationem doloribus. Rem id aliquid facilis inventore? Architecto error optio voluptatibus quae omnis reiciendis, itaque eligendi numquam neque aliquid iste quaerat non dolorem doloremque cupiditate natus autem excepturi possimus, perferendis adipisci beatae veritatis fuga. Saepe iste ipsa impedit, natus odio aperiam praesentium placeat fugiat veritatis autem perspiciatis aliquam architecto quae corporis sed quas illo dolore, nemo error. Praesentium dolores impedit laborum quia repudiandae nulla, nisi ab consequuntur laudantium iure commodi voluptas ducimus obcaecati voluptatum fugit sapiente aliquid aperiam voluptate reprehenderit quo necessitatibus sint perspiciatis amet. Quo, porro. Dolores recusandae incidunt, aut porro sint necessitatibus, velit sed sit temporibus ea perferendis.
-					</p>
-				</div>
+	</form>
+
+
+	<div id="auth-content-area">
+		<div class="auth-content-box">
+			<div class="box-content">
+				<h1 class="auth-h1"><b>Welcome to the New McGill SOCS TA Management System!</b></h1>
+				<h2>Students</h2>
+				<p>
+					Students can use this website to rate TAs in courses they are taking.
+				</p>
+				<h2>Teaching Assistants</h2>
+				<p>
+					TAs can access and edit information on the courses they are teaching.
+				</p>
+				<h2>Teachers</h2>
+				<p>
+					Teachers can manage and edit TAs in their courses.
+				</p>
+				<h2>TA Administrators</h2>
+				<p>
+					TA administrators can view and manage TA course assignments.
+				</p>
+				<h2>System Operators</h2>
+				<p>
+					System Operators can manage and edit users.
+				</p>
+				<p>
+					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis sunt maxime soluta voluptatibus hic rem molestiae dolor, unde ab accusantium eum, temporibus facere? Accusantium, distinctio, excepturi itaque velit necessitatibus quidem quasi harum iure voluptatem omnis maiores porro nesciunt corporis perferendis, repudiandae facilis consectetur perspiciatis quibusdam unde rem laborum autem! Impedit, recusandae. Distinctio ea nemo quisquam molestiae officia maiores, nostrum veritatis delectus quidem impedit cupiditate repellat in magnam deserunt quod vitae vero nobis! Necessitatibus, asperiores dolorum minima accusantium at, consectetur quas corporis commodi laborum nam itaque nulla harum totam iure vitae blanditiis voluptatibus ex quam. Ducimus deserunt excepturi esse nisi ipsum voluptate quisquam laborum, assumenda dolorum, commodi, perspiciatis nemo voluptatum voluptatem ab! Totam corporis laudantium unde aspernatur alias, consectetur corrupti tenetur officiis impedit mollitia, suscipit cupiditate maxime dolorum facere ipsa quo deserunt ut ratione natus porro, nisi quis necessitatibus eos molestiae. Officia neque nostrum consequuntur asperiores est, magni quam deserunt reprehenderit fugit facere tempora, blanditiis id ut doloremque? Eum magni, fugiat tenetur ut quidem ipsa quibusdam dolore. Voluptate repellendus recusandae et iste natus velit sed hic aliquam minus ipsam quas id, nobis quia, consequuntur eaque laudantium sint praesentium? Eligendi deserunt, rerum sint adipisci unde nobis non facilis et animi est error exercitationem doloribus. Rem id aliquid facilis inventore? Architecto error optio voluptatibus quae omnis reiciendis, itaque eligendi numquam neque aliquid iste quaerat non dolorem doloremque cupiditate natus autem excepturi possimus, perferendis adipisci beatae veritatis fuga. Saepe iste ipsa impedit, natus odio aperiam praesentium placeat fugiat veritatis autem perspiciatis aliquam architecto quae corporis sed quas illo dolore, nemo error. Praesentium dolores impedit laborum quia repudiandae nulla, nisi ab consequuntur laudantium iure commodi voluptas ducimus obcaecati voluptatum fugit sapiente aliquid aperiam voluptate reprehenderit quo necessitatibus sint perspiciatis amet. Quo, porro. Dolores recusandae incidunt, aut porro sint necessitatibus, velit sed sit temporibus ea perferendis.
+				</p>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="login.js"></script>
+</div>
+<script type="text/javascript" src="login.js"></script>
 </body>

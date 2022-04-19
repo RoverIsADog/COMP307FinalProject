@@ -8,7 +8,7 @@ require_once(__ROOT_DIR__ . "utils/errors.php");
  */
 function deleteAllCookies() {
 	foreach ($_COOKIE as $key => $val) {
-		setcookie($key, $val, 1646110800, "/"); // March 1 2022
+		if ($key != "PHPSESSID") setcookie($key, $val, 1646110800, "/"); // March 1 2022
 	}
 }
 
