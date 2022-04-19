@@ -1,6 +1,10 @@
 <?php
 require_once(__DIR__ . "/../rootpath.php");
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 /**
  * Generates the menu of a section. SectionID check must be done before calling
  * this function.

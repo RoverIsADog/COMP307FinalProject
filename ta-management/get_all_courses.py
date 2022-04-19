@@ -4,12 +4,19 @@ import sqlite3
 import sys
 import pathlib
 
+# print('"%s","%s"' % ("COMP307", "WINTER2022"))
+# print('"%s","%s"' % ("COMP308", "WINTER2023"))
+# print('"%s","%s"' % ("COMP309", "WINTER2024"))
+# print('"%s","%s"' % ("COMP310", "WINTER2025"))
+# print('"%s","%s"' % ("COMP311", "WINTER2026"))
+# print('"%s","%s"' % ("COMP312", "WINTER2027"))
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--username", type=str)
 
 args = parser.parse_args()
 
-path = pathlib.Path(__file__).parent.parent.parent
+path = pathlib.Path(__file__).parent.parent
 con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 

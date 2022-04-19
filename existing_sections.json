@@ -51,7 +51,7 @@
 		"sectionString": "Management Tools",
 		"sectionFolder": "ta-management",
 		"allowedRoles": ["ta", "prof", "admin", "sysop"],
-		"requiredJS": [],
+		"requiredJS": ["ta-management/ta_management.js"],
 		"requiredCSS": [],
 		"pages": {
 			"oh_responsibilities": {

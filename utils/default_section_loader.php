@@ -3,6 +3,10 @@ require_once(__DIR__ . "/../rootpath.php");
 require_once(__ROOT_DIR__ . "utils/errors.php");
 require_once(__ROOT_DIR__ . "utils/nav_generator.php");
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (!isset($CURRENT_PAGE) || !isset($CURRENT_SECTION) || !isset($json) || !isset($userPermissions)) {
 	echo "Variable unset error<br>\n";
 }

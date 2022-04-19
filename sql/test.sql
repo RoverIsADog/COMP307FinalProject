@@ -11,3 +11,5 @@ SELECT r.course_num, c.term_month_year FROM registered r JOIN courses c on r.cou
 SELECT student_id, name, email FROM users WHERE student_id != -1;
 
 SELECT role_id FROM assigned WHERE student_id = 111;
+
+INSERT INTO users VALUES (newstudentid,newuser,1234,newname newlastname,new@email);
