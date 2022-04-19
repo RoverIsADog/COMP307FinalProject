@@ -60,7 +60,7 @@
 				"pageDescription": "Select and instructor to modify their information",
 				"pageFolder": "oh-responsibilities",
 				"allowedRoles": ["ta", "prof", "admin", "sysop"],
-				"requiredJS": [],
+				"requiredJS": ["ta-management/oh-responsibilities/oh_responsibilities.js"],
 				"requiredCSS": []
 			},
 			"add_performance_log": {

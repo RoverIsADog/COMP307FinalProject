@@ -58,6 +58,10 @@ echo '</div>'; // Done
  * @param sectionID ID of the section.
  */
 function buildMenu(array $json, string $sectionID) {
+	// ================================== Deallocate old variables ==================================
+	if (isset($_SESSION["management_courseslist"])) unset($_SESSION["management_courseslist"]);
+	if (isset($_SESSION["management_chosen_course"])) unset($_SESSION["management_chosen_course"]);
+	if (isset($_SESSION["management_chosen_term"])) unset($_SESSION["management_chosen_term"]);
 
 	// ================================== Session Integrity Check ==================================
 	$username = "";
@@ -154,7 +158,5 @@ function buildMenu(array $json, string $sectionID) {
 
 	echo '</div>';
   }
-
-?>
 
 ?>
