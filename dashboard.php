@@ -9,36 +9,31 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// if (__DEBUG__) echo "The content of the cookie is:<br>\n";
-// if (__DEBUG__) echo nl2br(print_r($_COOKIE, true));
+if (__DEBUG__) consoleLog("(dashboard.php) The content of the cookie is:<br>\n");
+if (__DEBUG__) consoleLog(print_r($_COOKIE, true));
 
-if (__DEBUG__) echo "The content of the session is:<br>\n";
-if (__DEBUG__) echo nl2br(print_r($_SESSION, true));
+if (__DEBUG__) consoleLog("(dashboard.php) The content of the session is:\n");
+if (__DEBUG__) consoleLog(print_r($_SESSION, true));
 
-// echo print_r($_SESSION) . "<br>\n";
-// echo "Username is " . $_SESSION["username"] . "<br>\n";
-// echo "Ticket is " . $_SESSION["ticket"] . "<br>\n";
-// $CURRENT_SECTION = "admin";
-// $CURRENT_PAGE = "";
+/**
+ * INPUTS (Already defined variables):
+ * $CURRENT_SECTION
+ *   String name of the current section: {"profile", "rate", "admin", "management, "sysop"}
+ */
 
-/*
-INPUTS (Already defined variables):
-	$CURRENT_SECTION
-		String name of the current section: {"profile", "rate", "admin", "management, "sysop"}
-	$CURRENT_SECTION
-*/
+// ================================== Preparation and checking ==================================
 
 // Trying to access dashboard.php directly: redirect to profile
 if (!isset($CURRENT_SECTION)) {
 	header("Location: profile.php");
 }
 
-// Get the requested page
+// Get the requested page, or menu
 if (key_exists("page", $_GET)) {
 	$CURRENT_PAGE = $_GET["page"];
 }
 else {
-	$CURRENT_PAGE = "";
+	$CURRENT_PAGE = ""; // Menu
 }
 
 // Loading master page record
@@ -46,20 +41,22 @@ $jsonStr = file_get_contents(__ROOT_DIR__ . "existing_sections.json");
 $json = json_decode($jsonStr, true);
 
 // Checking for authentication
-$isAuth = true;
-require(__ROOT_DIR__ . "authentication/authenticate.php"); // <-- MICHEAL'S CODE
+require_once(__ROOT_DIR__ . "authentication/authenticate.php");
 $retArr = authenticate();
 $isAuth = $retArr["isAuth"];
-if (!$isAuth) { // Exit if not authorized.
-	echo "You do not have authorization to view this page!";
-	exit();
-}
 $userPermissions = $retArr["userPermissions"];
 
-// Permissions setting
-// $is_student = true; $is_ta = true; $is_prof = true; $is_admin = true; $is_sysop = true;
+if (!$isAuth) { // Exit if authentication failed.
+	session_destroy();
+	require_once(__ROOT_DIR__ . "utils/cookies_utils.php");
+	deleteAllCookies();
+	forbidden("You must be logged in to view this page.");
+	exit();
+}
 
-// Create list of permissions for this user
+
+// DEBUG Permissions setting
+// $is_student = true; $is_ta = true; $is_prof = true; $is_admin = true; $is_sysop = true;
 // $userPermissions = array();
 // if ($is_student) array_push($userPermissions, "student");
 // if ($is_ta) array_push($userPermissions, "ta");
@@ -72,7 +69,6 @@ $userPermissions = $retArr["userPermissions"];
 
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <head>
 	<title>Dashboard</title>
 	<link rel="stylesheet" type="text/css" href="template.css">
@@ -159,7 +155,8 @@ $userPermissions = $retArr["userPermissions"];
 			}
 
 			// Section security checks done, load section with designated section loader
-			if (__DEBUG__) echo "Building section $CURRENT_SECTION with " . __ROOT_DIR__ . $json[$CURRENT_SECTION]["sectionFolder"] . "/section_loader.php <br>\n";
+			$sectionBuilderPath = __ROOT_DIR__ . $json[$CURRENT_SECTION]["sectionFolder"] . "/section_loader.php";
+			if (__DEBUG__) echo "Building section $CURRENT_SECTION with $sectionBuilderPath<br>\n";
 			require(__ROOT_DIR__ . $json[$CURRENT_SECTION]["sectionFolder"] . "/section_loader.php"); // <--- Inside each section's folder
 
 			// ==================================================== PHP END ====================================================

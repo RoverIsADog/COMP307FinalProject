@@ -12,7 +12,7 @@ if (!isset($CURRENT_PAGE) || !isset($CURRENT_SECTION) || !isset($json) || !isset
 
 if (__DEBUG__) echo "/// Entering default_section_loader<br>";
 
-/* ==================================== Page processing ==================================== */
+// ==================================== Page processing ====================================
 // No page specified, go to menu
 if ($CURRENT_PAGE == "") {
 	require(__ROOT_DIR__ . "utils/menu_generator.php");

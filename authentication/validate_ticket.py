@@ -7,9 +7,9 @@ import pathlib
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--username", type=str)
-parser.add_argument("--ticket_id", type=int)
+parser.add_argument("--ticket_id", type=str)
 
-timeOutTime = 3600
+timeout_time = 3600 # 5 mins
 
 args = parser.parse_args()
 
@@ -45,7 +45,7 @@ if curr_time > float(timeout):
 # Update timeout
 cur.execute("UPDATE tickets SET "
 				"timeout = ?"
-			"WHERE ticket_id = ? AND username = ?;", [time.time() + timeOutTime, args.ticket_id, args.username])
+			"WHERE ticket_id = ? AND username = ?;", [time.time() + timeout_time, args.ticket_id, args.username])
 
 # get student_id for provided username
 cur.execute("SELECT student_id, COUNT(*) FROM users WHERE username = ?;", [args.username])

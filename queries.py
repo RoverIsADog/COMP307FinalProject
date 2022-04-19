@@ -124,7 +124,7 @@ def createTables():
 				");")
 
 	cur.execute("CREATE TABLE tickets ("
-					"ticket_id INTEGER NOT NULL UNIQUE,"
+					"ticket_id TEXT NOT NULL UNIQUE,"
 					"username TEXT NOT NULL,"
 					"timeout TEXT NOT NULL,"
 					"PRIMARY KEY (ticket_id),"

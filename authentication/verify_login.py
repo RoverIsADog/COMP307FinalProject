@@ -1,19 +1,19 @@
 #!/usr/bin/python3
 import argparse
+import json
+import secrets
 import sqlite3
 import sys
 import time
-import os
 import pathlib
 import pathlib
-
-returnJSON:dict = {}
 
 def close():
 	con.commit()
 	con.close()
 
-timeOutTime = 3600
+timeout_duration = 3600 # 5 mins
+ticket_length = 16
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--username", type=str)
@@ -21,58 +21,48 @@ parser.add_argument("--password", type=str)
 
 args = parser.parse_args()
 
-print("checkpoint1")
-print(args.username)
-print(args.password)
-print(os.getcwd())
-
 path = pathlib.Path(__file__).parent.parent
 con = sqlite3.connect(str(path) + "/project.db")
 
-print(os.getcwd())
-print("checkpoint2")
-
 cur = con.cursor()
 
-print("checkpoint3")
 
 # else, get check if username and password exist
-print("About to send: SELECT COUNT(*) FROM users WHERE username = %s AND password = %s;" % (args.username, args.password))
 cur.execute("SELECT COUNT(*) FROM users WHERE username = ? AND password = ?;", [args.username, args.password])
 count = cur.fetchone()[0]
 
-print("checkpoint4")
-
 # if there is no user with the provided username and password, return 1
 if count == 0:
-	print("No users with given username: exiting")
 	close()
 	sys.exit(1)
 
-print("checkpoint5")
 
 
 # if there exists such a user, delete existing tickets for that
 # user and create a new ticket
 cur.execute("DELETE FROM tickets WHERE username = ?;", [args.username])
-# find unique ID
-ticket_id = 1
-cur.execute("SELECT ticket_id FROM tickets ORDER BY ticket_id;")
+
+# Ensure a unique ticket is created
+ticket_id = secrets.token_hex(ticket_length)
+cur.execute("SELECT ticket_id FROM tickets WHERE ticket_id = ?;", (ticket_id,)) #DO NOT REMOVE THIS COMMA
 records = cur.fetchall()
-if records is not None:
-	for record in records:
-		if ticket_id == record[0]:
-			ticket_id += 1
+while (ticket_id in records):
+	ticket_id = secrets.token_hex(ticket_length)
 
 # timeout is current time plus 30 seconds
 curr_time = time.time()
-timeout_time = curr_time + timeOutTime
+timeout_time = curr_time + timeout_duration
 
 cur.execute("INSERT INTO tickets VALUES (?,?,?);", [ticket_id, args.username, timeout_time])
 
-print(str(ticket_id) + ',' + str(args.username))
+retDict = {
+	"ticket_id": str(ticket_id),
+	"username": str(args.username)
+}
+
+print(json.dumps(retDict))
+# print(str(ticket_id) + ',' + str(args.username))
 
 
 close()
-raise ValueError("bad")
 sys.exit(0)

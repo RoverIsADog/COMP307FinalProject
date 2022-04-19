@@ -34,7 +34,6 @@ for i in range(5):
 	if not has_role:
 		print(0)
 
-con.commit()
 con.close()
 
 sys.exit(0)

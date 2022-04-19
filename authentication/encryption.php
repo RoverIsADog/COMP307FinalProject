@@ -10,6 +10,7 @@
  * @param input String to encrypt with the server's private key.
  */
 function encrypt(string $input):string {
+	password_hash($input, PASSWORD_DEFAULT);
 	return $input;
 }
 
