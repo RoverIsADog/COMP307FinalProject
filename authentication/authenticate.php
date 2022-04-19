@@ -47,7 +47,7 @@ function authenticate():array {
 		. ' --username '  . escapeshellarg($username)
 		. ' --ticket_id ' . escapeshellarg($ticket_id))
 		. ' 2>&1';
-	if (__DEBUG__) echo "Verifying ticket: $command<br>\n";
+	if (__DEBUG__) consoleLog("Verifying ticket: $command<br>\n");
 	exec($command, $output, $exitCode);
 	
 	// Ticket or username invalid
@@ -68,7 +68,7 @@ function authenticate():array {
 	$command = escapeshellcmd('python3 ' . __ROOT_DIR__ . 'authentication/get_user_roles.py '
 		. ' --username ' . escapeshellarg($username))
 		. ' 2>&1';
-	if (__DEBUG__) echo "Command: $command<br>\n";
+	if (__DEBUG__) consoleLog("Command: $command<br>\n");
 	exec($command, $output, $exitCode);
 
 	if ($exitCode != 0) {

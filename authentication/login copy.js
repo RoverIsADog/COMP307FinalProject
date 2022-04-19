@@ -13,6 +13,7 @@ loginButton.addEventListener("click", (e) => {
 		return;
 	}
 
+
 	try {
 
 		/**
@@ -41,7 +42,7 @@ loginButton.addEventListener("click", (e) => {
 		console.log("Login initiated!");
 		var asyncRequest = new XMLHttpRequest();
 		asyncRequest.onload = callbackFunc
-		asyncRequest.open("POST", "login.html");
+		asyncRequest.open("POST", "login.php");
 		asyncRequest.send(new FormData(loginForm));
 	}
 	catch (exception) {

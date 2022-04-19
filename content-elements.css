@@ -108,6 +108,8 @@ button:hover {
 .positive-button:hover {background-color: #00497e;}
 .negative-button {background-color: #C00000;}
 .negative-button:hover {background-color: #7a0202;}
+.neutral-button {background-color: #4472C4;}
+.neutral-button:hover {background-color: #326aca; border: 2px solid #1b59c5;}
 
 @media screen and (max-width: 649px) {
   button {
@@ -303,4 +305,3 @@ Organization similar to labeled field (above)
 .menu-nav-text {
   padding: 0.5em 0.5em;
 }
-

@@ -7,6 +7,7 @@ element in the middle to push the course selection dropdown right.
 header {
     height: 3.75rem;
     width: 100vw;
+    max-width: 100%;
     box-shadow: 0 0.32rem 0.32rem gray;
     z-index: 2;
     position: relative;

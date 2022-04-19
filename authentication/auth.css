@@ -1,0 +1,165 @@
+
+#auth-page-container {
+	display: flex;
+	height: calc(100vh - 5rem);
+	overflow: hidden;
+}
+
+#auth-header {
+	height: 5rem;
+	width: 100vw;
+	box-shadow: 0 0.32rem 0.32rem gray;
+	z-index: 2;
+	position: relative;
+	color: white;
+	overflow: hidden;
+}
+/* Flexbox that distributes header elements (boxes) */
+#auth-header-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #ED1B2F; /* Mcgill red */
+}
+
+#namebox {
+	font-size: 1.5rem !important;
+	margin-right: 2rem;
+}
+
+#auth-sidebar {
+	display: flex;
+	flex-shrink: 0; /* Otherwise pushed off page */
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 25rem;
+
+	padding-top: 0.625rem;
+	/* 100% - header height - top padding */
+	height: calc(100vh - 5.625rem);
+
+	overflow: hidden;
+	background-color: #5D6770;
+	box-shadow: 0.35em 0 0.35rem -0.125rem gray;
+	z-index: 2;
+
+}
+#auth-sidebar>* {
+	color: white;
+}
+
+/* Styles for elements forming ONE OPTION in the sidebar */
+.auth-sidebar-item { /* Container for an option */
+	height: 3.125rem;
+	padding: 0 1rem;
+	border-radius: 0.40rem;
+	width: 19rem;
+
+	text-decoration: none;
+	font-size: 1.3rem;
+}
+
+#auth-sidebar-login {
+	font-size: 3rem;
+	padding: 2rem 1rem;
+}
+#auth-sidebar-register {
+	font-size: 1rem;
+	text-decoration: none;
+	color: white;
+}
+
+.auth-textfield {
+	color: black !important;
+	box-sizing: border-box;
+	padding: 1rem 0.5rem;
+	margin: 0.5rem 0.5rem;
+}
+
+.auth-button-container {
+	height: 4rem;
+	margin: 0.5rem 0;
+}
+
+.auth-button {
+	width: 100% !important;
+	height: 2.5em;
+	font-size: 1.2rem !important;
+}
+
+.auth-h1 {
+	font-size: 2rem;
+}
+
+/* Styles relating to the box itself */
+.auth-content-box {
+    width: 90%;
+    max-width: 46.875rem;
+    border-radius: 0.625rem;
+    padding: 1rem;
+    margin-bottom: 30vh; /* So not crammed at bottom of screen */
+    background-color: #f2f2f2ec;
+	box-shadow: 0 0 1rem 0.5rem rgb(0 0 0 / 20%);
+}
+
+/* ====================== CONTENT ====================== */
+#auth-content-area { /* Container for the content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw; /* Will be constrained by sidebar hitbox so it's ok */
+	max-width: 100%;
+    padding: 1.25rem;
+    overflow-y: auto; /*scrollbar*/
+	overflow-x: hidden;
+
+	background-image: url("../pictures/mcgillpic_compressed.jpg");
+	background-size: 100% auto;
+}
+
+@media screen and (max-width: 775px) {
+	/* Make header responsive */
+	#auth-header {
+		height: 8rem;
+	}
+	#auth-header-container {
+		flex-wrap: wrap;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	#header-box {
+		width: 100%;
+		max-width: 100%;
+		flex-grow: 1;
+	}
+	#header-filler-box {display: none}
+	#socs {
+		max-width: 90vw;
+		height: auto;
+	}
+	#namebox {
+		margin: 0 0;
+	}
+	/* Make sidebar and content on top of one another */
+	#auth-sidebar {
+		flex-grow: 1;
+		width: 100vw;
+		height: 25rem;
+		z-index: 1;
+	}
+	.auth-content-box {
+		flex-grow: 1;;
+		width: 95%;
+	}
+	#auth-page-container {
+		flex-wrap: wrap;
+		overflow: auto;
+		height: calc(100vh - 8rem);
+	}
+}
