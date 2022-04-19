@@ -24,9 +24,9 @@ function appendMsg($msg) {
 }
 
 if (__DEBUG__) appendMsg("The initial content of the session is: \n");
-if (__DEBUG__) appendMsg(print_r($_SESSION, true));
+if (__DEBUG__) appendMsg(print_r($_SESSION, true) . "\n");
 if (__DEBUG__) appendMsg("The initial content of POST is: \n");
-if (__DEBUG__) appendMsg(print_r($_POST, true));
+if (__DEBUG__) appendMsg(print_r($_POST, true) . "\n");
 
 $username = $_POST['user-username'];
 $studentid = $_POST['user-studentid'];
@@ -37,19 +37,17 @@ $password = $_POST['user-password'];
 $password_confirm = $_POST['user-confirm-password'];
 $role = $_POST['user-role'];
 
-appendMsg("Checkpoint 1");
-appendMsg(print_r($_POST));
-echo json_encode($retArr);
-exit();
+appendMsg("Checkpoint 1\n");
+appendMsg(print_r($_POST, true));
 
 // ================================== Field(s) Empty ==================================
 if (empty($username) || empty($password) || empty($password_confirm) || empty($email) || empty($studentid) || empty($first_name) || empty($last_name) || empty($role)) {
 	$retArr["exitcode"] = 8;
 	appendMsg("Some of the fields were left empty.\n");
+	echo json_encode($retArr);
+	return;
 //		header("Refresh:0");
 }
-
-
 
 // ================================== Call to python ==================================
 /**
@@ -75,7 +73,8 @@ if (__DEBUG__) appendMsg("The exit code was: $exitCode\n");
 
 
 $retArr["exitcode"] = $exitCode;
-return $retArr;
+echo json_encode($retArr);
+exit();
 
 // Success
 if ($exitCode == 0) {

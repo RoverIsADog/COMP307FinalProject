@@ -25,7 +25,7 @@ loginForm.addEventListener("submit", (e) => {
 			console.log(output.message);
 			// No problems, ticket created and saved
 			if (output.exitcode === "0") {
-				alert("Before proceeding");
+				//alert("Before proceeding");
 				window.location.replace("../profile.php");
 			}
 			else if (output.exitcode === "1") {
