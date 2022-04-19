@@ -5,12 +5,12 @@ import sys
 import pathlib
 
 # DEBUG DEBUG DEBUG
-print('"%s","%s"' % ("TA1", "Prof1"))
-print('"%s","%s"' % ("TA2", "Prof2"))
-print('"%s","%s"' % ("TA3", "Prof3"))
-print('"%s","%s"' % ("TA4", "Prof4"))
-print('"%s","%s"' % ("TA5", "Prof5"))
-print('"%s","%s"' % ("TA6", "Prof6"))
+# print('"%s","%s"' % (555000001, "Instr1"))
+# print('"%s","%s"' % (555000002, "Instr2"))
+# print('"%s","%s"' % (555000003, "Instr3"))
+# print('"%s","%s"' % (555000004, "Instr4"))
+# print('"%s","%s"' % (555000005, "Instr5"))
+# print('"%s","%s"' % (555000006, "Instr6"))
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--course_num", type=str)

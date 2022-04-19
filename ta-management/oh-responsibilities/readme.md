@@ -1,6 +1,6 @@
 ### Page generation plan for oh_responsibilities
 * Start by verifying that there is a course/term selected. Print error if not.
-* Use `get_instructors.py` to build a list where each index contains `["student_id"]` and `["name"]` of an instructor.
+* Use `get_instructors.py` to build a list where each index contains `["student_id"]` and `["name"]` of an instructor. Save this into `["oh_responsibilities_instructorlist"]` for later input validation.
 * Leave `#editable-elements-container` to be populated upon selection.
 
 ### AJAX 1

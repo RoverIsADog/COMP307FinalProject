@@ -34,3 +34,36 @@
 		alert("Error while retrieving courses.");
 	}
 }
+
+
+const ohForm = document.getElementById("oh-responsibilities-form");
+
+ohForm.addEventListener("submit", (e) => {
+	e.preventDefault();
+	console.log("Submitting OH change form...");
+
+	try {
+
+		/**
+		 * Callback function that notifies the user of success or failure
+		 * before refreshing the page.
+		 */
+		function callbackFunc() {
+			console.log(request.responseText);
+			//window.location.replace("management.php?page=oh_responsibilities")
+		}
+
+		console.log("OH modification form submitted!");
+		var request = new XMLHttpRequest();
+		request.onload = callbackFunc;
+		request.open("POST", "ta-management/oh-responsibilities/update_instructor_info.php");
+		let fd = new FormData(ohForm);
+		console.log(fd);
+		request.send(fd);
+	}
+	catch (exception) {
+		alert("Error while submitting the request");
+	}
+
+})
+;

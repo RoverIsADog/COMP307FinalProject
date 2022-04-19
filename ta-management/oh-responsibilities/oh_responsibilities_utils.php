@@ -41,34 +41,26 @@ function getAllInstructorInfo(string $studentID, string $courseNum, string $term
 	// Pass relevant arguments into python and execute.
 	$output = null; $exitCode = null;
 	$command = escapeshellcmd("python3 " . __DIR__ . "/get_instructor_info.py"
-		. ' -- student_id '      . escapeshellarg($studentID)
-		. ' -- course_num '      . escapeshellarg($courseNum)
-		. ' -- term_month_year ' . escapeshellarg($term))
+		. ' --student_id '      . escapeshellarg($studentID)
+		. ' --course_num '      . escapeshellarg($courseNum)
+		. ' --term_month_year ' . escapeshellarg($term))
 		. ' 2>&1';
-	if (__DEBUG__) echo "Getting all info for instructor $studentID in $courseNum[$term]: $command<br>\n";
+	if (__DEBUG__) echo "Getting all info for instructor $studentID in $courseNum [$term]: $command<br>\n";
 	exec($command, $output, $exitCode);
 	if ($exitCode != "0") {
 		genericError();
 		exit();
 	}
 
-	$ret = array();
+	if (__DEBUG__) "getAllInstrInfo returned code $exitCode and output:<br>\n";
+	if (__DEBUG__) echo nl2br(print_r($output, true));
+
+	$ret = json_decode($output[0], true);
+
+	if (__DEBUG__) "Decoded into:<br>\n";
+	if (__DEBUG__) echo nl2br(print_r($ret, true));
 
 	// Appending to respective index since there are many fields
-	foreach ($output as $idx => $csvEntry) {
-		$curUserArr = str_getcsv($csvEntry);
-		
-		$ret[$idx] = array();
-		$ret[$idx]["username"] = $curUserArr[0];
-		$ret[$idx]["student_id"] = $curUserArr[1];
-		$ret[$idx]["firstname"]  = $curUserArr[2];
-		$ret[$idx]["lastname"] = $curUserArr[3];
-		$ret[$idx]["email"] = $curUserArr[4];
-		$ret[$idx]["role"] = $curUserArr[5];
-		$ret[$idx]["is_admin"] = $curUserArr[6];
-		$ret[$idx]["is_sysop"] = $curUserArr[7];
-
-	}
 
 	// Formats data
 	return $ret;

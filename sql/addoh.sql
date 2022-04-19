@@ -1,0 +1,9 @@
+-- SQLite
+INSERT INTO officehours (student_id, course_num, term_month_year, job_description, monday_start, monday_end, tuesday_start, tuesday_end, wednesday_start, wednesday_end, thursday_start, thursday_end, friday_start, friday_end, notes)
+VALUES
+                        (555000003,        "COMP307" , "WINTER2022"   , "Grader1"      , "12:00"     ,"13:00"    , ""           ,""          , ""             ,""            , ""            ,""           , ""          ,""         , "Zoom 555000003"),
+                        (555000004,        "COMP307" , "WINTER2022"   , "Grader2"      , ""          ,""         , "12:00"      ,"13:00"     , "12:00"        ,"13:00"       , ""            ,""           , ""          ,""         , "Zoom 555000004"),
+                        (555000005,        "COMP307" , "WINTER2022"   , "Grader3"      , ""          ,""         , ""           ,""          , ""             ,""            , "12:00"       ,"13:00"      , ""          ,""         , "Zoom 555000005"),
+                        (555000006,        "COMP307" , "WINTER2022"   , "Grader4"      , ""          ,""         , ""           ,""          , ""             ,""            , ""            ,""           , "12:00"     ,"13:00"    , "Zoom 555000006"),
+                        (555000007,        "COMP307" , "WINTER2022"   , "Grader5"      , ""          ,""         , ""           ,""          , ""             ,""            , ""            ,""           , ""          ,""         , "Zoom 555000007"),
+                        (555000008,        "COMP307" , "WINTER2022"   , "Grader6"      , ""          ,""         , ""           ,""          , ""             ,""            , ""            ,""           , ""          ,""         , "Zoom 555000008");

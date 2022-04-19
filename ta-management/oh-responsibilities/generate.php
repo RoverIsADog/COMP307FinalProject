@@ -47,6 +47,7 @@ if ($instructorsList == null || sizeof($instructorsList) == 0) {
 }
 
 // ================================== Printing dropdown ==================================
+echo '<form id="oh-responsibilities-form">';
 $instrDropdownFrame = '
 <div class="heading1"><b>Choose an Instructor</b></div>
 <select class="content-box-element" name="instructor-select" id="instructor-select" onchange="selectedInstructor(this.value)">
@@ -62,10 +63,10 @@ foreach ($instructorsList as $idx => $instr) {
 echo sprintf($instrDropdownFrame, $instrDropdownEntries);
 
 // Save for input validation
-$_SESSION["oh_responsibilities_instructor_list"] = $instructorsList;
+$_SESSION["oh_responsibilities_instructorlist"] = $instructorsList;
 
 ?>
 
-<form action="#" method="post">
+<!-- Form starts above in php -->
 	<div id="editable-elements-container"></div>
 </form>
