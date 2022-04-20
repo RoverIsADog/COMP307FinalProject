@@ -34,15 +34,15 @@ else {
 if (__DEBUG__) echo "<b>The POST is: </b><br>\n";
 if (__DEBUG__) print_r($_POST);
 
-$chosenCourseNum = "";
-if (isset($_POST["ta-select"])) {
-	$chosenCourseNum = $_POST["ta-select"];
-	if (__DEBUG__) echo "Chosen Course number is: $chosenCourseNum\n";
-}
 $chosenTANum = "";
-if (isset($_POST["course-select"])) {
-	$chosenTANum = $_POST["course-select"];
+if (isset($_POST["ta-select"])) {
+	$chosenTANum = $_POST["ta-select"];
 	if (__DEBUG__) echo "Chosen TA number is: $chosenTANum\n";
+}
+$chosenCourseNum = "";
+if (isset($_POST["course-select"])) {
+	$chosenCourseNum = $_POST["course-select"];
+	if (__DEBUG__) echo "Chosen Course number is: $chosenCourseNum\n";
 }
 
 // ================================== Input validation ==================================

@@ -21,7 +21,7 @@ for record in records:
 	# get prof name using the ID
 	cur.execute("SELECT name FROM users WHERE student_id = ?;", [record[0]])
 	prof_name = cur.fetchone()
-	print('"%s","%s","%s"', (str(prof_name[0]), str(record[1]), str(record[2])))
+	print('"%s","%s","%s"' % (str(prof_name[0]), str(record[1]), str(record[2])))
 
 
 con.commit()

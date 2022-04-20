@@ -11,6 +11,7 @@ addForm.addEventListener("submit", (e) => {
 		 * before refreshing the page.
 		 */
 		function callbackFunc() {
+			console.log(request.responseText);
 			alert(request.responseText);
 			window.location.replace("admin.php?page=add_ta_to_course")
 		}

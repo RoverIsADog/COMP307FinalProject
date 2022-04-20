@@ -106,6 +106,7 @@ exec($command, $output, $exitCode);
 if ($exitCode != "0") {
 	echo "Error loading wishlist<br>\n";
 }
+
 else {
 	// No wishlist membership
 	if (sizeof($output) == 0) {
@@ -115,6 +116,7 @@ else {
 	else {
 		$tableEntries = "";
 		foreach($output as $idx => $entry) {
+			if (__DEBUG__) echo $entry;
 			$tmp = str_getcsv($entry);
 			$termStr = $tmp[1] . " [" . $tmp[2] . "]";
 			$tableEntries = $tableEntries . sprintf($balancedTwoColTableEntry, $tmp[0], $termStr);
@@ -123,11 +125,14 @@ else {
 	}
 }
 
+if (__DEBUG__) echo "The wishlist python output: <br>\n";
+if (__DEBUG__) echo nl2br(print_r($output, true));
+
 // ================================== Current Assignment Details ==================================
 // Execute python command (return list of {coursenum,term})
 echo '<h1>Assigned To</h1>';
 $command = escapeshellcmd("python3 " . __DIR__ . "/ta_assigned_courses.py "
-	. " --student_id" . escapeshellarg($chosenTAID));
+	. " --student_id " . escapeshellarg($chosenTAID));
 if (__DEBUG__) echo "Getting Course assignment information: $command<br>\n";
 $output = null; $exitCode = null;
 exec($command, $output, $exitCode);
@@ -153,7 +158,7 @@ else {
 // ================================== Average details ==================================
 // Execute python command (return list of {coursenum,term})
 $command = escapeshellcmd("python3 " . __DIR__ . "/ta_review_avg.py "
-	. " --student_id" . escapeshellarg($chosenTAID));
+	. " --student_id " . escapeshellarg($chosenTAID));
 if (__DEBUG__) echo "Getting ratings and average: $command<br>\n";
 $output = null; $exitCode = null;
 exec($command, $output, $exitCode);
@@ -186,7 +191,7 @@ else {
 // Execute python command (return list of {profName,coursenum,term,note})
 echo '<h1>Professor Performance Logs</h1>';
 $command = escapeshellcmd("python3 " . __DIR__ . "/get_ta_logs.py "
-	. " --student_id" . escapeshellarg($chosenTAID));
+	. " --student_id " . escapeshellarg($chosenTAID));
 if (__DEBUG__) echo "Getting prof performance logs: $command<br>\n";
 $output = null; $exitCode = null;
 exec($command, $output, $exitCode);

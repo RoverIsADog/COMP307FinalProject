@@ -45,11 +45,11 @@
 			},
 			"register_course": {
 				"pageID": "register_course",
-				"pageString": "Resigter to a course",
+				"pageString": "Register to a Course",
 				"pageDescription": "Add yourself to a course to rate its TAs.",
 				"pageFolder": "register-courses",
 				"allowedRoles": ["student", "ta", "sysop"],
-				"requiredJS": [],
+				"requiredJS": ["rate-ta/register-courses/register-courses.js"],
 				"requiredCSS": []
 			}
 		}

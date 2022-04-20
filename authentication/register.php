@@ -98,7 +98,7 @@ else if ($exitCode == 4) {
 
 // Could not grant your requested role
 else if ($exitCode == 5 || $exitCode == 6) {
-	$retArr["exitcode"] = 5;
+	$retArr["exitcode"] = $exitCode;
 	echo json_encode($retArr);
 	exit();
 }

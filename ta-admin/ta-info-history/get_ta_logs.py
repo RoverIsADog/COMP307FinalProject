@@ -20,10 +20,13 @@ cur = con.cursor()
 cur.execute("SELECT prof_id, course_num, term_month_year, note FROM logs WHERE ta_id = ?;", [args.student_id])
 records = cur.fetchall()
 for record in records:
+	rec1 = record[1]
+	rec2 = record[2]
+	rec3 = record[3]
 	# get prof name using the ID
-	cur.execute("SELECT name FROM users WHERE student_id = ?;", [record[0]])
+	cur.execute("SELECT name FROM professors WHERE professor_id = ? LIMIT 1;", [record[0]])
 	prof_name = cur.fetchone()
-	print('"%s","%s","%s","%s"', (str(prof_name[0]), record[1], record[2], record[3]))
+	print('"%s","%s","%s","%s"' % (prof_name[0], rec1, rec2, rec3))
 
 
 con.commit()

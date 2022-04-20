@@ -48,7 +48,7 @@ else {
 		foreach($output as $idx => $entry) {
 			$tmp = str_getcsv($entry);
 			$courseStr = $tmp[0] . " [" . $tmp[1] . "]";
-			$tableEntries = $tableEntries . sprintf($tableEntryTemplate, $courseStr, $tmp[1]);
+			$tableEntries = $tableEntries . sprintf($tableEntryTemplate, $courseStr, $tmp[2]);
 		}
 		echo sprintf($tableFrame, $tableEntries);
 	}

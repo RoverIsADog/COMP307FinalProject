@@ -18,10 +18,11 @@ loginForm.addEventListener("submit", (e) => {
 			console.log(asyncRequest.responseText);
 			output = JSON.parse(asyncRequest.responseText);
 			console.log(output.message);
+			console.log("JS exit code: " + output.exitcode);
 			// No problems, account created and saved
-			if (output.exitcode === "0") {
+			if (output.exitcode == 0) {
 				alert("GOOD. About to redirect...");
-				// window.location.replace("../profile.php");
+				window.location.replace("/index.php");
 			}
 			else if (output.exitcode == 1 || output.exitcode == 2 || output.exitcode == 3) {
 				alert("User already exists");
@@ -36,7 +37,7 @@ loginForm.addEventListener("submit", (e) => {
 				alert("ERROR.");
 			}
 			else {
-				alert("An exception occured.");
+				alert("An exception occured. The exit code was: " + output.exitcode);
 			}
 		}
 

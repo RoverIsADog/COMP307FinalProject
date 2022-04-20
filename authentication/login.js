@@ -25,7 +25,7 @@ loginForm.addEventListener("submit", (e) => {
 			console.log(output.message);
 			// No problems, ticket created and saved
 			if (output.exitcode === "0") {
-				//alert("Before proceeding");
+				alert("Authentication Successful");
 				window.location.replace("../profile.php");
 			}
 			else if (output.exitcode === "1") {
@@ -35,7 +35,7 @@ loginForm.addEventListener("submit", (e) => {
 				alert("No matching username or password.");
 			}
 			else {
-				alert("An exception occured.");
+				alert("An exception occured. Exit code: " + output.exitcode);
 			}
 		}
 

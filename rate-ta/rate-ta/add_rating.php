@@ -79,10 +79,9 @@ $chosenTerm = $tmp[1];
 // Output: list of csv lines of studentid,taname
 $output = null; $retval = null;
 $command = escapeshellcmd("python3 " .  __DIR__ . "/add_rating.py "
-	. ' --username '        . escapeshellarg($username)
 	. ' --course_num '      . escapeshellarg($chosenCourseID)
-	. ' --term_month_year ' . escapeshellarg($chosenTerm)
 	. ' --ta_id '           . escapeshellarg($chosenTAStudentID)
+	. ' --term_month_year ' . escapeshellarg($chosenTerm)
 	. ' --score '           . escapeshellarg($numberStars)
 	. ' --comment '         . escapeshellarg($comments));
 if (__DEBUG__) echo "Adding rating: " . $command . "<br>\n";

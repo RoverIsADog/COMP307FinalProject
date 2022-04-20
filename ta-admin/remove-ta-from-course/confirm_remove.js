@@ -59,6 +59,7 @@ reviewForm.addEventListener("submit", (e) => {
 		 * before refreshing the page.
 		 */
 		function callbackFunc() {
+			console.log(asyncRequest.responseText);
 			alert(asyncRequest.responseText);
 			window.location.replace("admin.php?page=remove_ta_from_course");
 		}

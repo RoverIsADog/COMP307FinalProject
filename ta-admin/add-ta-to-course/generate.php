@@ -54,7 +54,7 @@ $coursesDropdownFrame = '
 	</select>
 </div>
 ';
-$coursesDropdownEntryTemplate = '<option value="%s">%s</option>';
+$coursesDropdownEntryTemplate = '<option value="%s">%s [%s]</option>';
 
 echo '<form id="add-ta-to-course-form" >';
 
@@ -68,7 +68,7 @@ echo sprintf($tasDropdownFrame, $tasDropdownEntries);
 // Actually building the dropdowns
 $coursesDropdownEntries = "";
 foreach ($coursesList as $idx => $course) {
-	$coursesDropdownEntries = $coursesDropdownEntries . sprintf($coursesDropdownEntryTemplate, $idx, $course[1]); //[0]: studentid, [1]: name
+	$coursesDropdownEntries = $coursesDropdownEntries . sprintf($coursesDropdownEntryTemplate, $idx, $course[0], $course[1]);
 }
 echo sprintf($coursesDropdownFrame, $coursesDropdownEntries);
 

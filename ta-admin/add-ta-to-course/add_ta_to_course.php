@@ -25,17 +25,24 @@ else {
 	return;
 }
 
+if (__DEBUG__) echo "The TA list is: \n";
+if (__DEBUG__) echo print_r($tasList);
+
+if (__DEBUG__) echo "The Courses list is: \n";
+if (__DEBUG__) echo print_r($coursesList);
+
+
 // ================================== Get form content ==================================
-if (__DEBUG__) echo "Content of POST is: \n" . print_r($_POST);
-$chosenCourseNum = "";
-if (isset($_POST["ta-select"])) {
-	$chosenCourseNum = $_POST["ta-select"];
-	if (__DEBUG__) echo "Chosen Course number is: $chosenCourseNum\n";
-}
+if (__DEBUG__) echo "Content of POST is: \n" . print_r($_POST, true);
 $chosenTANum = "";
-if (isset($_POST["course-select"])) {
-	$chosenTANum = $_POST["course-select"];
+if (isset($_POST["ta-select"])) {
+	$chosenTANum = $_POST["ta-select"];
 	if (__DEBUG__) echo "Chosen TA number is: $chosenTANum\n";
+}
+$chosenCourseNum = "";
+if (isset($_POST["course-select"])) {
+	$chosenCourseNum = $_POST["course-select"];
+	if (__DEBUG__) echo "Chosen Course number is: $chosenCourseNum\n";
 }
 $assignedHours = "";
 if (isset($_POST["assigned-hours"])) {

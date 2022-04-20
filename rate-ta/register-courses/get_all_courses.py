@@ -3,7 +3,7 @@ import sqlite3
 import sys
 import pathlib
 
-path = pathlib.Path(__file__).parent.parent
+path = pathlib.Path(__file__).parent.parent.parent
 con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 

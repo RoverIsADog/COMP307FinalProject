@@ -26,7 +26,7 @@ for record in cur.fetchall():
 	print('"%s","%s"' % (str(record[2]), str(record[3])))
 
 if num_ratings != 0:
-	print(str(num_ratings / sum_ratings))
+	print(str(sum_ratings / num_ratings))
 
 con.commit()
 con.close()

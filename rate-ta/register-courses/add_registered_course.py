@@ -12,7 +12,7 @@ parser.add_argument("--term_month_year", type=str)
 
 args = parser.parse_args()
 
-path = pathlib.Path(__file__).parent.parent
+path = pathlib.Path(__file__).parent.parent.parent
 con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 

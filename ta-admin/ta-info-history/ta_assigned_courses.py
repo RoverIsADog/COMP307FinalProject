@@ -16,7 +16,7 @@ cur = con.cursor()
 
 
 # Query database for all assignments of the provided TA to a course
-cur.execute("SELECT DISTINCT course_num, term_month_year FROM teaches WHERE student_id = ?", args.student_id)
+cur.execute("SELECT DISTINCT course_num, term_month_year FROM teaches WHERE student_id = ?;", [args.student_id])
 for record in cur.fetchall():
 	print('"%s","%s"' % (str(record[0]), str(record[1])))
 

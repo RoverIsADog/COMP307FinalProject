@@ -12,7 +12,7 @@ error_reporting(E_ALL);
 
 // Executing the command
 $command = escapeshellcmd("python3 " .  __DIR__ . "/import_prof_course.py "
-. ' --path ' . escapeshellarg(__ROOT_DIR__ . "data/profcourse.csv")
+. ' --path ' . escapeshellarg(__ROOT_DIR__ . "data/course_plus_prof.csv")
 . ' 2>&1'); // Hardcoded for now
 exec($command , $output, $retval);
 if ($retval != 0) {

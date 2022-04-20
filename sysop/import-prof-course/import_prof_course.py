@@ -14,11 +14,13 @@ path = pathlib.Path(__file__).parent.parent.parent
 con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
-csv_file = csv.reader(args.path)
+f = open(args.path)
+csv_file = csv.reader(f)
 
 # add courses to database
 is_first_row = True
 for row in csv_file:
+	print(row)
 	if is_first_row:
 		is_first_row = False
 		continue
