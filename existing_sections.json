@@ -69,7 +69,7 @@
 				"pageDescription": "Select TA to add performance log",
 				"pageFolder": "add-performance-log",
 				"allowedRoles": ["prof", "admin", "sysop"],
-				"requiredJS": [],
+				"requiredJS": ["ta-management/add-performance-log/add_performance_log.js"],
 				"requiredCSS": []
 			},
 			"wishlist": {

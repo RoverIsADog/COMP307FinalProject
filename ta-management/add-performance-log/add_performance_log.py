@@ -15,6 +15,7 @@ parser.add_argument("--comment", type=str)
 args = parser.parse_args()
 
 path = pathlib.Path(__file__).parent.parent.parent
+print(str(path) + "/project.db")
 con = sqlite3.connect(str(path) + "/project.db")
 cur = con.cursor()
 
@@ -33,15 +34,12 @@ if records is not None:
 		if log_id == record[0]:
 			log_id += 1
 
+print("About to run: " + str(log_id))
+
 # create new log record
-cur.execute("INSERT INTO logs VALUES ("
-				"log_id = ?, "
-				"course_num = ?, "
-				"term_month_year = ?, "
-				"prof_id = ?, "
-				"ta_id = ?, "
-				"note = ?"
-			");", [log_id, args.course_num, args.term_month_year, prof_id, args.student_id, args.comment])
+# cur.execute('INSERT INTO logs (log_id, course_num, term_month_year, prof_id, ta_id, note) VALUES (00002, "COMP307", "WINTER2022", 999000001, 555000001, "Hes okay");')
+
+cur.execute("INSERT INTO logs (log_id, course_num, term_month_year, prof_id, ta_id, note) VALUES (?, ?, ?, ?, ?, ?);", [log_id, args.course_num, args.term_month_year, prof_id, args.student_id, args.comment])
 
 con.commit()
 con.close()

@@ -50,6 +50,7 @@ ohForm.addEventListener("submit", (e) => {
 		 */
 		function callbackFunc() {
 			console.log(request.responseText);
+			alert(request.responseText);
 			//window.location.replace("management.php?page=oh_responsibilities")
 		}
 
@@ -65,5 +66,4 @@ ohForm.addEventListener("submit", (e) => {
 		alert("Error while submitting the request");
 	}
 
-})
-;
+});

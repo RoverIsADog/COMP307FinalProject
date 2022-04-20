@@ -8,8 +8,6 @@ if (!isset($_SESSION)) session_start();
 require_once(__DIR__ . "/../../rootpath.php");
 require_once(__ROOT_DIR__ . "utils/errors.php");
 
-echo "Hello!";
-
 if (__DEBUG__) echo "The content of POST is: <br>\n";
 if (__DEBUG__) echo nl2br(print_r($_POST, true));
 // ================================== Session integrity check ==================================
