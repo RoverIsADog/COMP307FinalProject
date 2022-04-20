@@ -22,6 +22,16 @@ cur.execute("SELECT student_id FROM users WHERE username = ?;", [args.username])
 record = cur.fetchone()
 prof_id = record[0]
 
+# check if the user is a prof
+cur.execute("SELECT COUNT(*) FROM assigned WHERE student_id = ? AND role_id = 2;", [prof_id])
+count = cur.fetchone()[0]
+
+# if not a prof, exit code 1
+if count == 0:
+    con.commit()
+    con.close()
+    sys.exit(1)
+
 # generate unique wishlist id
 wishlist_id = 1
 cur.execute("SELECT wishlist_id FROM wishlists ORDER BY wishlist_id;")

@@ -21,7 +21,11 @@ f = open(args.course_quota_path)
 csv_f = csv.reader(f)
 
 # add courses to database
+is_first_row = True
 for row in csv_f:
+	if is_first_row:
+		is_first_row = False
+		continue
 	enrollment_div = float(row[5]) / float(row[6])
 	# check if the course already exists in the database
 	cur.execute("SELECT COUNT(*) FROM courses WHERE course_num = ? AND term_month_year = ?;", [row[1], row[0]])

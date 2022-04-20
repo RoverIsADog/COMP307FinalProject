@@ -138,7 +138,7 @@ while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 fclose($handle);
 
 // Only students have access to Rate a TA
-if (in_array("student", $userPermissions)) {
+if (in_array("student", $userPermissions) || in_array("ta", $userPermissions) || in_array("sysop", $userPermissions)) {
 	echo $index["rate"]->generate();
 }
 // Only TA's and above have access to management

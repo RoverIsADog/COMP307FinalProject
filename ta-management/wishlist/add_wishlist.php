@@ -70,7 +70,10 @@ $command = escapeshellcmd("python3 " .  __DIR__ . "/add_to_wishlist.py "
 if (__DEBUG__) echo "Submitting task to python: $command\n";
 exec($command , $output, $retval);
 
-if ($retval != 0) {
+if ($retval == 1) {
+	echo '<script>alert("Did not add the comment as you are not an instructor for this course)</script>';
+}
+else if ($retval != 0) {
 	genericError();
 	echo "Python script failure";
 	return;

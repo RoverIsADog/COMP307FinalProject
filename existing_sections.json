@@ -21,7 +21,7 @@
 		"sectionID": "rate",
 		"sectionString": "Rate",
 		"sectionFolder": "rate-ta",
-		"allowedRoles": ["student"],
+		"allowedRoles": ["student", "ta", "sysop"],
 		"requiredJS": [],
 		"requiredCSS": [],
 		"pages": {
@@ -30,7 +30,7 @@
 				"pageString": "Rate a TA",
 				"pageDescription": "Select a TA to rate",
 				"pageFolder": "rate-ta",
-				"allowedRoles": ["student"],
+				"allowedRoles": ["student", "ta", "sysop"],
 				"requiredJS": ["rate-ta/rate-ta/rate-ta.js"],
 				"requiredCSS": []
 			},
@@ -38,8 +38,17 @@
 				"pageID": "see_ratings",
 				"pageString": "See Previous Ratings",
 				"pageDescription": "See instructors you have previously rated.",
-				"pageFolder": "see_ratings",
-				"allowedRoles": ["student"],
+				"pageFolder": "see-ratings",
+				"allowedRoles": ["student", "ta", "sysop"],
+				"requiredJS": [],
+				"requiredCSS": []
+			},
+			"register_course": {
+				"pageID": "register_course",
+				"pageString": "Resigter to a course",
+				"pageDescription": "Add yourself to a course to rate its TAs.",
+				"pageFolder": "register-courses",
+				"allowedRoles": ["student", "ta", "sysop"],
 				"requiredJS": [],
 				"requiredCSS": []
 			}

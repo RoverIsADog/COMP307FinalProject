@@ -17,7 +17,11 @@ cur = con.cursor()
 csv_file = csv.reader(args.path)
 
 # add courses to database
+is_first_row = True
 for row in csv_file:
+	if is_first_row:
+		is_first_row = False
+		continue
 	# check if the course already exists in the database
 	cur.execute("SELECT COUNT(*) FROM courses WHERE course_num = ? AND term_month_year = ?;", [row[1], row[0]])
 	# If it does not exist, create a new record. Otherwise, update the existing record
