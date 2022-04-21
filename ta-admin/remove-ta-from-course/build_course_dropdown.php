@@ -43,8 +43,8 @@ if (!key_exists($chosenTANum, $tasList)) {
 require_once(__DIR__ . "/remove_ta_utils.php");
 $coursesList = getAllCoursesForTA($tasList[$chosenTANum][0]);
 
-echo "<b>The courseslist is: </b><br>\n";
-echo print_r($coursesList);
+if (__DEBUG__) echo "<b>The courseslist is: </b><br>\n";
+if (__DEBUG__) echo print_r($coursesList);
 
 // ================================== Print into select ==================================
 echo '<h1>Select course to remove TA from</h1>';

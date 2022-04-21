@@ -12,6 +12,7 @@ addUserForm.addEventListener("submit", (e) => {
 		 */
 		function callbackFunc() {
 			alert(request.responseText);
+			console.log(request.responseText);
 			window.location.replace("sysop.php?page=add_user")
 		}
 

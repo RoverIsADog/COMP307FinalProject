@@ -64,9 +64,13 @@ if ($newStudentID == "" || $newUsername == "" || $newPassword == "" || $newFirst
 	echo "Please enter values for all required fields.\n";
 	return;
 }
+if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
+	inputValueError("Email badly formatted");
+	return;
+}
 // Input are correct format (email format, role exists)
-if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL) || !($newRole=="student"||$newRole=="ta"||$newRole=="prof")) {
-	inputValueError();
+if (!($newRole=="student"||$newRole=="ta"||$newRole=="prof")) {
+	doesNotExist("Entered role not recognized");
 	return;
 }
 
@@ -74,25 +78,41 @@ if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL) || !($newRole=="student"||$new
 $output = null; $retval = null;
 $command = "python3 " .  __DIR__ . "/add_user.py "
 
-. ' --new_student_id ' . escapeshellarg($newStudentID)
+. ' --student_id ' . escapeshellarg($newStudentID)
 . ' --new_username '   . escapeshellarg($newUsername)
-. ' --new_password '   . escapeshellarg($newPassword)
-. ' --new_firstname '  . escapeshellarg($newFirstname)
-. ' --new_lastname '   . escapeshellarg($newLastname)
-. ' --new_email '      . escapeshellarg($newEmail)
-. ' --new_is_admin '   . escapeshellarg($newIsAdmin)
-. ' --new_is_sysop '   . escapeshellarg($newIsSysop);
+. ' --password '   . escapeshellarg($newPassword)
+. ' --first_name '  . escapeshellarg($newFirstname)
+. ' --last_name '   . escapeshellarg($newLastname)
+. ' --email '      . escapeshellarg($newEmail)
+. ' --role '      . escapeshellarg($newRole)
+. ' --is_admin '   . escapeshellarg($newIsAdmin)
+. ' --is_sysop '   . escapeshellarg($newIsSysop);
 if (__DEBUG__) echo "Submitting task to python: $command\n";
 exec(escapeshellcmd($command) , $output, $retval);
 
-if ($retval != 0) {
-	genericError();
-	echo "The user has not been added.\n";
+if ($retval == 0) {
+	echo "The user has been added.\n";
 	return;
 }
-
-// ================================== Finally, done ==================================
-
-echo("The user has been added.\n");
+else if ($retval == 1) {
+	echo "The username is already taken.\n";
+	return;
+}
+else if ($retval == 2) {
+	echo "The student ID is already taken.\n";
+	return;
+}
+else if ($retval == 3) {
+	echo "The email is already taken.\n";
+	return;
+}
+else if ($retval == 5 || $retval == 6) {
+	echo "User added, but unable to assign requested role. Defaulted to student.\n";
+	return;
+}
+else {
+	genericError("An error has occured.");
+	return;
+}
 
 ?>

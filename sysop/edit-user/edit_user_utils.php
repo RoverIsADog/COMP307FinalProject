@@ -28,16 +28,18 @@ function getAllUsers():array {
 	// Appending to respective index since there are many fields
 	foreach ($output as $idx => $csvEntry) {
 		$curUserArr = str_getcsv($csvEntry);
+
+//		if (__DEBUG__) echo $csvEntry . "<br>\n";
 		
 		$ret[$idx] = array();
-		$ret[$idx]["username"] = $curUserArr[0];
-		$ret[$idx]["student_id"] = $curUserArr[1];
-		$ret[$idx]["firstname"]  = $curUserArr[2];
-		$ret[$idx]["lastname"] = $curUserArr[3];
-		$ret[$idx]["email"] = $curUserArr[4];
-		$ret[$idx]["role"] = $curUserArr[5];
-		$ret[$idx]["is_admin"] = $curUserArr[6];
-		$ret[$idx]["is_sysop"] = $curUserArr[7];
+		$ret[$idx]["student_id"] = $curUserArr[0];
+		$ret[$idx]["full_name"]  = $curUserArr[1];
+		$ret[$idx]["email"]      = $curUserArr[2];
+		$ret[$idx]["is_student"] = $curUserArr[3];
+		$ret[$idx]["is_prof"]    = $curUserArr[4];
+		$ret[$idx]["is_admin"]   = $curUserArr[5];
+		$ret[$idx]["is_sysop"]   = $curUserArr[6];
+		$ret[$idx]["is_ta"]      = $curUserArr[7];
 
 	}
 

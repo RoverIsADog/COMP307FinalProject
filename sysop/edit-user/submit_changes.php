@@ -27,15 +27,10 @@ if (isset($_POST["user-select"])) {
 	$selectedUserNum = $_POST["user-select"];
 	if (__DEBUG__) echo "New studentid is: $selectedUserNum\n";
 }
-$newFirstname = "";
-if (isset($_POST["user-firstname"])) {
-	$newFirstname = $_POST["user-firstname"];
-	if (__DEBUG__) echo "New firstname is: $newFirstname\n";
-}
-$newLastname = "";
-if (isset($_POST["user-lastname"])) {
-	$newLastname = $_POST["user-lastname"];
-	if (__DEBUG__) echo "New lastname is: $newLastname\n";
+$newFullName = "";
+if (isset($_POST["user-fullname"])) {
+	$newFullName = $_POST["user-fullname"];
+	if (__DEBUG__) echo "New fullname is: $newFullName\n";
 }
 $newEmail = "";
 if (isset($_POST["user-email"])) {
@@ -60,13 +55,17 @@ if (__DEBUG__) echo "The user is a sysop: $newIsSysop\n";
 
 // ================================== Inputs validation ==================================
 // Input exists (except admin/sysop)
-if ($newFirstname == "" || $newLastname == "" || $newEmail == "" || $newRole == "") {
+if ($newFullName == "" || $newEmail == "" || $newRole == "") {
 	echo "Please enter values for all required fields.\n";
 	return;
 }
 // Input are correct format (email format, role exists)
-if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL) || !($newRole=="student"||$newRole=="ta"||$newRole=="prof")) {
-	inputValueError();
+if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
+	inputValueError("The email is incorrectly formatted");
+	return;
+}
+if (!($newRole=="student"||$newRole=="ta"||$newRole=="prof")) {
+	doesNotExist("The selected role is invalid");
 	return;
 }
 // Input Security Check
@@ -80,11 +79,10 @@ $userStudentID = $usersList[$selectedUserNum]["student_id"];
 
 // ================================== Preparing to send to Python ==================================
 $output = null; $retval = null;
-$command = escapeshellcmd("python3 " .  __DIR__ . "/submit_changes.py "
+$command = escapeshellcmd("python3 " .  __DIR__ . "/submit_change.py "
 
 . ' --student_id '     . escapeshellarg($userStudentID)
-. ' --first_name '     . escapeshellarg($newFirstname)
-. ' --last_name '      . escapeshellarg($newLastname)
+. ' --name '           . escapeshellarg($newFullName)
 . ' --email '          . escapeshellarg($newEmail)
 . ' --role '           . escapeshellarg($newRole)
 . ' --is_admin '       . escapeshellarg($newIsAdmin)
@@ -100,6 +98,6 @@ if ($retval != 0) {
 
 // ================================== Finally, done ==================================
 
-echo("The user has been added.\n");
+echo("The user has been modified.\n");
 
 ?>

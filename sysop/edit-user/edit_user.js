@@ -50,6 +50,7 @@ editButton.addEventListener("click", (e) => {
 		 */
 		function callbackFunc() {
 			alert(request.responseText);
+			console.log(request.responseText);
 			window.location.replace("sysop.php?page=edit_user")
 		}
 
@@ -80,6 +81,7 @@ deleteButton.addEventListener("click", (e) => {
 		 */
 		function callbackFunc() {
 			alert(request.responseText);
+			console.log(request.responseText);
 			window.location.replace("sysop.php?page=edit_user")
 		}
 

@@ -20,6 +20,8 @@ if ($usersList == null || sizeof($usersList) == 0) {
 	return;
 }
 
+if (__DEBUG__) echo "The users list is <br>\n";
+if (__DEBUG__) echo nl2br(print_r($usersList, true));
 
 // ================================== Printing table ==================================
 echo '<form id="edit-user-form">';
@@ -33,7 +35,7 @@ $usersDropdownEntryTemplate = '<option value="%s">%s (%s)</option>';
 
 $usersDropdownEntries = "";
 foreach ($usersList as $idx => $user) {
-	$usersDropdownEntries = $usersDropdownEntries . sprintf($usersDropdownEntryTemplate, $idx, $user["username"], $user["student_id"]);
+	$usersDropdownEntries = $usersDropdownEntries . sprintf($usersDropdownEntryTemplate, $idx, $user["full_name"], $user["student_id"]);
 }
 echo sprintf($usersDropdownFrame, $usersDropdownEntries);
 

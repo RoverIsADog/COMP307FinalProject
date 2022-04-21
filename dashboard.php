@@ -77,7 +77,6 @@ if (!$isAuth) { // Exit if authentication failed.
 	<link rel="stylesheet" type="text/css" href="content-box.css">
 	<link rel="stylesheet" type="text/css" href="content-elements.css">
 	<script type="text/javascript" src="dashboard.js"></script>
-	<script src="jquery-3.6.0.min.js"></script>
 
 </head>
 

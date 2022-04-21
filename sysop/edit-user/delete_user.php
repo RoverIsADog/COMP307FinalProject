@@ -42,7 +42,7 @@ if (!key_exists($chosenUserNum, $usersList)) {
 $userStudentID = $usersList[$chosenUserNum]["student_id"];
 
 $output = null; $retval = null;
-$command = escapeshellcmd("python3 " .  __DIR__ . "/submit_changes.py "
+$command = escapeshellcmd("python3 " .  __DIR__ . "/delete_user.py "
 . ' --student_id '     . escapeshellarg($userStudentID));
 if (__DEBUG__) echo "Submitting task to python: $command\n";
 exec($command , $output, $retval);
@@ -56,6 +56,5 @@ if ($retval != 0) {
 // ================================== Finally, done ==================================
 
 echo("The user has been deleted.\n");
-
 
 ?>

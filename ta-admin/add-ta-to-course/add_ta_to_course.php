@@ -59,12 +59,12 @@ if ($chosenTANum == "" || $chosenCourseNum == "" || $assignedHours == "") {
 }
 // Input are correct format
 if (!is_numeric($assignedHours) || intval($assignedHours) < 10) {
-	inputValueError();
+	inputValueError("Please enter an integer for assigned hours.");
 	return;
 }
 // Input Security Check
 if (!key_exists($chosenCourseNum, $coursesList) || !key_exists($chosenTANum, $tasList)) {
-	doesNotExist();
+	doesNotExist("The chosen option does not exist");
 	return;
 }
 
@@ -94,7 +94,7 @@ if ($retval != 0) {
 
 // ================================== Finally, done ==================================
 
-echo("The student has been assigned to the course.");
+echo("The TA has been assigned to the course.");
 
 
 ?>

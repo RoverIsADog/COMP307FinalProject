@@ -16,6 +16,9 @@ else {
 	return;
 }
 
+if (__DEBUG__) echo "The userslist is: <br>\n";
+if (__DEBUG__) echo nl2br(print_r($usersList, true));
+
 // ================================== Get content ==================================
 $chosenUserNum = "";
 if (isset($_GET["dropdown_index"])) {
@@ -43,8 +46,7 @@ $labeledTextfieldTemplate = '
 </div>
 ';
 
-echo sprintf($labeledTextfieldTemplate, "First Name", "text", "user-firstname", $usersList[$chosenUserNum]["firstname"]);
-echo sprintf($labeledTextfieldTemplate, "Last Name", "text", "user-lastname", $usersList[$chosenUserNum]["lastname"]);
+echo sprintf($labeledTextfieldTemplate, "Full Name", "text", "user-fullname", $usersList[$chosenUserNum]["full_name"]);
 echo sprintf($labeledTextfieldTemplate, "Email", "text", "user-email", $usersList[$chosenUserNum]["email"]);
 
 // ================================== Creating Roles checkboxes/ratios ==================================
@@ -65,9 +67,9 @@ $checkboxEntryTemplate = '
 ';
 
 // Preprocessing
-$isStudent = $usersList[$chosenUserNum]["role"] == "student" ? "checked" : "";
-$isTA = $usersList[$chosenUserNum]["role"] == "ta" ? "checked" : "";
-$isProf = $usersList[$chosenUserNum]["role"] == "prof" ? "checked" : "";
+$isStudent = $usersList[$chosenUserNum]["is_student"] == "1" ? "checked" : "";
+$isTA = $usersList[$chosenUserNum]["is_ta"] == "1" ? "checked" : "";
+$isProf = $usersList[$chosenUserNum]["is_prof"] == "1" ? "checked" : "";
 $isAdmin = $usersList[$chosenUserNum]["is_admin"] == "1" ? "checked" : "";
 $isSysop = $usersList[$chosenUserNum]["is_sysop"] == "1" ? "checked" : "";
 

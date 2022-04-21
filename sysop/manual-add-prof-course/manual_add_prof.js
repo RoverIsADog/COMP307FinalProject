@@ -7,7 +7,7 @@ addForm.addEventListener("submit", (e) => {
 
 		function callbackFunc() {
 			console.log(asyncRequest.responseText);
-			// window.location.replace("sysop.php?page=manual_import_prof_course");
+			window.location.replace("sysop.php?page=manual_import_prof_course");
 		}
 
 		console.log("Import command sent!");
