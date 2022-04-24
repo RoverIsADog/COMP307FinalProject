@@ -61,7 +61,7 @@ reviewForm.addEventListener("submit", (e) => {
 		function callbackFunc() {
 			console.log(asyncRequest.responseText);
 			alert(asyncRequest.responseText);
-			// window.location.replace("rate.php?page=rate_ta");
+			window.location.replace("rate.php?page=rate_ta");
 
 		}
 
